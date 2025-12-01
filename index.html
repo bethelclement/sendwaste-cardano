@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SendWaste Cardano | Built with Aiken Smart Contracts</title>
+    <meta name="description"
+        content="Blockchain waste recovery powered by Cardano. Built with Aiken smart contracts for tamper-proof accountability.">
+    <link rel="icon" type="image/png" href="logo-merged.png">
+    <link rel="apple-touch-icon" href="logo-merged.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --cardano-blue: #0033AD;
+            --green: #10b981;
+            --green-dark: #059669;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            overflow-x: hidden;
+            touch-action: pan-y;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: white;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 51, 173, 0.2);
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 1px solid var(--cardano-blue);
+            color: var(--cardano-blue);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .tech-badge {
+                display: inline-block;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 20px 40px;
+            text-align: center;
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--cardano-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 56px;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .tech-tag {
+            background: white;
+            border: 1.5px solid #e5e7eb;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tech-tag.primary {
+            background: var(--cardano-blue);
+            border-color: var(--cardano-blue);
+            color: white;
+        }
+
+        .tech-tag.aiken {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+        /* Interactive Demo Tabs */
+        .demo-tabs {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 2px solid #e5e7eb;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 32px 0;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Interactive Form */
+        .demo-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--gray-900);
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .waste-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .waste-type {
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .waste-type:hover {
+            border-color: var(--green);
+            background: #f0fdf4;
+        }
+
+        .waste-type.selected {
+            border-color: var(--green);
+            background: var(--green);
+            color: white;
+        }
+
+        .waste-type .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .waste-type .name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .slider-group {
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--green);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--green);
+            margin: 12px 0;
+        }
+
+        .reward-display {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 2px solid var(--green);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .reward-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        .reward-label {
+            font-size: 14px;
+            color: #047857;
+            margin-top: 4px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-cardano {
+            background: var(--cardano-blue);
+            color: white;
+        }
+
+        /* Success Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 20px;
+            text-align: center;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .modal h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .modal p {
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+
+        .tx-hash {
+            background: #f3f4f6;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+            margin: 16px 0;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:active {
+            transform: scale(0.98);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cardano-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo-group">
+                <img src="logo-merged.png" alt="SendWaste Cardano Logo" class="logo-img"
+                    onerror="this.style.display='none'">
+                <span class="brand">SendWaste</span>
+            </div>
+            <div class="tech-badge">⛓️ Built with Aiken</div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Blockchain Waste<br>Recovery</h1>
+        <p class="hero-subtitle">
+            Tamper-proof waste tracking powered by Cardano smart contracts.
+            Submit waste, earn tokens, create real environmental impact.
+        </p>
+        <div class="tech-stack">
+            <div class="tech-tag primary">⛓️ Cardano Blockchain</div>
+            <div class="tech-tag aiken">📝 Aiken Smart Contracts</div>
+            <div class="tech-tag">🎫 CIP-25 NFTs</div>
+            <div class="tech-tag">🪙 Native Tokens</div>
+        </div>
+    </section>
+
+    <!-- Live Stats -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">12.4T</div>
+            <div class="stat-label">Waste Verified</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">1,247</div>
+            <div class="stat-label">Active Users</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">5,832</div>
+            <div class="stat-label">NFT Receipts</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">23</div>
+            <div class="stat-label">Drains Cleared</div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Tabs -->
+    <section class="demo-tabs">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab(0)">🏠 Submit Waste</button>
+            <button class="tab" onclick="switchTab(1)">🚛 Verify Pickup</button>
+            <button class="tab" onclick="switchTab(2)">🏭 Redeem Tokens</button>
+        </div>
+
+        <!-- Tab 1: Submit Waste -->
+        <div class="tab-content active">
+            <div class="demo-card">
+                <h2 style="margin-bottom: 24px;">Submit Waste for Rewards</h2>
+
+                <div class="form-group">
+                    <label class="form-label">Select Waste Type</label>
+                    <div class="waste-types">
+                        <div class="waste-type" onclick="selectWaste(this, 'PET', 10)">
+                            <div class="icon">🥤</div>
+                            <div class="name">PET Plastic</div>
+                        </div>
+                        <div class="waste-type" onclick="selectWaste(this, 'Aluminum', 15)">
+                            <div class="icon">🥫</div>
+                            <div class="name">Aluminum</div>
+                        </div>
+                        <div class="waste-type" onclick="selectWaste(this, 'E-Waste', 50)">
+                            <div class="icon">📱</div>
+                            <div class="name">E-Waste</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group slider-group">
+                    <label class="form-label">Quantity (kg)</label>
+                    <input type="range" class="slider" min="5" max="50" value="15" id="quantitySlider"
+                        oninput="updateQuantity(this.value)">
+                    <div class="slider-value"><span id="quantityValue">15</span> kg</div>
+                </div>
+
+                <div class="reward-display">
+                    <div class="reward-amount" id="rewardAmount">150</div>
+                    <div class="reward-label">$WASTE Tokens Earned</div>
+                </div>
+
+                <button class="btn btn-primary" onclick="submitWaste()">
+                    <span>📸 Take Photo & Submit</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab 2: Verify Pickup -->
+        <div class="tab-content">
+            <div class="demo-card">
+                <h2 style="margin-bottom: 24px;">Verify Collection</h2>
+                <p style="color: #6b7280; margin-bottom: 24px;">Collectors verify pickups and mint NFT receipts on
+                    Cardano blockchain</p>
+
+                <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <strong>Pickup #5832</strong>
+                        <span style="color: var(--green);">✓ Verified</span>
+                    </div>
+                    <div style="font-size: 14px; color: #6b7280;">
+                        <div>Type: PET Plastic</div>
+                        <div>Quantity: 15 kg</div>
+                        <div>Location: Garki Zone 3, Abuja</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-cardano" onclick="mintNFT()">
+                    <span>🎫 Mint NFT Receipt (Aiken Contract)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab 3: Redeem Tokens -->
+        <div class="tab-content">
+            <div class="demo-card">
+                <h2 style="margin-bottom: 24px;">Redeem $WASTE Tokens</h2>
+
+                <div
+                    style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); padding: 24px; border-radius: 12px; margin-bottom: 24px; text-align: center;">
+                    <div style="font-size: 14px; color: var(--cardano-blue); margin-bottom: 8px;">Your Balance</div>
+                    <div style="font-size: 48px; font-weight: 800; color: var(--cardano-blue);">1,245</div>
+                    <div style="font-size: 14px; color: var(--cardano-blue);">$WASTE Tokens</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Redeem For</label>
+                    <div class="waste-types">
+                        <div class="waste-type" onclick="this.classList.toggle('selected')">
+                            <div class="icon">💵</div>
+                            <div class="name">Cash (₦50/token)</div>
+                        </div>
+                        <div class="waste-type" onclick="this.classList.toggle('selected')">
+                            <div class="icon">📱</div>
+                            <div class="name">Airtime</div>
+                        </div>
+                        <div class="waste-type" onclick="this.classList.toggle('selected')">
+                            <div class="icon">🛒</div>
+                            <div class="name">Materials</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="redeemTokens()">
+                    <span>🔥 Burn Tokens & Redeem</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">🎉</div>
+            <h3>Transaction Submitted!</h3>
+            <p>Your waste submission has been recorded on Cardano blockchain</p>
+            <div class="tx-hash" id="txHash">Loading transaction hash...</div>
+            <button class="btn btn-primary" onclick="closeModal()">View NFT Receipt</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">SendWaste Cardano</div>
+            <p style="color: #9ca3af; margin-bottom: 20px;">
+                Blockchain waste recovery for Nigerian cities. Built with Aiken smart contracts on Cardano.
+            </p>
+            <div class="cardano-badge">
+                ⛓️ Powered by Cardano Blockchain
+            </div>
+            <div style="margin-top: 20px; font-size: 14px; color: #6b7280;">
+                DirectEd x CATS Hackathon 2025 | Abuja Hub
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedWaste = { type: 'PET', rate: 10 };
+        let quantity = 15;
+
+        function switchTab(index) {
+            document.querySelectorAll('.tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.tab-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+
+        function selectWaste(element, type, rate) {
+            document.querySelectorAll('.waste-type').forEach(el => {
+                if (el.parentElement === element.parentElement) {
+                    el.classList.remove('selected');
+                }
+            });
+            element.classList.add('selected');
+            selectedWaste = { type, rate };
+            updateReward();
+        }
+
+        function updateQuantity(value) {
+            quantity = parseInt(value);
+            document.getElementById('quantityValue').textContent = value;
+            updateReward();
+        }
+
+        function updateReward() {
+            const reward = selectedWaste.rate * quantity;
+            document.getElementById('rewardAmount').textContent = reward;
+        }
+
+        function submitWaste() {
+            // Simulate blockchain transaction
+            const modal = document.getElementById('successModal');
+            modal.classList.add('active');
+
+            // Generate mock transaction hash
+            setTimeout(() => {
+                const txHash = '0x' + Array.from({ length: 64 }, () =>
+                    Math.floor(Math.random() * 16).toString(16)).join('');
+                document.getElementById('txHash').textContent = txHash;
+            }, 500);
+
+            // Confetti effect
+            createConfetti();
+        }
+
+        function mintNFT() {
+            alert('🎫 NFT Receipt Minted!\n\nContract: Aiken Smart Contract\nPolicy ID: 0x7a8b9c...\nAsset Name: WASTE_RECEIPT_5832\n\nView on CardanoScan (PreProd)');
+        }
+
+        function redeemTokens() {
+            alert('🔥 Tokens Burned!\n\n1,245 $WASTE tokens redeemed\nValue: ₦62,250\n\nTransaction confirmed on Cardano');
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = ['#10b981', '#0033AD', '#fbbf24'][Math.floor(Math.random() * 3)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-20px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                confetti.style.transition = 'all 2s ease-out';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.style.top = '100vh';
+                    confetti.style.opacity = '0';
+                }, 10);
+
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        }
+
+        // Auto-select first waste type
+        document.querySelector('.waste-type').click();
+
+        // Add scroll effect to nav
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Touch feedback for mobile
+        document.querySelectorAll('.btn, .waste-type, .stat-card, .tab').forEach(el => {
+            el.addEventListener('touchstart', () => {
+                el.style.transform = 'scale(0.95)';
+            });
+            el.addEventListener('touchend', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>
