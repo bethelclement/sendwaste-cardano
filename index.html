@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SendWaste Cardano | Built with Aiken Smart Contracts</title>
+    <meta name="description"
+        content="Turn waste into wealth with Cardano blockchain. Built with Aiken smart contracts.">
+    <link rel="icon" href="logo-merged.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --cardano-blue: #0033AD;
+            --green: #10b981;
+            --green-dark: #059669;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 50%, #f9fafb 100%);
+            color: #111827;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Nature Background - Entire Page */
+        .nature-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .leaf {
+            position: absolute;
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .leaf:nth-child(1) {
+            left: 5%;
+            top: 10%;
+            animation-delay: 0s;
+        }
+
+        .leaf:nth-child(2) {
+            left: 20%;
+            top: 30%;
+            animation-delay: 4s;
+        }
+
+        .leaf:nth-child(3) {
+            left: 35%;
+            top: 50%;
+            animation-delay: 8s;
+        }
+
+        .leaf:nth-child(4) {
+            left: 50%;
+            top: 20%;
+            animation-delay: 12s;
+        }
+
+        .leaf:nth-child(5) {
+            left: 65%;
+            top: 40%;
+            animation-delay: 16s;
+        }
+
+        .leaf:nth-child(6) {
+            left: 80%;
+            top: 60%;
+            animation-delay: 2s;
+        }
+
+        .leaf:nth-child(7) {
+            left: 15%;
+            top: 70%;
+            animation-delay: 6s;
+        }
+
+        .leaf:nth-child(8) {
+            left: 90%;
+            top: 15%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(20px, -30px) rotate(90deg);
+            }
+
+            50% {
+                transform: translate(-20px, -60px) rotate(180deg);
+            }
+
+            75% {
+                transform: translate(30px, -90px) rotate(270deg);
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+        }
+
+        .brand-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--green), var(--cardano-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .wallet-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--cardano-blue), #0052D9);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .wallet-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 51, 173, 0.3);
+        }
+
+        .wallet-btn.connected {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 32px 40px;
+            text-align: center;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(40px, 8vw, 68px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--cardano-blue) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 22px);
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Progress Flow with Illustrations */
+        .progress-flow {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .flow-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid #e5e7eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .flow-step.active .flow-icon {
+            border-color: var(--green);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+            transform: scale(1.1);
+        }
+
+        .flow-step.completed .flow-icon {
+            border-color: var(--green);
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+        }
+
+        .flow-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .flow-step.active .flow-label {
+            color: var(--green);
+        }
+
+        .flow-arrow {
+            font-size: 32px;
+            color: #d1d5db;
+            margin: 0 -12px;
+        }
+
+        /* Stats Grid with Illustrations */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            max-width: 1280px;
+            margin: 60px auto;
+            padding: 0 32px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .stat-card:hover {
+            border-color: var(--green);
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--green), var(--cardano-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Demo Section */
+        .demo-section {
+            max-width: 1280px;
+            margin: 80px auto;
+            padding: 0 32px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+            background: linear-gradient(135deg, var(--green), var(--cardano-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .demo-tabs {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 14px 28px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            border-color: var(--green);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            border-color: var(--green);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .demo-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .waste-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .waste-option {
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .waste-option:hover {
+            border-color: var(--cardano-blue);
+            background: #dbeafe;
+        }
+
+        .waste-option.selected {
+            border-color: var(--cardano-blue);
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            box-shadow: 0 4px 16px rgba(0, 51, 173, 0.2);
+        }
+
+        .waste-illustration {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 12px;
+        }
+
+        .slider {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(to right, var(--green) 30%, #e5e7eb 30%);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--green);
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        .quantity-display {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .quantity-value {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--green), var(--cardano-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reward-box {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 2px solid var(--cardano-blue);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .reward-amount {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--cardano-blue);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .reward-subtext {
+            font-size: 14px;
+            color: #1e40af;
+            margin-top: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(16, 185, 129, 0.4);
+        }
+
+        /* NFT Receipt Style */
+        .receipt-card {
+            background: white;
+            border: 3px dashed var(--green);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .receipt-card::before,
+        .receipt-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f0fdf4;
+            border-radius: 50%;
+        }
+
+        .receipt-card::before {
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .receipt-card::after {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Architecture Section */
+        .architecture {
+            max-width: 1280px;
+            margin: 80px auto;
+            padding: 0 32px;
+        }
+
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .arch-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .arch-card:hover {
+            border-color: var(--cardano-blue);
+            box-shadow: 0 16px 48px rgba(0, 51, 173, 0.15);
+        }
+
+        .arch-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+        }
+
+        .arch-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .arch-desc {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: slideUp 0.4s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .wallet-options {
+            display: grid;
+            gap: 16px;
+            margin: 28px 0;
+        }
+
+        .wallet-option {
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .wallet-option:hover {
+            border-color: var(--cardano-blue);
+            background: #dbeafe;
+        }
+
+        .wallet-logo {
+            font-size: 32px;
+            width: 48px;
+            flex-shrink: 0;
+        }
+
+        .wallet-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .wallet-name {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 60px 32px 40px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .progress-flow {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .arch-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Nature Background -->
+    <div class="nature-bg">
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+        <svg class="leaf" width="60" height="60" viewBox="0 0 60 60">
+            <path d="M30 5 Q20 15, 20 30 Q20 45, 30 55 Q40 45, 40 30 Q40 15, 30 5 Z" fill="var(--green)"
+                opacity="0.3" />
+        </svg>
+    </div>
+
+    <div class="content">
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <img src="logo-merged.png" alt="SendWaste" class="logo-img" onerror="this.style.display='none'">
+                    <span class="brand-name">SendWaste</span>
+                </div>
+                <button class="wallet-btn" id="walletBtn" onclick="openWalletModal()">
+                    <span id="walletText">Connect Wallet</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Protecting Earth<br>with Cardano</h1>
+            <p class="hero-subtitle">
+                Turn waste into wealth with blockchain accountability.
+                Every transaction verified on-chain with Aiken smart contracts.
+            </p>
+        </section>
+
+        <!-- Progress Flow with Illustrations -->
+        <div class="progress-flow">
+            <div class="flow-step active" id="step1">
+                <div class="flow-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <path d="M24 8L32 16L24 24L16 16L24 8Z" fill="var(--green)" />
+                        <rect x="20" y="24" width="8" height="16" fill="var(--green)" />
+                        <path d="M14 36L10 40H38L34 36H14Z" fill="var(--green)" />
+                    </svg>
+                </div>
+                <div class="flow-label">Submit Waste</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" id="step2">
+                <div class="flow-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="16" stroke="var(--cardano-blue)" stroke-width="3" fill="none" />
+                        <path d="M16 24L22 30L34 18" stroke="var(--cardano-blue)" stroke-width="3" fill="none" />
+                    </svg>
+                </div>
+                <div class="flow-label">Verify Pickup</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" id="step3">
+                <div class="flow-icon">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <rect x="12" y="8" width="24" height="32" rx="2" fill="none" stroke="var(--green)"
+                            stroke-width="3" />
+                        <line x1="16" y1="16" x2="32" y2="16" stroke="var(--green)" stroke-width="2" />
+                        <line x1="16" y1="22" x2="32" y2="22" stroke="var(--green)" stroke-width="2" />
+                        <line x1="16" y1="28" x2="26" y2="28" stroke="var(--green)" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="flow-label">Get NFT Receipt</div>
+            </div>
+        </div>
+
+        <!-- Stats with Illustrations -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 4L30 18L44 18L32 26L38 40L24 32L10 40L16 26L4 18L18 18L24 4Z" fill="var(--green)" />
+                </svg>
+                <div class="stat-value">12.4T</div>
+                <div class="stat-label">Waste Verified</div>
+            </div>
+            <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="14" r="8" fill="var(--cardano-blue)" />
+                    <path d="M8 42C8 32 14 26 24 26C34 26 40 32 40 42" fill="var(--cardano-blue)" />
+                </svg>
+                <div class="stat-value">1,247</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 48 48" fill="none">
+                    <rect x="10" y="8" width="28" height="32" rx="2" stroke="var(--green)" stroke-width="3"
+                        fill="none" />
+                    <path d="M18 18L30 18M18 24L30 24M18 30L24 30" stroke="var(--green)" stroke-width="2" />
+                </svg>
+                <div class="stat-value">5,832</div>
+                <div class="stat-label">NFT Receipts</div>
+            </div>
+            <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 8L20 20L8 24L20 28L24 40L28 28L40 24L28 20L24 8Z" stroke="var(--cardano-blue)"
+                        stroke-width="3" fill="none" />
+                </svg>
+                <div class="stat-value">23</div>
+                <div class="stat-label">Drains Cleared</div>
+            </div>
+            <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 48 48" fill="none">
+                    <rect x="12" y="16" width="10" height="24" rx="2" fill="var(--green)" />
+                    <rect x="26" y="12" width="10" height="28" rx="2" fill="var(--cardano-blue)" />
+                </svg>
+                <div class="stat-value">30</div>
+                <div class="stat-label">Jobs Created</div>
+            </div>
+            <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="12" stroke="var(--green)" stroke-width="3" fill="none" />
+                    <circle cx="24" cy="24" r="4" fill="var(--green)" />
+                    <path d="M24 12V4M24 44V36M36 24H44M4 24H12" stroke="var(--green)" stroke-width="3" />
+                </svg>
+                <div class="stat-value">5</div>
+                <div class="stat-label">Collection Points</div>
+            </div>
+        </div>
+
+        <!-- SendWaste Now! Section -->
+        <section class="demo-section">
+            <h2 class="section-title">SendWaste Now!</h2>
+
+            <div class="demo-tabs">
+                <button class="tab active" onclick="switchTab(0)">Submit Waste</button>
+                <button class="tab" onclick="switchTab(1)">Verify Collection</button>
+                <button class="tab" onclick="switchTab(2)">View NFT Receipt</button>
+            </div>
+
+            <!-- Tab 1 -->
+            <div class="tab-content active">
+                <div class="demo-card">
+                    <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 24px;">Submit Waste for Rewards
+                    </h3>
+
+                    <div class="waste-grid">
+                        <div class="waste-option selected" onclick="selectWaste(this, 10)">
+                            <svg class="waste-illustration" viewBox="0 0 64 64" fill="none">
+                                <ellipse cx="32" cy="20" rx="12" ry="8" fill="var(--cardano-blue)" opacity="0.3" />
+                                <rect x="28" y="18" width="8" height="28" rx="4" fill="var(--cardano-blue)" />
+                                <ellipse cx="32" cy="46" rx="12" ry="4" fill="var(--cardano-blue)" />
+                                <path d="M26 14L38 14L40 18L24 18L26 14Z" fill="var(--cardano-blue)" opacity="0.6" />
+                            </svg>
+                            <div style="font-size: 13px; font-weight: 600;">PET Plastic<br>0.01 ₳/kg (₦500)</div>
+                        </div>
+                        <div class="waste-option" onclick="selectWaste(this, 15)">
+                            <svg class="waste-illustration" viewBox="0 0 64 64" fill="none">
+                                <rect x="20" y="18" width="24" height="30" rx="8" fill="var(--cardano-blue)" />
+                                <rect x="22" y="12" width="20" height="6" rx="2" fill="var(--cardano-blue)"
+                                    opacity="0.6" />
+                                <path d="M20 32L44 32" stroke="white" stroke-width="1" />
+                                <path d="M20 40L44 40" stroke="white" stroke-width="1" />
+                            </svg>
+                            <div style="font-size: 13px; font-weight: 600;">Aluminum<br>0.015 ₳/kg (₦750)</div>
+                        </div>
+                        <div class="waste-option" onclick="selectWaste(this, 50)">
+                            <svg class="waste-illustration" viewBox="0 0 64 64" fill="none">
+                                <rect x="18" y="14" width="28" height="36" rx="4" fill="var(--cardano-blue)" />
+                                <circle cx="32" cy="32" r="8" fill="white" opacity="0.3" />
+                                <rect x="28" y="50" width="8" height="4" fill="var(--cardano-blue)" opacity="0.6" />
+                            </svg>
+                            <div style="font-size: 13px; font-weight: 600;">E-Waste<br>0.05 ₳/kg (₦2,500)</div>
+                        </div>
+                    </div>
+
+                    <input type="range" class="slider" min="5" max="50" value="15" id="slider"
+                        oninput="updateQuantity(this.value)">
+                    <div class="quantity-display">
+                        <div class="quantity-value"><span id="qty">15</span> kg</div>
+                    </div>
+
+                    <div class="reward-box">
+                        <div style="font-size: 14px; color: var(--cardano-blue); font-weight: 600;">YOU'LL EARN</div>
+                        <div class="reward-amount"><span id="reward">150</span> $WASTE</div>
+                        <div class="reward-subtext"><span id="ada">0.15</span> ₳ (₦<span id="naira">7,500</span>)</div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="submit()">Submit to Blockchain</button>
+                </div>
+            </div>
+
+            <!-- Tab 2 -->
+            <div class="tab-content">
+                <div class="demo-card">
+                    <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 24px;">Verify Pickup</h3>
+                    <div style="background: #f3f4f6; padding: 20px; border-radius: 14px; margin: 20px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                            <strong>Receipt #5832</strong>
+                            <span style="color: var(--green); font-weight: 600;">✓ GPS Verified</span>
+                        </div>
+                        <div style="font-size: 14px; color: #6b7280;">
+                            <div>Type: PET Plastic | 15 kg</div>
+                            <div>Location: Garki, Abuja</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary"
+                        style="background: linear-gradient(135deg, var(--cardano-blue), #0052D9);" onclick="mint()">
+                        Sign & Mint NFT Receipt
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 3 -->
+            <div class="tab-content">
+                <div class="demo-card">
+                    <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 24px;">Your NFT Receipt</h3>
+                    <div class="receipt-card">
+                        <div style="text-align: center; margin-bottom: 16px;">
+                            <svg width="120" height="120" viewBox="0 0 120 120" style="margin: 0 auto;">
+                                <circle cx="60" cy="60" r="50" fill="var(--green)" opacity="0.2" />
+                                <path d="M60 30L70 50L90 50L74 62L82 82L60 70L38 82L46 62L30 50L50 50L60 30Z"
+                                    fill="var(--green)" />
+                                <text x="60" y="100" text-anchor="middle" font-size="12" fill="var(--green)"
+                                    font-weight="bold">VERIFIED</text>
+                            </svg>
+                        </div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; margin-bottom: 12px; font-size: 18px;">Waste Recovery Receipt
+                                #5832</div>
+                            <div style="font-size: 14px; color: #047857;">
+                                <div>✓ 15 kg PET Plastic</div>
+                                <div>✓ Cardano Blockchain Verified</div>
+                                <div>✓ CIP-25 NFT Standard</div>
+                                <div>✓ GPS: Garki, Abuja</div>
+                                <div>✓ 150 $WASTE (0.15 ₳)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary"
+                        style="background: linear-gradient(135deg, var(--cardano-blue), #0052D9);">
+                        View on CardanoScan
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section class="architecture">
+            <h2 class="section-title">Architecture</h2>
+            <div class="arch-grid">
+                <div class="arch-card">
+                    <svg class="arch-icon" viewBox="0 0 72 72" fill="none">
+                        <circle cx="36" cy="36" r="28" stroke="var(--cardano-blue)" stroke-width="4" />
+                        <text x="36" y="42" text-anchor="middle" font-size="24" fill="var(--cardano-blue)"
+                            font-weight="bold">₳</text>
+                    </svg>
+                    <div class="arch-title">Cardano Blockchain</div>
+                    <div class="arch-desc">Sustainable PoS network</div>
+                </div>
+                <div class="arch-card">
+                    <svg class="arch-icon" viewBox="0 0 72 72" fill="none">
+                        <rect x="14" y="14" width="44" height="44" rx="8" stroke="var(--green)" stroke-width="4" />
+                        <path d="M28 32L36 40L44 28" stroke="var(--green)" stroke-width="4" fill="none" />
+                    </svg>
+                    <div class="arch-title">Aiken Smart Contracts</div>
+                    <div class="arch-desc">Type-safe validators</div>
+                </div>
+                <div class="arch-card">
+                    <svg class="arch-icon" viewBox="0 0 72 72" fill="none">
+                        <rect x="18" y="12" width="36" height="48" rx="4" stroke="var(--cardano-blue)"
+                            stroke-width="4" />
+                        <line x1="26" y1="24" x2="46" y2="24" stroke="var(--cardano-blue)" stroke-width="3" />
+                        <line x1="26" y1="34" x2="46" y2="34" stroke="var(--cardano-blue)" stroke-width="3" />
+                        <line x1="26" y1="44" x2="38" y2="44" stroke="var(--cardano-blue)" stroke-width="3" />
+                    </svg>
+                    <div class="arch-title">CIP-25 NFT Receipts</div>
+                    <div class="arch-desc">Immutable proof</div>
+                </div>
+                <div class="arch-card">
+                    <svg class="arch-icon" viewBox="0 0 72 72" fill="none">
+                        <circle cx="36" cy="36" r="20" stroke="var(--green)" stroke-width="4" />
+                        <path d="M36 16V24M36 48V56M56 36H48M24 36H16" stroke="var(--green)" stroke-width="4" />
+                    </svg>
+                    <div class="arch-title">IPFS Storage</div>
+                    <div class="arch-desc">Decentralized metadata</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 16px;">SendWaste Cardano</h3>
+                <p style="color: #9ca3af; margin-bottom: 28px;">
+                    Built with Aiken smart contracts on Cardano blockchain.
+                    Building a cleaner Africa, one verified transaction at a time.
+                </p>
+                <div style="margin-top: 28px; font-size: 14px; color: #9ca3af;">
+                    DirectEd x CATS Hackathon 2025 | Abuja Hub 🇳🇬
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Wallet Modal -->
+    <div class="modal" id="walletModal">
+        <div class="modal-content">
+            <h3 style="font-family: 'Outfit'; font-size: 28px; margin: 20px 0;">Connect Wallet</h3>
+            <p style="color: #6b7280; margin-bottom: 28px;">Choose a Cardano wallet</p>
+
+            <div class="wallet-options">
+                <div class="wallet-option" onclick="connect('Nami')">
+                    <div class="wallet-logo">🦉</div>
+                    <div class="wallet-info">
+                        <div class="wallet-name">Nami</div>
+                        <div style="font-size: 13px; color: #6b7280;">Most popular</div>
+                    </div>
+                </div>
+                <div class="wallet-option" onclick="connect('Eternl')">
+                    <div class="wallet-logo">⚡</div>
+                    <div class="wallet-info">
+                        <div class="wallet-name">Eternl</div>
+                        <div style="font-size: 13px; color: #6b7280;">Advanced</div>
+                    </div>
+                </div>
+                <div class="wallet-option" onclick="connect('Lace')">
+                    <div class="wallet-logo">🎴</div>
+                    <div class="wallet-info">
+                        <div class="wallet-name">Lace</div>
+                        <div style="font-size: 13px; color: #6b7280;">By IOG</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" style="background: #f3f4f6; color: #374151; margin-top: 20px;"
+                onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <svg width="80" height="80" viewBox="0 0 80 80" style="margin: 20px auto;">
+                <circle cx="40" cy="40" r="35" fill="var(--green)" opacity="0.2" />
+                <circle cx="40" cy="40" r="35" stroke="var(--green)" stroke-width="4" fill="none" />
+                <path d="M25 40L35 50L55 30" stroke="var(--green)" stroke-width="5" fill="none" />
+            </svg>
+            <h3 style="font-family: 'Outfit'; font-size: 28px;">Success!</h3>
+            <div
+                style="background: linear-gradient(135deg, #dcfce7, #a7f3d0); padding: 20px; border-radius: 14px; margin: 20px 0; border: 2px solid var(--green);">
+                <div style="font-size: 32px; font-weight: 800; color: var(--green-dark);">+150 $WASTE</div>
+                <div style="font-size: 14px; color: #059669;">0.15 ₳ (₦7,500) credited</div>
+            </div>
+            <button class="btn btn-primary" onclick="closeModal(); switchTab(2);">View NFT Receipt</button>
+        </div>
+    </div>
+
+    <script>
+        let wallet = false;
+        let rate = 10;
+        let qty = 15;
+        const adaRate = 0.01; // 0.01 ADA per token
+        const nairaRate = 50; // 50 Naira per token
+
+        function switchTab(i) {
+            document.querySelectorAll('.tab').forEach((t, idx) => t.classList.toggle('active', idx === i));
+            document.querySelectorAll('.tab-content').forEach((c, idx) => c.classList.toggle('active', idx === i));
+            updateProgress(i + 1);
+        }
+
+        function updateProgress(step) {
+            for (let i = 1; i <= 3; i++) {
+                const el = document.getElementById(`step${i}`);
+                el.classList.remove('active', 'completed');
+                if (i < step) el.classList.add('completed');
+                if (i === step) el.classList.add('active');
+            }
+        }
+
+        function selectWaste(el, r) {
+            document.querySelectorAll('.waste-option').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+            rate = r;
+            updateReward();
+        }
+
+        function updateQuantity(v) {
+            qty = parseInt(v);
+            document.getElementById('qty').textContent = v;
+            updateReward();
+            const p = ((v - 5) / 45) * 100;
+            document.getElementById('slider').style.background = `linear-gradient(to right, var(--green) ${p}%, #e5e7eb ${p}%)`;
+        }
+
+        function updateReward() {
+            const tokens = rate * qty;
+            const ada = (tokens * adaRate).toFixed(2);
+            const naira = (tokens * nairaRate).toLocaleString();
+
+            document.getElementById('reward').textContent = tokens;
+            document.getElementById('ada').textContent = ada;
+            document.getElementById('naira').textContent = naira;
+        }
+
+        function openWalletModal() {
+            document.getElementById('walletModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+        }
+
+        function connect(name) {
+            closeModal();
+            setTimeout(() => {
+                wallet = true;
+                document.getElementById('walletText').textContent = `${name} Connected`;
+                document.getElementById('walletBtn').classList.add('connected');
+            }, 500);
+        }
+
+        function submit() {
+            if (!wallet) { openWalletModal(); return; }
+            document.getElementById('successModal').classList.add('active');
+            updateProgress(2);
+            setTimeout(() => switchTab(1), 1500);
+        }
+
+        function mint() {
+            if (!wallet) { openWalletModal(); return; }
+            updateProgress(3);
+            setTimeout(() => switchTab(2), 500);
+        }
+
+        updateReward();
+        updateQuantity(15);
+
+        window.addEventListener('scroll', () => {
+            document.querySelector('.nav').style.boxShadow = window.pageYOffset > 50 ? '0 4px 24px rgba(0,0,0,0.1)' : 'none';
+        });
+    </script>
+</body>
+
+</html>
