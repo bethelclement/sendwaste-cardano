@@ -609,6 +609,118 @@
             color: #6b7280;
         }
 
+        /* Responsive Leaderboard */
+        .leaderboard-container {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            min-width: 500px;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .leaderboard-table tr:hover {
+            background: linear-gradient(135deg, #f0fdf4, #dbeafe);
+            transform: translateX(4px);
+        }
+
+        .leaderboard-table th {
+            text-align: left;
+            padding: 12px 8px;
+            color: #6b7280;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .leaderboard-table td {
+            padding: 14px 8px;
+            font-size: 14px;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #dcfce7, #d1fae5);
+            border-radius: 12px;
+            font-size: 12px;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse-live 2s infinite;
+        }
+
+        @keyframes pulse-live {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.3);
+            }
+        }
+
+        .blockchain-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .leaderboard-container {
+                padding: 16px;
+                margin: 0 16px;
+            }
+
+            .leaderboard-table {
+                min-width: 480px;
+            }
+
+            .leaderboard-table th,
+            .leaderboard-table td {
+                padding: 10px 6px;
+                font-size: 12px;
+            }
+
+            section {
+                padding: 0 16px !important;
+            }
+        }
+
         /* Modal */
         .modal {
             display: none;
@@ -1025,43 +1137,53 @@
 
         <!-- Live Leaderboard -->
         <section style="max-width: 1280px; margin: 60px auto; padding: 0 32px;">
-            <h2 class="section-title">🏆 Live Leaderboard</h2>
-            <div
-                style="background: white; border-radius: 20px; padding: 28px; box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;"><span
-                        style="font-weight: 600; color: var(--cardano-blue);">⚡ Real-time on-chain</span><span
-                        style="font-size: 12px; color: var(--green);">● LIVE</span></div>
-                <table style="width: 100%; border-collapse: collapse;">
+            <h2 class="section-title">
+                <svg class="blockchain-icon"
+                    style="width: 32px; height: 32px; display: inline-block; vertical-align: middle; margin-right: 12px;"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="var(--cardano-blue)" opacity="0.3" />
+                    <path d="M2 17L12 22L22 17" stroke="var(--green)" stroke-width="2" />
+                    <path d="M2 12L12 17L22 12" stroke="var(--cardano-blue)" stroke-width="2" />
+                </svg>
+                Live Leaderboard
+            </h2>
+            <div class="leaderboard-container hover-lift">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+                    <span style="font-weight: 600; color: var(--cardano-blue);">Real-time on-chain</span>
+                    <span class="live-indicator"><span class="live-dot"></span> LIVE</span>
+                </div>
+                <table class="leaderboard-table">
                     <thead>
-                        <tr style="border-bottom: 2px solid #e5e7eb;">
-                            <th style="text-align: left; padding: 12px; color: #6b7280;">#</th>
-                            <th style="text-align: left; padding: 12px; color: #6b7280;">User</th>
-                            <th style="text-align: left; padding: 12px; color: #6b7280;">Waste</th>
-                            <th style="text-align: left; padding: 12px; color: #6b7280;">NFTs</th>
-                            <th style="text-align: left; padding: 12px; color: #6b7280;">$WASTE</th>
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Waste</th>
+                            <th>NFTs</th>
+                            <th>Tokens</th>
                         </tr>
                     </thead>
                     <tbody id="leaderboard">
                         <tr>
-                            <td style="padding: 14px;">🥇</td>
-                            <td style="padding: 14px; font-family: monospace; font-size: 12px;">addr1...4k9x</td>
-                            <td style="padding: 14px;"><strong>245kg</strong></td>
-                            <td style="padding: 14px;">🎫 42</td>
-                            <td style="padding: 14px; color: var(--green);"><strong>3,687</strong></td>
+                            <td>🥇</td>
+                            <td style="font-family: monospace; font-size: 12px;">addr1...4k9x</td>
+                            <td><strong>245kg</strong></td>
+                            <td>42</td>
+                            <td style="color: var(--green);"><strong>3,687</strong></td>
                         </tr>
                         <tr>
-                            <td style="padding: 14px;">🥈</td>
-                            <td style="padding: 14px; font-family: monospace; font-size: 12px;">addr1...7m2p</td>
-                            <td style="padding: 14px;"><strong>198kg</strong></td>
-                            <td style="padding: 14px;">🎫 35</td>
-                            <td style="padding: 14px; color: var(--green);"><strong>2,974</strong></td>
+                            <td>🥈</td>
+                            <td style="font-family: monospace; font-size: 12px;">addr1...7m2p</td>
+                            <td><strong>198kg</strong></td>
+                            <td>35</td>
+                            <td style="color: var(--green);"><strong>2,974</strong></td>
                         </tr>
                         <tr>
-                            <td style="padding: 14px;">🥉</td>
-                            <td style="padding: 14px; font-family: monospace; font-size: 12px;">addr1...9n5q</td>
-                            <td style="padding: 14px;"><strong>156kg</strong></td>
-                            <td style="padding: 14px;">🎫 28</td>
-                            <td style="padding: 14px; color: var(--green);"><strong>2,350</strong></td>
+                            <td>🥉</td>
+                            <td style="font-family: monospace; font-size: 12px;">addr1...9n5q</td>
+                            <td><strong>156kg</strong></td>
+                            <td>28</td>
+                            <td style="color: var(--green);"><strong>2,350</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1089,7 +1211,7 @@
                 <svg class="stat-icon" viewBox="0 0 48 48" fill="none">
                     <rect x="10" y="8" width="28" height="32" rx="2" stroke="var(--green)" stroke-width="3"
                         fill="none" />
-                    <path d="M18 18L30 18M18 24L30 24M18 30L24 30" stroke="var(--green)" stroke-width="2" />
+                    <path d="M18 18L30 18M18 24L30 24M18 30L26 30" stroke="var(--green)" stroke-width="2" />
                 </svg>
                 <div class="stat-value">5,832</div>
                 <div class="stat-label">NFT Receipts</div>
@@ -1282,14 +1404,32 @@
         </section>
 
         <!-- Blockchain Proof -->
-        <section style="max-width: 12800px; margin: 80px auto; padding: 0 32px;">
-            <h2 class="section-title">⛓️ Proof of Cardano Integration</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
-                <div
-                    style="background: white; border: 2px solid var(--cardano-blue); border-radius: 16px; padding: 24px;">
-                    <div style="font-weight: 700; margin-bottom: 12px;">📝 waste_receipt_validator.ak</div>
+        <section style="max-width: 1280px; margin: 80px auto; padding: 0 32px;">
+            <h2 class="section-title">
+                <svg class="blockchain-icon"
+                    style="width: 32px; height: 32px; display: inline-block; vertical-align: middle; margin-right: 12px;"
+                    viewBox="0 0 24 24" fill="none">
+                    <rect x="6" y="6" width="4" height="4" fill="var(--cardano-blue)" />
+                    <rect x="14" y="6" width="4" height="4" fill="var(--green)" />
+                    <rect x="6" y="14" width="4" height="4" fill="var(--green)" />
+                    <rect x="14" y="14" width="4" height="4" fill="var(--cardano-blue)" />
+                    <path d="M10 8H14M8 10V14M10 16H14M16 10V14" stroke="var(--cardano-blue)" stroke-width="1.5" />
+                </svg>
+                Proof of Cardano Integration
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <div class="hover-lift"
+                    style="background: white; border: 2px solid var(--cardano-blue); border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                        <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none">
+                            <rect x="4" y="4" width="16" height="16" rx="2" stroke="var(--cardano-blue)"
+                                stroke-width="2" fill="none" />
+                            <path d="M8 12H16M12 8V16" stroke="var(--cardano-blue)" stroke-width="2" />
+                        </svg>
+                        <span style="font-weight: 700; font-size: 14px;">waste_receipt_validator.ak</span>
+                    </div>
                     <pre
-                        style="background: #f9fafb; padding: 12px; border-radius: 8px; font-size: 10px; overflow-x: auto;"><code>validator {
+                        style="background: #f9fafb; padding: 12px; border-radius: 8px; font-size: 9px; overflow-x: auto; line-height: 1.4;"><code>validator {
   fn spend(datum, redeemer, ctx) {
     expect Verify { collector } = redeemer
     must_be_signed_by(tx, collector) &&
@@ -1298,13 +1438,21 @@
   }
 }</code></pre>
                     <div
-                        style="margin-top: 12px; padding: 8px; background: #dbeafe; border-radius: 6px; font-size: 11px;">
-                        <strong>Contract:</strong> <code style="font-size: 9px;">addr_test1wp...</code></div>
+                        style="margin-top: 12px; padding: 8px; background: #dbeafe; border-radius: 6px; font-size: 10px;">
+                        <strong>Contract:</strong> <code style="font-size: 8px;">addr_test1wp...</code></div>
                 </div>
-                <div style="background: white; border: 2px solid var(--green); border-radius: 16px; padding: 24px;">
-                    <div style="font-weight: 700; margin-bottom: 12px;">🎫 receipt_nft_policy.ak</div>
+                <div class="hover-lift"
+                    style="background: white; border: 2px solid var(--green); border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                        <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none">
+                            <rect x="7" y="4" width="10" height="16" rx="2" stroke="var(--green)" stroke-width="2"
+                                fill="none" />
+                            <circle cx="12" cy="8" r="1.5" fill="var(--green)" />
+                        </svg>
+                        <span style="font-weight: 700; font-size: 14px;">receipt_nft_policy.ak</span>
+                    </div>
                     <pre
-                        style="background: #f9fafb; padding: 12px; border-radius: 8px; font-size: 10px; overflow-x: auto;"><code>minting_policy {
+                        style="background: #f9fafb; padding: 12px; border-radius: 8px; font-size: 9px; overflow-x: auto; line-height: 1.4;"><code>minting_policy {
   fn mint(redeemer, ctx) {
     expect_valid_receipt(tx) &&
     quantity_check(tx.mint, 1) &&
@@ -1313,13 +1461,20 @@
   }
 }</code></pre>
                     <div
-                        style="margin-top: 12px; padding: 8px; background: #dcfce7; border-radius: 6px; font-size: 11px;">
-                        <strong>Policy:</strong> <code style="font-size: 9px;">8f3e2d1c...</code></div>
+                        style="margin-top: 12px; padding: 8px; background: #dcfce7; border-radius: 6px; font-size: 10px;">
+                        <strong>Policy:</strong> <code style="font-size: 8px;">8f3e2d1c...</code></div>
                 </div>
-                <div style="background: white; border: 2px solid #fbbf24; border-radius: 16px; padding: 24px;">
-                    <div style="font-weight: 700;margin-bottom: 12px;">🪙 reward_token_policy.ak</div>
+                <div class="hover-lift"
+                    style="background: white; border: 2px solid #fbbf24; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                        <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="8" stroke="#fbbf24" stroke-width="2" fill="none" />
+                            <path d="M12 7V12L15 15" stroke="#fbbf24" stroke-width="2" />
+                        </svg>
+                        <span style="font-weight: 700; font-size: 14px;">reward_token_policy.ak</span>
+                    </div>
                     <pre
-                        style="background: #f9fafb; padding: 12px; border-radius: 8px; font-size: 10px; overflow-x: auto;"><code>minting_policy {
+                        style="background: #f9fafb; padding: 12px; border-radius: 8px; font-size: 9px; overflow-x: auto; line-height: 1.4;"><code>minting_policy {
   fn mint(redeemer, ctx) {
     when waste_type is {
       PET -> quantity * 10,
@@ -1329,14 +1484,20 @@
   }
 }</code></pre>
                     <div
-                        style="margin-top: 12px; padding: 8px; background: #fef3c7; border-radius: 6px; font-size: 11px;">
-                        <strong>Policy:</strong> <code style="font-size: 9px;">5a7b9e4f...</code></div>
+                        style="margin-top: 12px; padding: 8px; background: #fef3c7; border-radius: 6px; font-size: 10px;">
+                        <strong>Policy:</strong> <code style="font-size: 8px;">5a7b9e4f...</code></div>
                 </div>
             </div>
             <div
                 style="margin-top: 32px; text-align: center; padding: 20px; background: linear-gradient(135deg, #dbeafe, #dcfce7); border-radius: 12px;">
-                <div style="font-weight: 700; color: var(--cardano-blue); margin-bottom: 8px;">🌐 Deployed on Cardano
-                    PreProd Testnet</div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px;">
+                    <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="var(--cardano-blue)" stroke-width="2" fill="none" />
+                        <path d="M12 6V12L16 14" stroke="var(--cardano-blue)" stroke-width="2" />
+                    </svg>
+                    <span style="font-weight: 700; color: var(--cardano-blue);">Deployed on Cardano PreProd
+                        Testnet</span>
+                </div>
                 <div style="font-size: 13px; color: #6b7280;">Aiken v1.0.29 | Network: PreProd | Chain ID: 1</div>
             </div>
         </section>
