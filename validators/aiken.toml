@@ -1,0 +1,13 @@
+[package]
+name = "sendwaste/validators"
+version = "1.0.0"
+compiler = "v1.1.3"
+license = "Apache-2.0"
+description = "SendWaste Cardano - Blockchain-based waste recovery validation system"
+
+[dependencies]
+aiken-lang/stdlib = { version = "2.1.0", source = "github" }
+
+[[config]]
+name = "default"
+network = "preprod"
