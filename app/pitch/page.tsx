@@ -46,7 +46,7 @@ export default function PitchDeck() {
 
     return (
         <div
-            className="h-screen w-screen overflow-hidden bg-[#F8FAFC] text-[#1e293b] font-sans relative"
+            className="fixed inset-0 z-[9999] h-screen w-screen overflow-hidden bg-[#F8FAFC] text-[#1e293b] font-sans relative"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
@@ -357,8 +357,8 @@ export default function PitchDeck() {
                         key={i}
                         onClick={() => goToSlide(i)}
                         className={`transition-all duration-300 rounded-full ${i === currentSlide
-                                ? 'w-6 h-2 bg-[#0044CC]'
-                                : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                            ? 'w-6 h-2 bg-[#0044CC]'
+                            : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
                             }`}
                     />
                 ))}
