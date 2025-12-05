@@ -1,6 +1,23 @@
 {
     "version": 2,
-    "public": true,
-    "cleanUrls": true,
-    "trailingSlash": false
+    "builds": [
+        {
+            "src": "index.html",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "public/**",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/investor_pitch.html",
+            "dest": "/public/investor_pitch.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
+        }
+    ]
 }
