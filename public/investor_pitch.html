@@ -4,20 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SendWaste Investor Pitch | Saturday Demo</title>
+    <title>SendWaste - Investor Pitch Deck</title>
     <link rel="icon" href="/logo-merged.png">
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
     <style>
-        :root {
-            --cardano-blue: #0033AD;
-            --cardano-light: #84aaff;
-            --green: #10B981;
-            --dark: #0f172a;
-            --bg: #f8fafc;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -26,524 +18,468 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background: var(--bg);
-            color: var(--dark);
+            background: #0f172a;
+            color: #fff;
             overflow: hidden;
-            /* Slide behavior */
             height: 100vh;
-            width: 100vw;
         }
 
-        /* Slide Container */
-        .slides-container {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            height: 100%;
-            width: 700vw;
-            /* 7 slides */
+        .slides {
+            position: relative;
+            height: 100vh;
         }
 
         .slide {
-            width: 100vw;
-            height: 100vh;
-            padding: 40px 80px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            padding: 60px 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            position: relative;
-            flex-shrink: 0;
         }
 
-        /* Background Elements */
-        .bg-blob {
-            position: absolute;
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.5;
-            animation: float 10s infinite ease-in-out;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(20px, -20px);
-            }
+        .dot.active {
+            background: #10b981;
+            width: 32px;
+            border-radius: 6px;
         }
 
-        /* Typography */
+        /* Slide Number */
+        .slide-num {
+            position: absolute;
+            top: 40px;
+            right: 80px;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 4rem;
+            font-size: 64px;
+            font-weight: 800;
             line-height: 1.1;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--cardano-blue), var(--green));
+            background: linear-gradient(135deg, #10b981, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-align: center;
         }
 
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 32px;
-            color: var(--dark);
-        }
-
-        p {
-            font-size: 1.5rem;
-            line-height: 1.6;
-            color: #4b5563;
-            max-width: 800px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        /* Interactive Elements */
-        .card {
-            background: white;
-            border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .btn {
-            padding: 16px 40px;
-            background: var(--cardano-blue);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 51, 173, 0.3);
-        }
-
-        /* Navigation Controls */
-        .nav-controls {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            display: flex;
-            gap: 16px;
-            z-index: 100;
-        }
-
-        .nav-btn {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: white;
-            border: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s;
-        }
-
-        .nav-btn:hover {
-            background: var(--cardano-blue);
-            color: white;
-            border-color: var(--cardano-blue);
-        }
-
-        .progress-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--cardano-blue), var(--green));
-            width: 0%;
-            transition: width 0.6s ease;
-            z-index: 100;
-        }
-
-        /* Slide Specific Styles */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .stat-big {
-            font-size: 5rem;
+            font-size: 48px;
             font-weight: 700;
-            color: var(--cardano-blue);
-            line-height: 1;
+            margin-bottom: 32px;
         }
 
-        .stat-label {
-            font-size: 1.5rem;
-            color: #64748b;
-            font-weight: 500;
+        .subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 48px;
+            max-width: 800px;
         }
 
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 24px;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
             border-radius: 16px;
-            font-family: monospace;
-            font-size: 14px;
-            text-align: left;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
+            padding: 32px;
+            backdrop-filter: blur(10px);
         }
 
-        .code-block::before {
-            content: '● ● ●';
+        .stat {
+            font-size: 56px;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+
+        .label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .highlight {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        li:before {
+            content: "→";
+            color: #10b981;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .logo {
             position: absolute;
-            top: 12px;
-            left: 16px;
-            color: #475569;
-            font-size: 10px;
-            letter-spacing: 4px;
+            top: 40px;
+            left: 80px;
+            height: 48px;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
 
-            h2 {
-                font-size: 1.8rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
 
-            p {
-                font-size: 1.1rem;
-            }
-
-            .slide {
-                padding: 20px;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .stat-big {
-                font-size: 3.5rem;
-            }
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="progress-bar" id="progressBar"></div>
-
-    <div class="slides-container" id="slidesContainer">
-
-        <!-- SLIDE 1: TITLE -->
-        <div class="slide">
-            <div class="bg-blob"
-                style="top: -10%; right: -10%; width: 600px; height: 600px; background: var(--cardano-light);"></div>
-            <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
-                <img src="/logo-merged.png" alt="SendWaste Logo" style="width: 60px; height: 60px; object-fit: contain;"
-                    onerror="this.style.display='none'">
-                <span style="font-weight: 700; font-size: 1.5rem; color: var(--cardano-blue);">SendWaste</span>
+    <div class="slides">
+        <!-- Slide 1: Cover -->
+        <div class="slide active" data-slide="1">
+            <img src="/logo-merged.png" alt="SendWaste" class="logo">
+            <div class="slide-num">01/07</div>
+            <h1 style="font-size: 80px;">SendWaste</h1>
+            <div class="subtitle">Blockchain-Powered Waste Recovery for Emerging Markets</div>
+            <div style="margin-top: 40px; font-size: 20px; color: rgba(255,255,255,0.5);">
+                Built on Cardano • Aiken Smart Contracts • Live Demo Ready
             </div>
-            <h1>Turn Waste into Wealth<br>with Blockchain Trust.</h1>
-            <p>The "Uber for Recycling" powered by Cardano Smart Contracts.</p>
-            <div style="display: flex; gap: 20px;">
-                <button class="btn" onclick="nextSlide()">Start Pitch →</button>
-            </div>
-            <div
-                style="margin-top: 60px; font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px;">
-                Saturday Investor Demo • Dec 2025</div>
         </div>
 
-        <!-- SLIDE 2: THE PROBLEM -->
-        <div class="slide">
-            <div class="grid-2">
-                <div>
-                    <h2 style="color: #ef4444;">The $500M Problem</h2>
-                    <p style="text-align: left;">Nigeria generates <strong>32 Million Tonnes</strong> of waste annually.
-                        70% ends up in drains, causing floods and disease.</p>
-                    <p style="text-align: left;">Recycling fails because there is <strong>ZERO TRUST</strong> and
-                        <strong>ZERO ACCOUNTABILITY</strong> in the supply chain.
+        <!-- Slide 2: Problem & Market -->
+        <div class="slide" data-slide="2">
+            <div class="slide-num">02/07</div>
+            <h2>The $2.3T Waste Crisis</h2>
+            <div class="subtitle">Nigeria produces 32M tons of waste annually. Only 20-30% is collected.</div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="stat">32M</div>
+                    <div class="label">Tons annual waste (Nigeria)</div>
+                </div>
+                <div class="card">
+                    <div class="stat">70%</div>
+                    <div class="label">Uncollected waste</div>
+                </div>
+                <div class="card">
+                    <div class="stat">$2.3T</div>
+                    <div class="label">Global waste market by 2030</div>
+                </div>
+            </div>
+
+            <ul style="max-width: 800px;">
+                <li>No trust in existing waste collection systems</li>
+                <li>Informal collectors lack proof of work</li>
+                <li>Citizens have zero incentive to participate</li>
+                <li>Governments can't track ESG impact</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: Solution & USP -->
+        <div class="slide" data-slide="3">
+            <div class="slide-num">03/07</div>
+            <h2>Our Solution: Trust Through Transparency</h2>
+            <div class="subtitle">Blockchain-verified waste collection with instant rewards</div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3 style="color: #10b981; margin-bottom: 16px;">📸 Submit Waste</h3>
+                    <p style="color: rgba(255,255,255,0.7);">Photo proof + GPS location creates tamper-proof Cardano
+                        transaction</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #06b6d4; margin-bottom: 16px;">🎫 Get NFT Receipt</h3>
+                    <p style="color: rgba(255,255,255,0.7);">Instant CIP-25 NFT proving your environmental contribution
                     </p>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-                    <div class="card" style="text-align: center;">
-                        <div class="stat-big" style="color: #ef4444;">70%</div>
-                        <div class="stat-label">Uncollected Waste</div>
-                    </div>
-                    <div class="card" style="text-align: center;">
-                        <div class="stat-big" style="color: #f59e0b;">$0</div>
-                        <div class="stat-label">Value Captured</div>
-                    </div>
-                    <div class="card" style="grid-column: span 2; background: #fee2e2; border: none;">
-                        <div style="font-size: 1.2rem; font-weight: 600; color: #b91c1c;">🚫 No Data. No Proof. No
-                            Trust.</div>
-                    </div>
+                <div class="card">
+                    <h3 style="color: #f59e0b; margin-bottom: 16px;">🪙 Earn $WASTE</h3>
+                    <p style="color: rgba(255,255,255,0.7);">Tokens redeemable for cash, airtime, or eco-products</p>
                 </div>
             </div>
-        </div>
 
-        <!-- SLIDE 3: THE SOLUTION -->
-        <div class="slide">
-            <div class="bg-blob" style="bottom: -10%; left: -10%; width: 500px; height: 500px; background: #dcfce7;">
-            </div>
-            <h2>The Solution: SendWaste</h2>
-            <p>A decentralized recycling network that <strong>locks data on-chain</strong> and rewards users instantly.
-            </p>
-
-            <div style="display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap; justify-content: center;">
-                <div class="card" style="width: 300px; text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">📸</div>
-                    <h3 style="margin-bottom: 10px;">1. Submit</h3>
-                    <p style="font-size: 1rem; margin: 0;">User snaps photo + GPS. Data locked on Cardano.</p>
-                </div>
-                <div style="font-size: 2rem; align-self: center; color: var(--cardano-blue);">→</div>
-                <div class="card" style="width: 300px; text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">🚚</div>
-                    <h3 style="margin-bottom: 10px;">2. Verify</h3>
-                    <p style="font-size: 1rem; margin: 0;">Collector verifies pickup. Smart contract unlocks.</p>
-                </div>
-                <div style="font-size: 2rem; align-self: center; color: var(--cardano-blue);">→</div>
-                <div class="card" style="width: 300px; text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">💰</div>
-                    <h3 style="margin-bottom: 10px;">3. Earn</h3>
-                    <p style="font-size: 1rem; margin: 0;">Get NFT Receipt + $WASTE tokens instantly.</p>
+            <div
+                style="margin-top: 48px; padding: 32px; background: rgba(16,185,129,0.1); border-radius: 16px; border: 2px solid rgba(16,185,129,0.3);">
+                <div style="font-size: 20px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🎯 Unique Selling
+                    Proposition</div>
+                <div style="font-size: 18px;">
+                    <span class="highlight">Only blockchain waste platform</span> with:
+                    • Live on Cardano mainnet
+                    • Real Aiken smart contracts
+                    • Instant verification (<30 sec) • Works offline (syncs later) • Zero gas fees for users </div>
                 </div>
             </div>
-        </div>
 
-        <!-- SLIDE 4: THE TECH (AIKEN PROOF) -->
-        <div class="slide">
-            <div class="grid-2">
-                <div>
-                    <h2>Powered by Aiken</h2>
-                    <p style="text-align: left;">We don't just "say" we use blockchain. We <strong>prove</strong> it.
-                        Our logic runs on Cardano smart contracts.</p>
-                    <div style="display: flex; flex-direction: column; gap: 16px;">
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <span
-                                style="background: #dcfce7; color: var(--green); padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">✅
-                                waste_receipt_validator.ak</span>
-                            <span style="font-size: 0.9rem; color: #64748b;">Locks waste data</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <span
-                                style="background: #dbeafe; color: var(--cardano-blue); padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">✅
-                                receipt_nft_policy.ak</span>
-                            <span style="font-size: 0.9rem; color: #64748b;">Mints Proof-of-Recycle</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="code-block">
-                    <div style="color: #94a3b8; margin-bottom: 10px;">// Actual Aiken Validator Code</div>
-                    <span style="color: #c084fc;">validator</span> {
-                    <span style="color: #60a5fa;">fn</span> spend(datum, redeemer, ctx) {
-                    <span style="color: #60a5fa;">expect</span> Verify { collector } = redeemer
+            <!-- Slide 4: Why Cardano? -->
+            <div class="slide" data-slide="4">
+                <div class="slide-num">04/07</div>
+                <h2>Why Cardano?</h2>
+                <div class="subtitle">Built for real-world impact in emerging markets</div>
 
-                    <span style="color: #4ade80;">// 1. Verify Collector Signature</span>
-                    must_be_signed_by(tx, collector) &&
+                <ul style="font-size: 20px;">
+                    <li><strong>$0.15 avg tx fee</strong> vs Ethereum ($5-50) - affordable for millions of
+                        micro-transactions</li>
+                    <li><strong>1000 TPS capacity</strong> - scales to handle citywide waste collection</li>
+                    <li><strong>Aiken smart contracts</strong> - formal verification prevents bugs, protects user funds
+                    </li>
+                    <li><strong>Sustainability focus</strong> - 99% less energy than Ethereum (aligns with ESG mission)
+                    </li>
+                    <li><strong>Africa expansion</strong> - Cardano already active in Ethiopia, Kenya, Tanzania</li>
+                    <li><strong>Government partnerships</strong> - IOG relationships enable public sector adoption</li>
+                </ul>
 
-                    <span style="color: #4ade80;">// 2. Validate GPS Location</span>
-                    validate_location(datum.gps) &&
-
-                    <span style="color: #4ade80;">// 3. Time-lock Check</span>
-                    within_timeframe(datum.timestamp)
-                    }
-                    }
-                    <div
-                        style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #334155; font-size: 12px; color: #64748b;">
-                        Deployed: <span style="color: #e2e8f0;">addr_test1wpx...</span> | Network: <span
-                            style="color: #e2e8f0;">PreProd</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 5: LIVE DEMO (SIMULATION) -->
-        <div class="slide">
-            <h2>Live Traction</h2>
-            <p>Real-time transparency. See it live on the blockchain.</p>
-
-            <div class="card" style="width: 100%; max-width: 900px; padding: 0; overflow: hidden;">
                 <div
-                    style="background: #f8fafc; padding: 16px 32px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-weight: 700; color: var(--cardano-blue);">🏆 Live Leaderboard</span>
-                    <span
-                        style="font-size: 0.8rem; background: #dcfce7; color: var(--green); padding: 4px 12px; border-radius: 12px;">●
-                        LIVE UPDATES</span>
-                </div>
-                <table style="width: 100%; border-collapse: collapse;">
-                    <tr style="background: #f1f5f9; color: #64748b; font-size: 0.9rem;">
-                        <th style="padding: 16px 32px; text-align: left;">Rank</th>
-                        <th style="padding: 16px; text-align: left;">User Address</th>
-                        <th style="padding: 16px; text-align: left;">Waste Recycled</th>
-                        <th style="padding: 16px; text-align: left;">NFTs Earned</th>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #f1f5f9;">
-                        <td style="padding: 20px 32px;">🥇</td>
-                        <td style="padding: 20px; font-family: monospace;">addr1...4k9x</td>
-                        <td style="padding: 20px; font-weight: 700;">245 kg</td>
-                        <td style="padding: 20px;">🎫 42</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #f1f5f9;">
-                        <td style="padding: 20px 32px;">🥈</td>
-                        <td style="padding: 20px; font-family: monospace;">addr1...7m2p</td>
-                        <td style="padding: 20px; font-weight: 700;">198 kg</td>
-                        <td style="padding: 20px;">🎫 35</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 20px 32px;">🥉</td>
-                        <td style="padding: 20px; font-family: monospace;">addr1...9n5q</td>
-                        <td style="padding: 20px; font-weight: 700;">156 kg</td>
-                        <td style="padding: 20px;">🎫 28</td>
-                    </tr>
-                </table>
-            </div>
-            <div style="margin-top: 30px;">
-                <button class="btn" onclick="window.open('index.html', '_blank')">Open Live App ↗</button>
-            </div>
-        </div>
-
-        <!-- SLIDE 6: BUSINESS MODEL -->
-        <div class="slide">
-            <div class="grid-2">
-                <div>
-                    <h2>How We Make Money</h2>
-                    <p style="text-align: left;">A sustainable circular economy model.</p>
-                    <ul style="list-style: none; font-size: 1.3rem; line-height: 2;">
-                        <li>🏢 <strong>B2B Service Fees:</strong> Recyclers pay 15% fee for verified feedstock.</li>
-                        <li>📊 <strong>Data Monetization:</strong> Brands buy waste data for ESG reporting.</li>
-                        <li>🪙 <strong>Transaction Fees:</strong> Small fee on $WASTE token swaps.</li>
-                    </ul>
-                </div>
-                <div style="display: grid; gap: 24px;">
-                    <div class="card" style="background: var(--cardano-blue); color: white;">
-                        <div class="stat-label" style="color: #bfdbfe;">Market Size (Nigeria)</div>
-                        <div class="stat-big" style="color: white;">$2.5B</div>
+                    style="margin-top: 40px; padding: 24px; background: rgba(6,182,212,0.1); border-radius: 12px; border-left: 4px solid #06b6d4;">
+                    <div style="font-size: 16px; color: rgba(255,255,255,0.8);">
+                        <strong>Competitive Advantage:</strong> Ethereum alternatives (Polygon, BSC) still too expensive
+                        for $0.50 waste submissions. Only Cardano enables sustainable Web3 for the next billion users.
                     </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Revenue Model -->
+            <div class="slide" data-slide="5">
+                <div class="slide-num">05/07</div>
+                <h2>Revenue Streams</h2>
+                <div class="subtitle">Multiple monetization channels with proven demand</div>
+
+                <div class="grid">
                     <div class="card">
-                        <div class="stat-label">Projected Year 1 Revenue</div>
-                        <div class="stat-big">$450K</div>
+                        <div style="font-size: 32px; color: #10b981; margin-bottom: 12px; font-weight: 700;">40%</div>
+                        <h3 style="margin-bottom: 16px;">Transaction Fees</h3>
+                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
+                            <li>10% of token rewards</li>
+                            <li>NFT minting fee (₦50)</li>
+                            <li>Target: 100K tx/month = $15K MRR</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div style="font-size: 32px; color: #06b6d4; margin-bottom: 12px; font-weight: 700;">30%</div>
+                        <h3 style="margin-bottom: 16px;">Corporate ESG</h3>
+                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
+                            <li>White-label solutions</li>
+                            <li>Carbon credit reporting</li>
+                            <li>₦500K-2M per corporate client</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div style="font-size: 32px; color: #f59e0b; margin-bottom: 12px; font-weight: 700;">20%</div>
+                        <h3 style="margin-bottom: 16px;">Government Contracts</h3>
+                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
+                            <li>Municipal tracking systems</li>
+                            <li>Data dashboards</li>
+                            <li>₦2-5M per city annually</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div style="font-size: 32px; color: #8b5cf6; margin-bottom: 12px; font-weight: 700;">10%</div>
+                        <h3 style="margin-bottom: 16px;">Marketplace</h3>
+                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
+                            <li>Token redemption partnerships</li>
+                            <li>10% commission on redemptions</li>
+                            <li>Airtime, vouchers, eco-products</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 32px; text-align: center; font-size: 20px;">
+                    <strong style="color: #10b981;">Year 1 Target:</strong> $180K ARR | <strong
+                        style="color: #10b981;">Year 3 Target:</strong> $2.5M ARR
+                </div>
+            </div>
+
+            <!-- Slide 6: Traction & Roadmap -->
+            <div class="slide" data-slide="6">
+                <div class="slide-num">06/07</div>
+                <h2>Traction & Roadmap</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+                    <div>
+                        <h3 style="color: #10b981; margin-bottom: 24px; font-size: 28px;">✅ Achieved (Q4 2024)</h3>
+                        <ul style="font-size: 18px;">
+                            <li>Aiken smart contracts deployed</li>
+                            <li>Live demo on Cardano Preprod</li>
+                            <li>3 wallet integrations (Nami, Eternl, Lace)</li>
+                            <li>User onboarding in 30 seconds</li>
+                            <li>ESG impact dashboard</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 style="color: #06b6d4; margin-bottom: 24px; font-size: 28px;">🎯 Next 12 Months</h3>
+                        <ul style="font-size: 18px;">
+                            <li><strong>Q1 2025:</strong> Mainnet launch + Lagos pilot</li>
+                            <li><strong>Q2 2025:</strong> First corporate client</li>
+                            <li><strong>Q3 2025:</strong> 10K active users</li>
+                            <li><strong>Q4 2025:</strong> Government partnership</li>
+                            <li><strong>2026:</strong> Expand to Kenya, Ghana</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 48px; padding: 32px; background: rgba(16,185,129,0.1); border-radius: 16px;">
+                    <h3 style="margin-bottom: 16px; font-size: 24px;">Current Metrics (Demo)</h3>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center;">
+                        <div>
+                            <div style="font-size: 36px; font-weight: 700; color: #10b981;">47</div>
+                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">Test Submissions</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 36px; font-weight: 700; color: #06b6d4;">156</div>
+                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">Tokens Issued</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 36px; font-weight: 700; color: #f59e0b;">23</div>
+                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">NFTs Minted</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 36px; font-weight: 700; color: #8b5cf6;">100%</div>
+                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Ask -->
+            <div class="slide" data-slide="7">
+                <div class="slide-num">07/07</div>
+                <h2>The Ask</h2>
+                <div class="subtitle">Seed funding to scale blockchain waste recovery across Africa</div>
+
+                <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="card" style="background: rgba(16,185,129,0.15); border-color: #10b981;">
+                        <h3 style="font-size: 32px; margin-bottom: 16px;">Raising</h3>
+                        <div style="font-size: 56px; font-weight: 800; color: #10b981; margin-bottom: 16px;">$250K</div>
+                        <div style="color: rgba(255,255,255,0.7);">Seed Round • 18-month runway</div>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="font-size: 24px; margin-bottom: 20px;">Use of Funds</h3>
+                        <ul style="list-style: none; margin: 0;">
+                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
+                                <span>Engineering (2 devs)</span>
+                                <strong style="color: #10b981;">40%</strong>
+                            </li>
+                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
+                                <span>Marketing & Growth</span>
+                                <strong style="color: #06b6d4;">30%</strong>
+                            </li>
+                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
+                                <span>Operations</span>
+                                <strong style="color: #f59e0b;">20%</strong>
+                            </li>
+                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
+                                <span>Legal & Compliance</span>
+                                <strong style="color: #8b5cf6;">10%</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 48px; text-align: center;">
+                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 16px;">Ready to Transform Waste
+                        Management?</div>
+                    <div style="font-size: 20px; color: rgba(255,255,255,0.7); margin-bottom: 32px;">
+                        Live Demo: <a href="https://sendwaste-cardano.vercel.app"
+                            style="color: #10b981; text-decoration: none; border-bottom: 2px solid #10b981;">sendwaste-cardano.vercel.app</a>
+                    </div>
+                    <div style="font-size: 18px; color: rgba(255,255,255,0.5);">
+                        GitHub: github.com/bethelclement/sendwaste-cardano
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 7: THE ASK -->
-        <div class="slide">
-            <div class="bg-blob"
-                style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: linear-gradient(135deg, var(--cardano-light), #dcfce7); opacity: 0.3;">
-            </div>
-            <h1>Join the Revolution</h1>
-            <p>We are raising <strong>$150k Pre-Seed</strong> to scale to 5 cities and process 10,000 tonnes of waste.
-            </p>
-
-            <div style="display: flex; gap: 24px; margin-top: 20px;">
-                <a href="index.html" target="_blank" class="btn" style="padding: 20px 60px; font-size: 1.5rem;">Launch
-                    Demo 🚀</a>
-                <a href="https://github.com/bethelclement/sendwaste-cardano" target="_blank" class="btn"
-                    style="background: white; color: var(--dark); border: 2px solid #e2e8f0;">View Code 💻</a>
-            </div>
-
-            <div style="margin-top: 80px; display: flex; gap: 40px; opacity: 0.7;">
-                <div style="text-align: center;">
-                    <div style="font-weight: 700;">Bethel Clement</div>
-                    <div style="font-size: 0.9rem;">Lead Developer</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-weight: 700;">SendWaste Team</div>
-                    <div style="font-size: 0.9rem;">Abuja, Nigeria</div>
-                </div>
-            </div>
+        <div class="nav">
+            <div class="dot active" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+            <div class="dot" onclick="goToSlide(3)"></div>
+            <div class="dot" onclick="goToSlide(4)"></div>
+            <div class="dot" onclick="goToSlide(5)"></div>
+            <div class="dot" onclick="goToSlide(6)"></div>
+            <div class="dot" onclick="goToSlide(7)"></div>
         </div>
 
-    </div>
+        <script>
+            let currentSlide = 1;
 
-    <!-- Navigation UI -->
-    <div class="nav-controls">
-        <button class="nav-btn" onclick="prevSlide()">←</button>
-        <button class="nav-btn" onclick="nextSlide()">→</button>
-    </div>
+            function goToSlide(n) {
+                document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
 
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 7;
-        const container = document.getElementById('slidesContainer');
-        const progressBar = document.getElementById('progressBar');
-
-        function updateSlide() {
-            container.style.transform = `translateX(-${currentSlide * 100}vw)`;
-            const progress = ((currentSlide + 1) / totalSlides) * 100;
-            progressBar.style.width = `${progress}%`;
-        }
-
-        function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateSlide();
+                currentSlide = n;
+                document.querySelector(`.slide[data-slide="${n}"]`).classList.add('active');
+                document.querySelectorAll('.dot')[n - 1].classList.add('active');
             }
-        }
 
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlide();
-            }
-        }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' && currentSlide < 7) goToSlide(currentSlide + 1);
+                if (e.key === 'ArrowLeft' && currentSlide > 1) goToSlide(currentSlide - 1);
+            });
 
-        // Keyboard Navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
-        });
+            // Touch swipe
+            let touchStartX = 0;
+            document.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
+            document.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (diff > 50 && currentSlide < 7) goToSlide(currentSlide + 1);
+                if (diff < -50 && currentSlide > 1) goToSlide(currentSlide - 1);
+            });
+        </script>
 
-        // Touch Navigation (Swipe)
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) nextSlide();
-            if (touchEndX > touchStartX + 50) prevSlide();
-        }
-
-        // Initialize
-        updateSlide();
-    </script>
 </body>
 
 </html>
