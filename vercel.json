@@ -8,6 +8,10 @@
         {
             "src": "public/**",
             "use": "@vercel/static"
+        },
+        {
+            "src": "logo-merged.png",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
