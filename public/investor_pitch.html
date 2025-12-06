@@ -54,25 +54,36 @@
 
         .logo-header {
             position: absolute;
-            top: 50px;
+            bottom: 50px;
             left: 100px;
             display: flex;
             align-items: center;
             gap: 16px;
+            z-index: 10;
         }
 
         .logo-header img {
-            height: 52px;
-            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+            height: 48px;
+            filter: brightness(0) saturate(100%) invert(64%) sepia(46%) saturate(695%) hue-rotate(107deg) brightness(96%) contrast(86%) drop-shadow(0 0 15px rgba(16, 185, 129, 0.3));
         }
 
         .logo-header .brand {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
+        }
+
+        .founder-name {
+            position: absolute;
+            bottom: 55px;
+            right: 100px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+            z-index: 10;
         }
 
         .slide-num {
@@ -236,6 +247,7 @@
                 <div class="brand">SendWaste</div>
             </div>
             <div class="slide-num">01 / 07</div>
+            <div class="founder-name">Bethel Clement, Founder</div>
 
             <div style="margin-top: 120px;">
                 <h1 style="font-size: 88px; margin-bottom: 32px;">Blockchain-Verified<br>Waste Recovery</h1>
@@ -257,6 +269,7 @@
                 <div class="brand">SendWaste</div>
             </div>
             <div class="slide-num">02 / 07</div>
+            <div class="founder-name">Bethel Clement, Founder</div>
 
             <h2>The Crisis</h2>
             <div class="subtitle">Nigeria generates 32 million tons of waste annually. Less than 30% gets collected. The
@@ -293,6 +306,7 @@
                 <div class="brand">SendWaste</div>
             </div>
             <div class="slide-num">03 / 07</div>
+            <div class="founder-name">Bethel Clement, Founder</div>
 
             <h2>How We Solve This</h2>
             <div class="subtitle">Three-layer solution addressing economic, environmental, and social challenges
@@ -341,6 +355,7 @@
                 <div class="brand">SendWaste</div>
             </div>
             <div class="slide-num">04 / 07</div>
+            <div class="founder-name">Bethel Clement, Founder</div>
 
             <h2>Why Cardano</h2>
             <div class="subtitle">The only blockchain infrastructure that makes sense for emerging market waste
@@ -378,6 +393,7 @@
                 <div class="brand">SendWaste</div>
             </div>
             <div class="slide-num">05 / 07</div>
+            <div class="founder-name">Bethel Clement, Founder</div>
 
             <h2>Revenue Model</h2>
             <div class="subtitle">Four validated revenue streams with existing demand signals from pilot conversations.
@@ -440,6 +456,7 @@
                 <div class="brand">SendWaste</div>
             </div>
             <div class="slide-num">06 / 07</div>
+            <div class="founder-name">Bethel Clement, Founder</div>
 
             <h2>SMART Goals</h2>
             <div class="subtitle">Specific, Measurable, Achievable, Relevant, Time-bound milestones.</div>
@@ -500,6 +517,7 @@
                 <div class="brand">SendWaste</div>
             </div>
             <div class="slide-num">07 / 07</div>
+            <div class="founder-name">Bethel Clement, Founder</div>
 
             <h2>Investment Opportunity</h2>
             <div class="subtitle">Seed round to scale blockchain waste infrastructure across emerging markets.</div>
@@ -564,29 +582,29 @@
     </div>
 
     <script>
-let currentSlide = 1;
+        let currentSlide = 1;
 
-function goToSlide(n) {
-    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
-    
-    currentSlide = n;
-    document.querySelector(`.slide[data-slide="${n}"]`).classList.add('active');
-    document.querySelectorAll('.dot')[n-1].classList.add('active');
-}
+        function goToSlide(n) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' && currentSlide < 7) goToSlide(currentSlide + 1);
-    if (e.key === 'ArrowLeft' && currentSlide > 1) goToSlide(currentSlide - 1);
-});
+            currentSlide = n;
+            document.querySelector(`.slide[data-slide="${n}"]`).classList.add('active');
+            document.querySelectorAll('.dot')[n - 1].classList.add('active');
+        }
 
-let touchStartX = 0;
-document.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
-document.addEventListener('touchend', (e) => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (diff > 50 && currentSlide < 7) goToSlide(currentSlide + 1);
-    if (diff < -50 && currentSlide > 1) goToSlide(currentSlide - 1);
-});
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < 7) goToSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft' && currentSlide > 1) goToSlide(currentSlide - 1);
+        });
+
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (diff > 50 && currentSlide < 7) goToSlide(currentSlide + 1);
+            if (diff < -50 && currentSlide > 1) goToSlide(currentSlide - 1);
+        });
     </script>
 
 </body>
