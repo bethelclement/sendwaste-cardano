@@ -699,6 +699,39 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
+        .badge {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            min-width: 80px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .badge:hover {
+            transform: scale(1.1);
+        }
+
+        .badge.unlocked {
+            opacity: 1 !important;
+            animation: badgeUnlock 0.6s ease;
+        }
+
+        @keyframes badgeUnlock {
+            0% {
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
         /* Mobile Optimizations */
         @media (max-width: 768px) {
             .leaderboard-container {
@@ -1505,6 +1538,149 @@
             </div>
         </section>
 
+        <!-- User Dashboard Section -->
+        <section class="section" id="dashboard"
+            style="background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%); padding: 80px 20px; display: none;">
+            <div class="container">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        style="display: inline-block; vertical-align: middle; margin-right: 12px;">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="#10b981" />
+                    </svg>
+                    My Impact Dashboard
+                </h2>
+
+                <!-- ESG Impact Cards -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 50px;">
+                    <!-- Total Waste Card -->
+                    <div class="glass hover-lift"
+                        style="padding: 30px; border-radius: 20px; text-align: center; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));">
+                        <div style="font-size: 48px; margin-bottom: 12px;">♻️</div>
+                        <div style="font-size: 36px; font-weight: 800; color: #10b981; margin-bottom: 8px;"
+                            id="totalWaste">0 kg</div>
+                        <div style="font-size: 14px; color: #6b7280; font-weight: 600;">Total Waste Recycled</div>
+                        <div
+                            style="margin-top: 16px; height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden;">
+                            <div style="height: 100%; background: linear-gradient(90deg, #10b981, #059669); width: 0%; transition: width 1s ease;"
+                                id="wasteProgress"></div>
+                        </div>
+                    </div>
+
+                    <!-- CO2 Saved Card -->
+                    <div class="glass hover-lift"
+                        style="padding: 30px; border-radius: 20px; text-align: center; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));">
+                        <div style="font-size: 48px; margin-bottom: 12px;">🌍</div>
+                        <div style="font-size: 36px; font-weight: 800; color: #3b82f6; margin-bottom: 8px;"
+                            id="co2Saved">0 kg</div>
+                        <div style="font-size: 14px; color: #6b7280; font-weight: 600;">CO₂ Emissions Avoided</div>
+                        <div style="font-size: 12px; color: #9ca3af; margin-top: 8px;">≈ <span id="treesEquiv">0</span>
+                            trees planted</div>
+                    </div>
+
+                    <!-- Water Saved Card -->
+                    <div class="glass hover-lift"
+                        style="padding: 30px; border-radius: 20px; text-align: center; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(6, 182, 212, 0.05));">
+                        <div style="font-size: 48px; margin-bottom: 12px;">💧</div>
+                        <div style="font-size: 36px; font-weight: 800; color: #0ea5e9; margin-bottom: 8px;"
+                            id="waterSaved">0 L</div>
+                        <div style="font-size: 14px; color: #6b7280; font-weight: 600;">Water Conserved</div>
+                        <div style="font-size: 12px; color: #9ca3af; margin-top: 8px;">≈ <span
+                                id="bottlesEquiv">0</span> bottles</div>
+                    </div>
+
+                    <!-- Rewards Earned Card -->
+                    <div class="glass hover-lift"
+                        style="padding: 30px; border-radius: 20px; text-align: center; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05));">
+                        <div style="font-size: 48px; margin-bottom: 12px;">🪙</div>
+                        <div style="font-size: 36px; font-weight: 800; color: #f59e0b; margin-bottom: 8px;"
+                            id="tokensEarned">0</div>
+                        <div style="font-size: 14px; color: #6b7280; font-weight: 600;">$WASTE Tokens Earned</div>
+                        <div style="font-size: 12px; color: #9ca3af; margin-top: 8px;">≈ ₦<span id="nairaValue">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement Badges -->
+                <div class="glass" style="padding: 32px; border-radius: 20px; margin-bottom: 50px;">
+                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 24px; color: #111827;">🏆 Achievements
+                        Unlocked</h3>
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap;" id="badges">
+                        <div class="badge" style="opacity: 0.3;" data-requirement="5">
+                            <div style="font-size: 40px;">🌱</div>
+                            <div style="font-size: 11px; margin-top: 6px; font-weight: 600;">First Steps</div>
+                        </div>
+                        <div class="badge" style="opacity: 0.3;" data-requirement="25">
+                            <div style="font-size: 40px;">🌿</div>
+                            <div style="font-size: 11px; margin-top: 6px; font-weight: 600;">Eco Warrior</div>
+                        </div>
+                        <div class="badge" style="opacity: 0.3;" data-requirement="50">
+                            <div style="font-size: 40px;">🌳</div>
+                            <div style="font-size: 11px; margin-top: 6px; font-weight: 600;">Green Hero</div>
+                        </div>
+                        <div class="badge" style="opacity: 0.3;" data-requirement="100">
+                            <div style="font-size: 40px;">🌲</div>
+                            <div style="font-size: 11px; margin-top: 6px; font-weight: 600;">Forest Guardian</div>
+                        </div>
+                        <div class="badge" style="opacity: 0.3;" data-requirement="250">
+                            <div style="font-size: 40px;">👑</div>
+                            <div style="font-size: 11px; margin-top: 6px; font-weight: 600;">Sustainability King</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waste History Table -->
+                <div class="glass" style="padding: 0; border-radius: 20px; overflow: hidden;">
+                    <div
+                        style="padding: 24px 32px; background: linear-gradient(135deg, #10b981, #059669); color: white; display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 22px; font-weight: 700; margin: 0;">📊 My Waste Submissions</h3>
+                        <button onclick="exportHistory()"
+                            style="padding: 8px 16px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: white; font-weight: 600; cursor: pointer; transition: all 0.2s;"
+                            onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+                            onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                            📥 Export CSV
+                        </button>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead style="background: #f9fafb;">
+                                <tr>
+                                    <th
+                                        style="padding: 16px; text-align: left; font-size: 13px; font-weight: 700; color: #6b7280;">
+                                        DATE</th>
+                                    <th
+                                        style="padding: 16px; text-align: left; font-size: 13px; font-weight: 700; color: #6b7280;">
+                                        TYPE</th>
+                                    <th
+                                        style="padding: 16px; text-align: left; font-size: 13px; font-weight: 700; color: #6b7280;">
+                                        WEIGHT (kg)</th>
+                                    <th
+                                        style="padding: 16px; text-align: left; font-size: 13px; font-weight: 700; color: #6b7280;">
+                                        TOKENS</th>
+                                    <th
+                                        style="padding: 16px; text-align: left; font-size: 13px; font-weight: 700; color: #6b7280;">
+                                        STATUS</th>
+                                    <th
+                                        style="padding: 16px; text-align: left; font-size: 13px; font-weight: 700; color: #6b7280;">
+                                        TX HASH</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wasteHistory">
+                                <tr>
+                                    <td colspan="6" style="padding: 60px; text-align: center; color: #9ca3af;">
+                                        <div style="font-size: 48px; margin-bottom: 16px;">📦</div>
+                                        <div style="font-size: 16px; font-weight: 600; margin-bottom: 8px;">No
+                                            submissions yet</div>
+                                        <div style="font-size: 14px;">Start recycling to see your impact!</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FAQ Section -->
         <section class="faq-section">
             <h2 class="section-title">Frequently Asked Questions</h2>
@@ -1817,6 +1993,8 @@
                     // Show welcome message
                     setTimeout(() => {
                         alert(`✅ Account Created!\\n\\nWelcome ${username}!\\n\\n🎫 Your Lace Wallet ID:\\n${walletId}\\n\\n✨ You can now submit waste and earn rewards!`);
+                        // Show dashboard
+                        setTimeout(() => showDashboard(), 500);
                     }, 300);
                 });
             }
@@ -1852,6 +2030,142 @@
             alert(`🎫 NFT Minted!\n\nPolicy: receipt_nft_policy.ak\nPolicy ID: 8f3e2d1c...\n\nAsset: ${nft}\nStandard: CIP-25\n\nTX Hash: ${tx.slice(0, 16)}...\nIPFS: ipfs://Qm${tx.slice(0, 40)}...\n\n✅ Success!`);
             updateProgress(3);
             setTimeout(() => switchTab(2), 500);
+
+            // Add to waste history
+            addWasteSubmission('PET', 15, 150);
+        }
+
+        // Dashboard Functions
+        function addWasteSubmission(type, kg, tokens) {
+            const history = getWasteHistory();
+            const submission = {
+                date: new Date().toLocaleDateString(),
+                type: type,
+                weight: kg,
+                tokens: tokens,
+                status: 'Confirmed',
+                txHash: genTxHash().substring(0, 16) + '...',
+                timestamp: Date.now()
+            };
+
+            history.push(submission);
+            localStorage.setItem('wasteHistory', JSON.stringify(history));
+            updateDashboard();
+        }
+
+        function getWasteHistory() {
+            const saved = localStorage.getItem('wasteHistory');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function updateDashboard() {
+            const history = getWasteHistory();
+
+            if (history.length === 0) return;
+
+            // Calculate totals
+            let totalWaste = 0;
+            let totalTokens = 0;
+
+            history.forEach(item => {
+                totalWaste += item.weight;
+                totalTokens += item.tokens;
+            });
+
+            // ESG Impact Calculations
+            const co2Saved = (totalWaste * 1.2).toFixed(1); // 1.2kg CO2 per kg waste
+            const treesEquiv = Math.floor(totalWaste / 10); // ~10kg waste = 1 tree
+            const waterSaved = Math.floor(totalWaste * 50); // 50L per kg
+            const bottlesEquiv = Math.floor(waterSaved / 0.5); // 500ml bottles
+            const nairaValue = (totalTokens * 10).toLocaleString(); // 1 token = ₦10
+
+            // Update UI
+            document.getElementById('totalWaste').textContent = totalWaste + ' kg';
+            document.getElementById('co2Saved').textContent = co2Saved + ' kg';
+            document.getElementById('treesEquiv').textContent = treesEquiv;
+            document.getElementById('waterSaved').textContent = waterSaved.toLocaleString() + ' L';
+            document.getElementById('bottlesEquiv').textContent = bottlesEquiv.toLocaleString();
+            document.getElementById('tokensEarned').textContent = totalTokens.toLocaleString();
+            document.getElementById('nairaValue').textContent = nairaValue;
+
+            // Update progress bar
+            const progressPercent = Math.min((totalWaste / 250) * 100, 100);
+            document.getElementById('wasteProgress').style.width = progressPercent + '%';
+
+            // Update badges
+            updateBadges(totalWaste);
+
+            // Update history table
+            updateHistoryTable(history);
+        }
+
+        function updateBadges(totalWaste) {
+            const badges = document.querySelectorAll('.badge');
+            badges.forEach(badge => {
+                const requirement = parseInt(badge.getAttribute('data-requirement'));
+                if (totalWaste >= requirement && !badge.classList.contains('unlocked')) {
+                    badge.classList.add('unlocked');
+                    badge.style.opacity = 1;
+                }
+            });
+        }
+
+        function updateHistoryTable(history) {
+            const tbody = document.getElementById('wasteHistory');
+            if (history.length === 0) return;
+
+            tbody.innerHTML = history.reverse().slice(0, 10).map(item => `
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                    <td style="padding: 16px; font-size: 14px;">${item.date}</td>
+                    <td style="padding: 16px; font-size: 14px; font-weight: 600; color: #10b981;">${item.type}</td>
+                    <td style="padding: 16px; font-size: 14px;">${item.weight} kg</td>
+                    <td style="padding: 16px; font-size: 14px; color: #f59e0b; font-weight: 600;">${item.tokens}</td>
+                    <td style="padding: 16px;">
+                        <span style="padding: 4px 12px; background: #dcfce7; color: #059669; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                            ${item.status}
+                        </span>
+                    </td>
+                    <td style="padding: 16px; font-family: monospace; font-size: 12px; color: #6b7280;">${item.txHash}</td>
+                </tr>
+            `).join('');
+        }
+
+        function exportHistory() {
+            const history = getWasteHistory();
+            if (history.length === 0) {
+                alert('No data to export yet!');
+                return;
+            }
+
+            // Create CSV
+            const csv = [
+                ['Date', 'Type', 'Weight (kg)', 'Tokens', 'Status', 'TX Hash'],
+                ...history.map(item => [
+                    item.date,
+                    item.type,
+                    item.weight,
+                    item.tokens,
+                    item.status,
+                    item.txHash
+                ])
+            ].map(row => row.join(',')).join('\n');
+
+            // Download
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sendwaste-history-' + new Date().toISOString().split('T')[0] + '.csv';
+            a.click();
+        }
+
+        function showDashboard() {
+            document.getElementById('dashboard').style.display = 'block';
+            updateDashboard();
+            // Scroll to dashboard
+            setTimeout(() => {
+                document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
         }
 
         updateReward();
