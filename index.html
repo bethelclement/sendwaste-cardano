@@ -1676,24 +1676,15 @@
             <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid #e5e7eb;">
                 <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">🔒 Don't have a wallet yet?</p>
                 <div style="display: grid; gap: 8px;">
-                    <a href="https://namiwallet.io" target="_blank"
-                        style="display: block; padding: 12px; background: #f0fdf4; border: 1px solid #10b981; border-radius: 8px; text-decoration: none; color: #059669; font-weight: 600; text-align: center; transition: all 0.2s;"
-                        onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">
-                        📥 Install Nami (Recommended)
-                    </a>
-                    <a href="https://eternl.io" target="_blank"
-                        style="display: block; padding: 12px; background: #eff6ff; border: 1px solid #3b82f6; border-radius: 8px; text-decoration: none; color: #2563eb; font-weight: 600; text-align: center; transition: all 0.2s;"
-                        onmouseover="this.style.background='#dbeafe'" onmouseout="this.style.background='#eff6ff'">
-                        📥 Install Eternl
-                    </a>
                     <a href="https://www.lace.io" target="_blank"
-                        style="display: block; padding: 12px; background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; text-decoration: none; color: #d97706; font-weight: 600; text-align: center; transition: all 0.2s;"
-                        onmouseover="this.style.background='#fde68a'" onmouseout="this.style.background='#fef3c7'">
-                        📥 Install Lace
+                        style="display: block; padding: 16px; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border: none; border-radius: 12px; text-decoration: none; color: white; font-weight: 700; font-size: 16px; text-align: center; transition: all 0.3s; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(99, 102, 241, 0.5)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(99, 102, 241, 0.4)'">
+                        🚀 Get Lace Wallet (FASTEST - 30 Seconds!)
                     </a>
                 </div>
-                <p style="font-size: 12px; color: #9ca3af; margin-top: 12px; text-align: center;">After installing,
-                    refresh this page and connect</p>
+                <p style="font-size: 12px; color: #9ca3af; margin-top: 12px; text-align: center;">✨ Official IOG wallet
+                    • Instant setup • After installing, refresh and connect!</p>
             </div>
 
             <button class="btn" style="background: #f3f4f6; color: #374151; margin-top: 20px;"
@@ -1780,8 +1771,9 @@
             try {
                 // Check if Cardano wallets are available
                 if (typeof window.cardano === 'undefined') {
-                    alert('❌ No Cardano Wallet Found!\\n\\nPlease install a Cardano wallet:\\n\\n• Nami: https://namiwallet.io\\n• Eternl: https://eternl.io\\n• Lace: https://www.lace.io\\n\\nAfter installation, refresh this page.');
-                    window.open('https://namiwallet.io', '_blank');
+                    if (confirm('🚀 Get Lace Wallet (30 Seconds!)\\n\\nNo Cardano wallet detected.\\nInstall Lace - the fastest Cardano wallet!\\n\\n✨ Official IOG wallet\\n⚡ Instant setup\\n\\nClick OK to install now!')) {
+                        window.open('https://www.lace.io', '_blank');
+                    }
                     return;
                 }
 
@@ -1793,8 +1785,8 @@
                     if (window.cardano.nami) {
                         walletExtension = window.cardano.nami;
                     } else {
-                        if (confirm('❌ Nami Wallet Not Found!\\n\\nNami is not installed. Would you like to install it now?\\n(Opens in new tab)')) {
-                            window.open('https://namiwallet.io', '_blank');
+                        if (confirm('🚀 Get Lace Instead (Faster!)\\n\\nNami not found. Install Lace wallet instead?\\n\\n✨ Official IOG wallet\\n⚡ 30 second setup\\n\\nClick OK to install Lace!')) {
+                            window.open('https://www.lace.io', '_blank');
                         }
                         return;
                     }
@@ -1802,8 +1794,8 @@
                     if (window.cardano.eternl) {
                         walletExtension = window.cardano.eternl;
                     } else {
-                        if (confirm('❌ Eternl Wallet Not Found!\\n\\nEternl is not installed. Would you like to install it now?\\n(Opens in new tab)')) {
-                            window.open('https://eternl.io', '_blank');
+                        if (confirm('🚀 Get Lace Instead (Faster!)\\n\\nEternl not found. Install Lace wallet instead?\\n\\n✨ Official IOG wallet\\n⚡ 30 second setup\\n\\nClick OK to install Lace!')) {
+                            window.open('https://www.lace.io', '_blank');
                         }
                         return;
                     }
