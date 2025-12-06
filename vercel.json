@@ -1,23 +1,20 @@
 {
     "version": 2,
+    "buildCommand": "npm run build",
+    "outputDirectory": "out",
     "builds": [
         {
-            "src": "index.html",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "public/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "logo-merged.png",
-            "use": "@vercel/static"
+            "src": "package.json",
+            "use": "@vercel/next"
         }
     ],
     "routes": [
         {
             "src": "/investor_pitch.html",
             "dest": "/public/investor_pitch.html"
+        },
+        {
+            "handle": "filesystem"
         },
         {
             "src": "/(.*)",
