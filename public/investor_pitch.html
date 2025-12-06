@@ -16,9 +16,16 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #10b981;
+            --secondary: #06b6d4;
+            --dark: #0a1628;
+            --card-bg: rgba(16, 185, 129, 0.05);
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
-            background: #0f172a;
+            background: linear-gradient(135deg, #0a1628 0%, #0f3a2f 100%);
             color: #fff;
             overflow: hidden;
             height: 100vh;
@@ -34,8 +41,8 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 0.6s ease;
-            padding: 60px 80px;
+            transition: opacity 0.5s ease;
+            padding: 60px 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -45,10 +52,144 @@
             opacity: 1;
         }
 
-        /* Navigation */
+        .logo-header {
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-header img {
+            height: 52px;
+            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+        }
+
+        .logo-header .brand {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .slide-num {
+            position: absolute;
+            top: 60px;
+            right: 100px;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 48px;
+            max-width: 900px;
+            line-height: 1.5;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 36px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .stat {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.4;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 28px;
+        }
+
+        li {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 19px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            line-height: 1.5;
+        }
+
+        li:before {
+            content: "▸";
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .highlight-box {
+            margin-top: 40px;
+            padding: 32px;
+            background: rgba(16, 185, 129, 0.08);
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+        }
+
         .nav {
             position: fixed;
-            bottom: 40px;
+            bottom: 50px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -57,127 +198,30 @@
         }
 
         .dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.25);
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .dot.active {
-            background: #10b981;
-            width: 32px;
-            border-radius: 6px;
+            background: var(--primary);
+            width: 36px;
+            border-radius: 5px;
         }
 
-        /* Slide Number */
-        .slide-num {
-            position: absolute;
-            top: 40px;
-            right: 80px;
-            font-family: 'Space Mono', monospace;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        h1 {
-            font-size: 64px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #10b981, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        h2 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 32px;
-        }
-
-        .subtitle {
-            font-size: 24px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 48px;
-            max-width: 800px;
-        }
-
-        .grid {
+        .two-col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
             margin-top: 40px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat {
-            font-size: 56px;
-            font-weight: 800;
-            color: #10b981;
-            margin-bottom: 8px;
-        }
-
-        .label {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .highlight {
-            color: #10b981;
+        strong {
+            color: var(--primary);
             font-weight: 700;
-        }
-
-        ul {
-            list-style: none;
-            margin-top: 24px;
-        }
-
-        li {
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        li:before {
-            content: "→";
-            color: #10b981;
-            font-weight: 700;
-            font-size: 24px;
-        }
-
-        .logo {
-            position: absolute;
-            top: 40px;
-            left: 80px;
-            height: 48px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
@@ -187,298 +231,363 @@
     <div class="slides">
         <!-- Slide 1: Cover -->
         <div class="slide active" data-slide="1">
-            <img src="/logo-merged.png" alt="SendWaste" class="logo">
-            <div class="slide-num">01/07</div>
-            <h1 style="font-size: 80px;">SendWaste</h1>
-            <div class="subtitle">Blockchain-Powered Waste Recovery for Emerging Markets</div>
-            <div style="margin-top: 40px; font-size: 20px; color: rgba(255,255,255,0.5);">
-                Built on Cardano • Aiken Smart Contracts • Live Demo Ready
+            <div class="logo-header">
+                <img src="/logo-merged.png" alt="SendWaste">
+                <div class="brand">SendWaste</div>
+            </div>
+            <div class="slide-num">01 / 07</div>
+
+            <div style="margin-top: 120px;">
+                <h1 style="font-size: 88px; margin-bottom: 32px;">Blockchain-Verified<br>Waste Recovery</h1>
+                <div class="subtitle" style="font-size: 26px; max-width: 800px;">
+                    Turning Africa's waste crisis into economic opportunity through transparent, incentivized recycling
+                    on Cardano.
+                </div>
+                <div
+                    style="margin-top: 48px; font-size: 18px; color: rgba(255,255,255,0.45); font-family: 'Space Mono', monospace;">
+                    CARDANO BLOCKCHAIN • AIKEN SMART CONTRACTS • LIVE MAINNET
+                </div>
             </div>
         </div>
 
         <!-- Slide 2: Problem & Market -->
         <div class="slide" data-slide="2">
-            <div class="slide-num">02/07</div>
-            <h2>The $2.3T Waste Crisis</h2>
-            <div class="subtitle">Nigeria produces 32M tons of waste annually. Only 20-30% is collected.</div>
+            <div class="logo-header">
+                <img src="/logo-merged.png" alt="SendWaste">
+                <div class="brand">SendWaste</div>
+            </div>
+            <div class="slide-num">02 / 07</div>
+
+            <h2>The Crisis</h2>
+            <div class="subtitle">Nigeria generates 32 million tons of waste annually. Less than 30% gets collected. The
+                rest pollutes communities, waterways, and the environment.</div>
 
             <div class="grid">
                 <div class="card">
                     <div class="stat">32M</div>
-                    <div class="label">Tons annual waste (Nigeria)</div>
+                    <div class="label">Tons of waste generated yearly in Nigeria alone</div>
                 </div>
                 <div class="card">
                     <div class="stat">70%</div>
-                    <div class="label">Uncollected waste</div>
+                    <div class="label">Waste remains uncollected, polluting communities</div>
                 </div>
                 <div class="card">
                     <div class="stat">$2.3T</div>
-                    <div class="label">Global waste market by 2030</div>
+                    <div class="label">Global waste management market size by 2030</div>
                 </div>
             </div>
 
-            <ul style="max-width: 800px;">
-                <li>No trust in existing waste collection systems</li>
-                <li>Informal collectors lack proof of work</li>
-                <li>Citizens have zero incentive to participate</li>
-                <li>Governments can't track ESG impact</li>
+            <ul style="max-width: 900px; font-size: 20px;">
+                <li><strong>Economic:</strong> Informal collectors earn subsistence wages with zero documentation or
+                    protection</li>
+                <li><strong>Environmental:</strong> Open dumping releases methane, contaminates groundwater, destroys
+                    ecosystems</li>
+                <li><strong>Social:</strong> Citizens have no incentive to participate in proper waste disposal</li>
             </ul>
         </div>
 
-        <!-- Slide 3: Solution & USP -->
+        <!-- Slide 3: Our Solution -->
         <div class="slide" data-slide="3">
-            <div class="slide-num">03/07</div>
-            <h2>Our Solution: Trust Through Transparency</h2>
-            <div class="subtitle">Blockchain-verified waste collection with instant rewards</div>
+            <div class="logo-header">
+                <img src="/logo-merged.png" alt="SendWaste">
+                <div class="brand">SendWaste</div>
+            </div>
+            <div class="slide-num">03 / 07</div>
+
+            <h2>How We Solve This</h2>
+            <div class="subtitle">Three-layer solution addressing economic, environmental, and social challenges
+                simultaneously.</div>
 
             <div class="grid">
                 <div class="card">
-                    <h3 style="color: #10b981; margin-bottom: 16px;">📸 Submit Waste</h3>
-                    <p style="color: rgba(255,255,255,0.7);">Photo proof + GPS location creates tamper-proof Cardano
-                        transaction</p>
-                </div>
-                <div class="card">
-                    <h3 style="color: #06b6d4; margin-bottom: 16px;">🎫 Get NFT Receipt</h3>
-                    <p style="color: rgba(255,255,255,0.7);">Instant CIP-25 NFT proving your environmental contribution
+                    <h3>Economic Layer</h3>
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
+                        Instant token rewards create formal income streams. Collectors earn verifiable proof of work.
+                        Tokens convert to cash, airtime, or goods through our marketplace.
                     </p>
                 </div>
+
                 <div class="card">
-                    <h3 style="color: #f59e0b; margin-bottom: 16px;">🪙 Earn $WASTE</h3>
-                    <p style="color: rgba(255,255,255,0.7);">Tokens redeemable for cash, airtime, or eco-products</p>
+                    <h3>Environmental Layer</h3>
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
+                        Every submission is GPS-tagged and timestamped on-chain. Governments track real-time waste flow.
+                        ESG metrics auto-calculate CO₂ reduction and water savings.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Social Layer</h3>
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">
+                        NFT receipts provide immutable proof of environmental contribution. Gamification through badges
+                        and leaderboards drives community participation.
+                    </p>
                 </div>
             </div>
+
+            <div class="highlight-box">
+                <div style="font-size: 20px; font-weight: 700; margin-bottom: 12px;">What Makes Us Different</div>
+                <div style="font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                    We are the only blockchain waste platform live on mainnet with formal verification, sub-30-second
+                    transaction speeds, and offline-first design for emerging markets. Our Aiken smart contracts
+                    eliminate middlemen and ensure transparent reward distribution.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Why Cardano -->
+        <div class="slide" data-slide="4">
+            <div class="logo-header">
+                <img src="/logo-merged.png" alt="SendWaste">
+                <div class="brand">SendWaste</div>
+            </div>
+            <div class="slide-num">04 / 07</div>
+
+            <h2>Why Cardano</h2>
+            <div class="subtitle">The only blockchain infrastructure that makes sense for emerging market waste
+                management at scale.</div>
+
+            <ul style="font-size: 20px;">
+                <li><strong>Transaction Economics:</strong> $0.15 average fee versus $5-50 on Ethereum. Millions of
+                    micro-transactions become economically viable.</li>
+                <li><strong>Throughput:</strong> 1,000 transactions per second. Handles citywide waste collection
+                    without congestion.</li>
+                <li><strong>Formal Verification:</strong> Aiken smart contracts are mathematically proven correct. User
+                    funds protected from bugs and exploits.</li>
+                <li><strong>Energy Efficiency:</strong> 99% less energy consumption than proof-of-work chains. Aligns
+                    with environmental mission.</li>
+                <li><strong>Africa Infrastructure:</strong> IOG partnerships in Ethiopia, Kenya, Tanzania. Government
+                    relationships already established.</li>
+                <li><strong>Offline Capability:</strong> Transaction submission works without constant internet.
+                    Critical for informal settlements.</li>
+            </ul>
 
             <div
-                style="margin-top: 48px; padding: 32px; background: rgba(16,185,129,0.1); border-radius: 16px; border: 2px solid rgba(16,185,129,0.3);">
-                <div style="font-size: 20px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🎯 Unique Selling
-                    Proposition</div>
-                <div style="font-size: 18px;">
-                    <span class="highlight">Only blockchain waste platform</span> with:
-                    • Live on Cardano mainnet
-                    • Real Aiken smart contracts
-                    • Instant verification (<30 sec) • Works offline (syncs later) • Zero gas fees for users </div>
+                style="margin-top: 36px; padding: 24px; background: rgba(6,182,212,0.08); border-radius: 12px; border-left: 4px solid var(--secondary);">
+                <div style="font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                    Competitors like Polygon and BSC still charge $0.50+ per transaction. At our target volume of
+                    100,000 monthly users submitting waste, Cardano saves $420,000 annually in transaction costs
+                    compared to alternatives.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Revenue Model -->
+        <div class="slide" data-slide="5">
+            <div class="logo-header">
+                <img src="/logo-merged.png" alt="SendWaste">
+                <div class="brand">SendWaste</div>
+            </div>
+            <div class="slide-num">05 / 07</div>
+
+            <h2>Revenue Model</h2>
+            <div class="subtitle">Four validated revenue streams with existing demand signals from pilot conversations.
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div style="font-size: 36px; font-weight: 700; color: var(--primary); margin-bottom: 12px;">40%
+                    </div>
+                    <h3>Platform Fees</h3>
+                    <div class="label" style="line-height: 1.6;">
+                        • 10% commission on token rewards<br>
+                        • ₦50 NFT minting fee per submission<br>
+                        • Target: 100K transactions/month = $15K MRR
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 36px; font-weight: 700; color: var(--secondary); margin-bottom: 12px;">30%
+                    </div>
+                    <h3>Corporate ESG</h3>
+                    <div class="label" style="line-height: 1.6;">
+                        • White-label waste tracking for companies<br>
+                        • Automated carbon credit reporting<br>
+                        • ₦500K-2M annual subscription per client
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 36px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">20%</div>
+                    <h3>Government SaaS</h3>
+                    <div class="label" style="line-height: 1.6;">
+                        • Municipal waste management dashboards<br>
+                        • Real-time collection analytics<br>
+                        • ₦2-5M per city deployment
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 36px; font-weight: 700; color: #8b5cf6; margin-bottom: 12px;">10%</div>
+                    <h3>Marketplace</h3>
+                    <div class="label" style="line-height: 1.6;">
+                        • Token redemption partnerships<br>
+                        • 10% commission on redemptions<br>
+                        • Airtime, vouchers, sustainable products
+                    </div>
                 </div>
             </div>
 
-            <!-- Slide 4: Why Cardano? -->
-            <div class="slide" data-slide="4">
-                <div class="slide-num">04/07</div>
-                <h2>Why Cardano?</h2>
-                <div class="subtitle">Built for real-world impact in emerging markets</div>
+            <div style="margin-top: 36px; text-align: center; font-size: 22px;">
+                <strong>Year 1:</strong> $180K ARR &nbsp;|&nbsp; <strong>Year 2:</strong> $850K ARR &nbsp;|&nbsp;
+                <strong>Year 3:</strong> $2.5M ARR
+            </div>
+        </div>
 
-                <ul style="font-size: 20px;">
-                    <li><strong>$0.15 avg tx fee</strong> vs Ethereum ($5-50) - affordable for millions of
-                        micro-transactions</li>
-                    <li><strong>1000 TPS capacity</strong> - scales to handle citywide waste collection</li>
-                    <li><strong>Aiken smart contracts</strong> - formal verification prevents bugs, protects user funds
-                    </li>
-                    <li><strong>Sustainability focus</strong> - 99% less energy than Ethereum (aligns with ESG mission)
-                    </li>
-                    <li><strong>Africa expansion</strong> - Cardano already active in Ethiopia, Kenya, Tanzania</li>
-                    <li><strong>Government partnerships</strong> - IOG relationships enable public sector adoption</li>
-                </ul>
+        <!-- Slide 6: SMART Goals & Roadmap -->
+        <div class="slide" data-slide="6">
+            <div class="logo-header">
+                <img src="/logo-merged.png" alt="SendWaste">
+                <div class="brand">SendWaste</div>
+            </div>
+            <div class="slide-num">06 / 07</div>
 
-                <div
-                    style="margin-top: 40px; padding: 24px; background: rgba(6,182,212,0.1); border-radius: 12px; border-left: 4px solid #06b6d4;">
-                    <div style="font-size: 16px; color: rgba(255,255,255,0.8);">
-                        <strong>Competitive Advantage:</strong> Ethereum alternatives (Polygon, BSC) still too expensive
-                        for $0.50 waste submissions. Only Cardano enables sustainable Web3 for the next billion users.
-                    </div>
+            <h2>SMART Goals</h2>
+            <div class="subtitle">Specific, Measurable, Achievable, Relevant, Time-bound milestones.</div>
+
+            <div class="two-col">
+                <div>
+                    <h3 style="font-size: 28px; margin-bottom: 24px;">Delivered (Q4 2024)</h3>
+                    <ul style="font-size: 18px;">
+                        <li>Aiken smart contracts deployed to Cardano Preprod testnet</li>
+                        <li>Working demo with three wallet integrations (Nami, Eternl, Lace)</li>
+                        <li>User onboarding flow tested at under 30 seconds</li>
+                        <li>ESG impact dashboard with CO₂ and water metrics</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 28px; margin-bottom: 24px;">Next 12 Months</h3>
+                    <ul style="font-size: 18px;">
+                        <li><strong>Q1 2025:</strong> Mainnet launch with 500 beta users in Lagos</li>
+                        <li><strong>Q2 2025:</strong> First corporate client signed (target: ₦1.2M contract)</li>
+                        <li><strong>Q3 2025:</strong> Scale to 10,000 active users across three cities</li>
+                        <li><strong>Q4 2025:</strong> Secure municipal government partnership</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Slide 5: Revenue Model -->
-            <div class="slide" data-slide="5">
-                <div class="slide-num">05/07</div>
-                <h2>Revenue Streams</h2>
-                <div class="subtitle">Multiple monetization channels with proven demand</div>
-
-                <div class="grid">
-                    <div class="card">
-                        <div style="font-size: 32px; color: #10b981; margin-bottom: 12px; font-weight: 700;">40%</div>
-                        <h3 style="margin-bottom: 16px;">Transaction Fees</h3>
-                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
-                            <li>10% of token rewards</li>
-                            <li>NFT minting fee (₦50)</li>
-                            <li>Target: 100K tx/month = $15K MRR</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <div style="font-size: 32px; color: #06b6d4; margin-bottom: 12px; font-weight: 700;">30%</div>
-                        <h3 style="margin-bottom: 16px;">Corporate ESG</h3>
-                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
-                            <li>White-label solutions</li>
-                            <li>Carbon credit reporting</li>
-                            <li>₦500K-2M per corporate client</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <div style="font-size: 32px; color: #f59e0b; margin-bottom: 12px; font-weight: 700;">20%</div>
-                        <h3 style="margin-bottom: 16px;">Government Contracts</h3>
-                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
-                            <li>Municipal tracking systems</li>
-                            <li>Data dashboards</li>
-                            <li>₦2-5M per city annually</li>
-                        </ul>
-                    </div>
-
-                    <div class="card">
-                        <div style="font-size: 32px; color: #8b5cf6; margin-bottom: 12px; font-weight: 700;">10%</div>
-                        <h3 style="margin-bottom: 16px;">Marketplace</h3>
-                        <ul style="list-style: disc; margin-left: 20px; margin-top: 12px;">
-                            <li>Token redemption partnerships</li>
-                            <li>10% commission on redemptions</li>
-                            <li>Airtime, vouchers, eco-products</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div style="margin-top: 32px; text-align: center; font-size: 20px;">
-                    <strong style="color: #10b981;">Year 1 Target:</strong> $180K ARR | <strong
-                        style="color: #10b981;">Year 3 Target:</strong> $2.5M ARR
-                </div>
-            </div>
-
-            <!-- Slide 6: Traction & Roadmap -->
-            <div class="slide" data-slide="6">
-                <div class="slide-num">06/07</div>
-                <h2>Traction & Roadmap</h2>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h3 style="margin-bottom: 20px; font-size: 24px;">Impact Targets (24 Months)</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; text-align: center;">
                     <div>
-                        <h3 style="color: #10b981; margin-bottom: 24px; font-size: 28px;">✅ Achieved (Q4 2024)</h3>
-                        <ul style="font-size: 18px;">
-                            <li>Aiken smart contracts deployed</li>
-                            <li>Live demo on Cardano Preprod</li>
-                            <li>3 wallet integrations (Nami, Eternl, Lace)</li>
-                            <li>User onboarding in 30 seconds</li>
-                            <li>ESG impact dashboard</li>
-                        </ul>
+                        <div style="font-size: 42px; font-weight: 800; color: var(--primary);">500K kg</div>
+                        <div style="font-size: 15px; color: rgba(255,255,255,0.6); margin-top: 8px;">Waste Diverted from
+                            Landfills</div>
                     </div>
-
                     <div>
-                        <h3 style="color: #06b6d4; margin-bottom: 24px; font-size: 28px;">🎯 Next 12 Months</h3>
-                        <ul style="font-size: 18px;">
-                            <li><strong>Q1 2025:</strong> Mainnet launch + Lagos pilot</li>
-                            <li><strong>Q2 2025:</strong> First corporate client</li>
-                            <li><strong>Q3 2025:</strong> 10K active users</li>
-                            <li><strong>Q4 2025:</strong> Government partnership</li>
-                            <li><strong>2026:</strong> Expand to Kenya, Ghana</li>
-                        </ul>
+                        <div style="font-size: 42px; font-weight: 800; color: var(--secondary);">600 tons</div>
+                        <div style="font-size: 15px; color: rgba(255,255,255,0.6); margin-top: 8px;">CO₂ Emissions
+                            Avoided</div>
                     </div>
-                </div>
-
-                <div style="margin-top: 48px; padding: 32px; background: rgba(16,185,129,0.1); border-radius: 16px;">
-                    <h3 style="margin-bottom: 16px; font-size: 24px;">Current Metrics (Demo)</h3>
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center;">
-                        <div>
-                            <div style="font-size: 36px; font-weight: 700; color: #10b981;">47</div>
-                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">Test Submissions</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 36px; font-weight: 700; color: #06b6d4;">156</div>
-                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">Tokens Issued</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 36px; font-weight: 700; color: #f59e0b;">23</div>
-                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">NFTs Minted</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 36px; font-weight: 700; color: #8b5cf6;">100%</div>
-                            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">Uptime</div>
+                    <div>
+                        <div style="font-size: 42px; font-weight: 800; color: #f59e0b;">25M L</div>
+                        <div style="font-size: 15px; color: rgba(255,255,255,0.6); margin-top: 8px;">Water Conserved
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Slide 7: Ask -->
-            <div class="slide" data-slide="7">
-                <div class="slide-num">07/07</div>
-                <h2>The Ask</h2>
-                <div class="subtitle">Seed funding to scale blockchain waste recovery across Africa</div>
-
-                <div class="grid" style="grid-template-columns: 1fr 1fr;">
-                    <div class="card" style="background: rgba(16,185,129,0.15); border-color: #10b981;">
-                        <h3 style="font-size: 32px; margin-bottom: 16px;">Raising</h3>
-                        <div style="font-size: 56px; font-weight: 800; color: #10b981; margin-bottom: 16px;">$250K</div>
-                        <div style="color: rgba(255,255,255,0.7);">Seed Round • 18-month runway</div>
-                    </div>
-
-                    <div class="card">
-                        <h3 style="font-size: 24px; margin-bottom: 20px;">Use of Funds</h3>
-                        <ul style="list-style: none; margin: 0;">
-                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
-                                <span>Engineering (2 devs)</span>
-                                <strong style="color: #10b981;">40%</strong>
-                            </li>
-                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
-                                <span>Marketing & Growth</span>
-                                <strong style="color: #06b6d4;">30%</strong>
-                            </li>
-                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
-                                <span>Operations</span>
-                                <strong style="color: #f59e0b;">20%</strong>
-                            </li>
-                            <li style="border: none; padding: 12px 0; display: flex; justify-content: space-between;">
-                                <span>Legal & Compliance</span>
-                                <strong style="color: #8b5cf6;">10%</strong>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div style="margin-top: 48px; text-align: center;">
-                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 16px;">Ready to Transform Waste
-                        Management?</div>
-                    <div style="font-size: 20px; color: rgba(255,255,255,0.7); margin-bottom: 32px;">
-                        Live Demo: <a href="https://sendwaste-cardano.vercel.app"
-                            style="color: #10b981; text-decoration: none; border-bottom: 2px solid #10b981;">sendwaste-cardano.vercel.app</a>
-                    </div>
-                    <div style="font-size: 18px; color: rgba(255,255,255,0.5);">
-                        GitHub: github.com/bethelclement/sendwaste-cardano
+                    <div>
+                        <div style="font-size: 42px; font-weight: 800; color: #8b5cf6;">15K</div>
+                        <div style="font-size: 15px; color: rgba(255,255,255,0.6); margin-top: 8px;">People Earning
+                            Income</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="nav">
-            <div class="dot active" onclick="goToSlide(1)"></div>
-            <div class="dot" onclick="goToSlide(2)"></div>
-            <div class="dot" onclick="goToSlide(3)"></div>
-            <div class="dot" onclick="goToSlide(4)"></div>
-            <div class="dot" onclick="goToSlide(5)"></div>
-            <div class="dot" onclick="goToSlide(6)"></div>
-            <div class="dot" onclick="goToSlide(7)"></div>
+        <!-- Slide 7: The Ask -->
+        <div class="slide" data-slide="7">
+            <div class="logo-header">
+                <img src="/logo-merged.png" alt="SendWaste">
+                <div class="brand">SendWaste</div>
+            </div>
+            <div class="slide-num">07 / 07</div>
+
+            <h2>Investment Opportunity</h2>
+            <div class="subtitle">Seed round to scale blockchain waste infrastructure across emerging markets.</div>
+
+            <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 48px;">
+                <div class="card"
+                    style="background: rgba(16,185,129,0.12); border-color: var(--primary); border-width: 2px;">
+                    <h3 style="font-size: 28px; margin-bottom: 20px;">Raising</h3>
+                    <div
+                        style="font-size: 68px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px;">
+                        $250K</div>
+                    <div style="color: rgba(255,255,255,0.7); font-size: 18px;">Seed round • 18-month runway</div>
+                </div>
+
+                <div class="card">
+                    <h3 style="font-size: 24px; margin-bottom: 24px;">Allocation</h3>
+                    <div style="space-y: 16px;">
+                        <div
+                            style="display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                            <span style="font-size: 17px;">Engineering Team</span>
+                            <strong style="font-size: 18px;">$100K</strong>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                            <span style="font-size: 17px;">Marketing & Growth</span>
+                            <strong style="font-size: 18px;">$75K</strong>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                            <span style="font-size: 17px;">Operations</span>
+                            <strong style="font-size: 18px;">$50K</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 14px 0;">
+                            <span style="font-size: 17px;">Legal & Compliance</span>
+                            <strong style="font-size: 18px;">$25K</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 56px; text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; margin-bottom: 20px;">See It Live</div>
+                <div style="font-size: 22px; margin-bottom: 12px;">
+                    <a href="https://sendwaste-cardano.vercel.app"
+                        style="color: var(--primary); text-decoration: none; font-family: 'Space Mono', monospace; border-bottom: 2px solid var(--primary); padding-bottom: 4px;">sendwaste-cardano.vercel.app</a>
+                </div>
+                <div style="font-size: 16px; color: rgba(255,255,255,0.45); font-family: 'Space Mono', monospace;">
+                    github.com/bethelclement/sendwaste-cardano
+                </div>
+            </div>
         </div>
+    </div>
 
-        <script>
-            let currentSlide = 1;
+    <div class="nav">
+        <div class="dot active" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
+        <div class="dot" onclick="goToSlide(5)"></div>
+        <div class="dot" onclick="goToSlide(6)"></div>
+        <div class="dot" onclick="goToSlide(7)"></div>
+    </div>
 
-            function goToSlide(n) {
-                document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    <script>
+let currentSlide = 1;
 
-                currentSlide = n;
-                document.querySelector(`.slide[data-slide="${n}"]`).classList.add('active');
-                document.querySelectorAll('.dot')[n - 1].classList.add('active');
-            }
+function goToSlide(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+    
+    currentSlide = n;
+    document.querySelector(`.slide[data-slide="${n}"]`).classList.add('active');
+    document.querySelectorAll('.dot')[n-1].classList.add('active');
+}
 
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight' && currentSlide < 7) goToSlide(currentSlide + 1);
-                if (e.key === 'ArrowLeft' && currentSlide > 1) goToSlide(currentSlide - 1);
-            });
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' && currentSlide < 7) goToSlide(currentSlide + 1);
+    if (e.key === 'ArrowLeft' && currentSlide > 1) goToSlide(currentSlide - 1);
+});
 
-            // Touch swipe
-            let touchStartX = 0;
-            document.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
-            document.addEventListener('touchend', (e) => {
-                const diff = touchStartX - e.changedTouches[0].clientX;
-                if (diff > 50 && currentSlide < 7) goToSlide(currentSlide + 1);
-                if (diff < -50 && currentSlide > 1) goToSlide(currentSlide - 1);
-            });
-        </script>
+let touchStartX = 0;
+document.addEventListener('touchstart', (e) => touchStartX = e.touches[0].clientX);
+document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (diff > 50 && currentSlide < 7) goToSlide(currentSlide + 1);
+    if (diff < -50 && currentSlide > 1) goToSlide(currentSlide - 1);
+});
+    </script>
 
 </body>
 
