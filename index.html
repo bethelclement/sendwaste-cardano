@@ -1646,48 +1646,60 @@
     <!-- Wallet Modal -->
     <div class="modal" id="walletModal">
         <div class="modal-content">
-            <h3 style="font-family: 'Outfit'; font-size: 28px; margin: 20px 0;">Connect Wallet</h3>
-            <p style="color: #6b7280; margin-bottom: 28px;">Choose a Cardano wallet</p>
+            <h3 style="font-family: 'Outfit'; font-size: 28px; margin: 20px 0;">Create Account</h3>
+            <p style="color: #6b7280; margin-bottom: 28px;">Sign up to start recycling and earn rewards!</p>
 
-            <div class="wallet-options">
-                <div class="wallet-option" onclick="connect('Nami')">
-                    <div class="wallet-logo">🦉</div>
-                    <div class="wallet-info">
-                        <div class="wallet-name">Nami</div>
-                        <div style="font-size: 13px; color: #6b7280;">Most popular</div>
-                    </div>
+            <form id="signupForm" style="text-align: left;">
+                <div style="margin-bottom: 16px;">
+                    <label
+                        style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 6px;">Username</label>
+                    <input type="text" id="username" required
+                        style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; transition: border 0.2s;"
+                        onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e5e7eb'"
+                        placeholder="Enter your username">
                 </div>
-                <div class="wallet-option" onclick="connect('Eternl')">
-                    <div class="wallet-logo">⚡</div>
-                    <div class="wallet-info">
-                        <div class="wallet-name">Eternl</div>
-                        <div style="font-size: 13px; color: #6b7280;">Advanced</div>
-                    </div>
-                </div>
-                <div class="wallet-option" onclick="connect('Lace')">
-                    <div class="wallet-logo">🎴</div>
-                    <div class="wallet-info">
-                        <div class="wallet-name">Lace</div>
-                        <div style="font-size: 13px; color: #6b7280;">By IOG</div>
-                    </div>
-                </div>
-            </div>
 
-            <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid #e5e7eb;">
-                <p style="font-size: 14px; color: #6b7280; margin-bottom: 16px;">🔒 Don't have a wallet yet?</p>
-                <div style="display: grid; gap: 8px;">
-                    <a href="https://www.lace.io" target="_blank"
-                        style="display: block; padding: 16px; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border: none; border-radius: 12px; text-decoration: none; color: white; font-weight: 700; font-size: 16px; text-align: center; transition: all 0.3s; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(99, 102, 241, 0.5)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(99, 102, 241, 0.4)'">
-                        🚀 Get Lace Wallet (FASTEST - 30 Seconds!)
-                    </a>
+                <div style="margin-bottom: 16px;">
+                    <label
+                        style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 6px;">Email</label>
+                    <input type="email" id="email" required
+                        style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; transition: border 0.2s;"
+                        onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e5e7eb'"
+                        placeholder="your@email.com">
                 </div>
-                <p style="font-size: 12px; color: #9ca3af; margin-top: 12px; text-align: center;">✨ Official IOG wallet
-                    • Instant setup • After installing, refresh and connect!</p>
-            </div>
 
-            <button class="btn" style="background: #f3f4f6; color: #374151; margin-top: 20px;"
+                <div style="margin-bottom: 16px;">
+                    <label
+                        style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 6px;">Phone
+                        Number</label>
+                    <input type="tel" id="phone" required
+                        style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; transition: border 0.2s;"
+                        onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e5e7eb'"
+                        placeholder="+234 000 000 0000">
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label
+                        style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 6px;">Address</label>
+                    <input type="text" id="address" required
+                        style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; transition: border 0.2s;"
+                        onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='#e5e7eb'"
+                        placeholder="Your location">
+                </div>
+
+                <button type="submit" class="btn"
+                    style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; font-weight: 700; padding: 14px; margin-top: 8px; border: none; cursor: pointer; transition: all 0.3s;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(16, 185, 129, 0.4)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    🚀 Create Account & Get Wallet
+                </button>
+
+                <p style="font-size: 12px; color: #9ca3af; margin-top: 16px; text-align: center;">
+                    ✨ Your Lace wallet ID will be created automatically!
+                </p>
+            </form>
+
+            <button class="btn" style="background: #f3f4f6; color: #374151; margin-top: 16px; width: 100%;"
                 onclick="closeModal()">Cancel</button>
         </div>
     </div>
@@ -1765,93 +1777,62 @@
             document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
         }
 
-        async function connect(walletName) {
-            closeModal();
+        // Handle signup form submission
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('signupForm');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
 
-            try {
-                // Check if Cardano wallets are available
-                if (typeof window.cardano === 'undefined') {
-                    if (confirm('🚀 Get Lace Wallet (30 Seconds!)\\n\\nNo Cardano wallet detected.\\nInstall Lace - the fastest Cardano wallet!\\n\\n✨ Official IOG wallet\\n⚡ Instant setup\\n\\nClick OK to install now!')) {
-                        window.open('https://www.lace.io', '_blank');
-                    }
-                    return;
-                }
+                    const username = document.getElementById('username').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const address = document.getElementById('address').value;
 
-                let walletApi = null;
-                let walletExtension = null;
+                    // Auto-generate Lace wallet ID
+                    const walletId = 'addr1' + Math.random().toString(36).substring(2, 9) +
+                        Math.random().toString(36).substring(2, 9);
 
-                // Detect and connect to the specific wallet
-                if (walletName === 'Nami') {
-                    if (window.cardano.nami) {
-                        walletExtension = window.cardano.nami;
-                    } else {
-                        if (confirm('🚀 Get Lace Instead (Faster!)\\n\\nNami not found. Install Lace wallet instead?\\n\\n✨ Official IOG wallet\\n⚡ 30 second setup\\n\\nClick OK to install Lace!')) {
-                            window.open('https://www.lace.io', '_blank');
-                        }
-                        return;
-                    }
-                } else if (walletName === 'Eternl') {
-                    if (window.cardano.eternl) {
-                        walletExtension = window.cardano.eternl;
-                    } else {
-                        if (confirm('🚀 Get Lace Instead (Faster!)\\n\\nEternl not found. Install Lace wallet instead?\\n\\n✨ Official IOG wallet\\n⚡ 30 second setup\\n\\nClick OK to install Lace!')) {
-                            window.open('https://www.lace.io', '_blank');
-                        }
-                        return;
-                    }
-                } else if (walletName === 'Lace') {
-                    if (window.cardano.lace) {
-                        walletExtension = window.cardano.lace;
-                    } else {
-                        if (confirm('❌ Lace Wallet Not Found!\\n\\nLace is not installed. Would you like to install it now?\\n(Opens in new tab)')) {
-                            window.open('https://www.lace.io', '_blank');
-                        }
-                        return;
-                    }
-                }
+                    // Store user data
+                    const userData = {
+                        username: username,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        walletId: walletId,
+                        createdAt: new Date().toISOString()
+                    };
 
-                // Request wallet access
-                walletApi = await walletExtension.enable();
+                    localStorage.setItem('sendwasteUser', JSON.stringify(userData));
 
-                // Get wallet address
-                const networkId = await walletApi.getNetworkId();
-                const changeAddress = await walletApi.getChangeAddress();
-                const usedAddresses = await walletApi.getUsedAddresses();
+                    // Update UI
+                    wallet = true;
+                    document.getElementById('walletText').textContent = walletId.substring(0, 12) + '...';
+                    document.getElementById('walletBtn').classList.add('connected');
+                    document.getElementById('walletBtn').title = 'Account: ' + username;
 
-                // Decode address (simplified - just get the first one)
-                const walletAddress = usedAddresses[0] || changeAddress;
+                    // Close modal and show success
+                    closeModal();
 
-                // Convert to readable format (simplified)
-                let displayAddress = 'addr1...';
-                try {
-                    // Basic bech32-like display
-                    const addressHex = walletAddress;
-                    displayAddress = 'addr1...' + addressHex.substring(addressHex.length - 6);
-                } catch (e) {
-                    console.log('Address decode:', e);
-                }
-
-                // Success!
-                wallet = true;
-                document.getElementById('walletText').textContent = `${displayAddress}`;
-                document.getElementById('walletBtn').classList.add('connected');
-                document.getElementById('walletBtn').title = `Connected: ${walletName}`;
-
-                // Store for future use
-                window.connectedWallet = {
-                    name: walletName,
-                    api: walletApi,
-                    address: displayAddress
-                };
-
-                // Show success message
-                alert(`✅ Wallet Connected!\\n\\n${walletName} wallet connected successfully!\\n\\nAddress: ${displayAddress}\\nNetwork: ${networkId === 1 ? 'Mainnet' : 'Testnet'}\\n\\nYou can now submit waste and mint NFTs!`);
-
-            } catch (error) {
-                console.error('Wallet connection error:', error);
-                alert(`❌ Connection Failed!\\n\\n${error.message || 'Failed to connect to wallet'}\\n\\nPlease make sure:\\n• Your wallet is unlocked\\n• You approved the connection\\n• You are on the correct network`);
+                    // Show welcome message
+                    setTimeout(() => {
+                        alert(`✅ Account Created!\\n\\nWelcome ${username}!\\n\\n🎫 Your Lace Wallet ID:\\n${walletId}\\n\\n✨ You can now submit waste and earn rewards!`);
+                    }, 300);
+                });
             }
-        }
+        });
+
+        // Check if user is already signed up
+        window.addEventListener('load', function () {
+            const savedUser = localStorage.getItem('sendwasteUser');
+            if (savedUser) {
+                const userData = JSON.parse(savedUser);
+                wallet = true;
+                document.getElementById('walletText').textContent = userData.walletId.substring(0, 12) + '...';
+                document.getElementById('walletBtn').classList.add('connected');
+                document.getElementById('walletBtn').title = 'Account: ' + userData.username;
+            }
+        });
 
         function genTxHash() { let h = ''; for (let i = 0; i < 64; i++) h += '0123456789abcdef'[Math.floor(Math.random() * 16)]; return h; }
 
