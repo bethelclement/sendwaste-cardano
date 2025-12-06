@@ -1116,8 +1116,81 @@
                     <img src="/logo-merged.png" alt="SendWaste" class="logo-img" onerror="this.style.display='none'">
                     <span class="brand-name">SendWaste</span>
                 </div>
-                <button class="wallet-btn" id="walletBtn" onclick="openWalletModal()">
-                    <span id="walletText">Connect Wallet</span>
+                <div class="profile-header" id="profileHeader" style="display: none;">
+                    <div onclick="toggleProfileMenu()"
+                        style="display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 8px 16px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); border: 2px solid rgba(16, 185, 129, 0.3); transition: all 0.3s;">
+                        <!-- NFT Avatar (Aiken/Blockchain Style) -->
+                        <div
+                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; border: 2px solid #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#10b981" />
+                                <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="#10b981" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+
+                        <div style="text-align: left;">
+                            <div id="profileUsername"
+                                style="font-weight: 700; color: #111827; font-size: 15px; font-family: 'Outfit', sans-serif;">
+                                User</div>
+                            <div id="profileWalletId"
+                                style="font-size: 11px; color: #6b7280; font-family: 'Courier New', monospace; letter-spacing: -0.5px;">
+                                addr1...</div>
+                        </div>
+
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-left: 4px;">
+                            <path d="M6 9l6 6 6-6" stroke="#6b7280" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                    <!-- Profile Dropdown Menu -->
+                    <div id="profileMenu"
+                        style="display: none; position: absolute; top: 70px; right: 20px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); min-width: 280px; border: 2px solid #e5e7eb; overflow: hidden; z-index: 1000;">
+                        <div
+                            style="padding: 20px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 4px;">Cardano Account</div>
+                            <div id="menuUsername" style="font-weight: 700; font-size: 18px; margin-bottom: 8px;">User
+                            </div>
+                            <div id="menuWalletId"
+                                style="font-family: 'Courier New', monospace; font-size: 11px; background: rgba(0,0,0,0.2); padding: 6px 10px; border-radius: 6px; letter-spacing: -0.5px;">
+                                addr1...</div>
+                        </div>
+
+                        <div style="padding: 8px;">
+                            <div onclick="showDashboard(); toggleProfileMenu();"
+                                style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; border-radius: 10px; transition: background 0.2s;"
+                                onmouseover="this.style.background='#f3f4f6'"
+                                onmouseout="this.style.background='transparent'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"
+                                        fill="#10b981" />
+                                </svg>
+                                <div>
+                                    <div style="font-weight: 600; color: #111827; font-size: 14px;">My Dashboard</div>
+                                    <div style="font-size: 12px; color: #6b7280;">Track your impact</div>
+                                </div>
+                            </div>
+
+                            <div style="border-top: 1px solid #e5e7eb; margin: 8px 0;"></div>
+
+                            <div onclick="logout()"
+                                style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; border-radius: 10px; transition: background 0.2s; color: #ef4444;"
+                                onmouseover="this.style.background='#fef2f2'"
+                                onmouseout="this.style.background='transparent'">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"
+                                        stroke="#ef4444" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <span style="font-weight: 600; font-size: 14px;">Logout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="wallet-btn" id="walletBtn" onclick="openWalletModal()" style="display: block;">
+                    <span id="walletText">Create Account</span>
                 </button>
             </div>
         </nav>
@@ -1982,10 +2055,7 @@
                     localStorage.setItem('sendwasteUser', JSON.stringify(userData));
 
                     // Update UI
-                    wallet = true;
-                    document.getElementById('walletText').textContent = walletId.substring(0, 12) + '...';
-                    document.getElementById('walletBtn').classList.add('connected');
-                    document.getElementById('walletBtn').title = 'Account: ' + username;
+                    updateProfileDisplay(userData);
 
                     // Close modal and show success
                     closeModal();
@@ -2006,11 +2076,52 @@
             if (savedUser) {
                 const userData = JSON.parse(savedUser);
                 wallet = true;
-                document.getElementById('walletText').textContent = userData.walletId.substring(0, 12) + '...';
-                document.getElementById('walletBtn').classList.add('connected');
-                document.getElementById('walletBtn').title = 'Account: ' + userData.username;
+                updateProfileDisplay(userData);
             }
         });
+
+        function updateProfileDisplay(userData) {
+            // Hide wallet button, show profile header
+            document.getElementById('walletBtn').style.display = 'none';
+            document.getElementById('profileHeader').style.display = 'block';
+
+            // Update profile header
+            document.getElementById('profileUsername').textContent = userData.username;
+            document.getElementById('profileWalletId').textContent = userData.walletId.substring(0, 12) + '...';
+
+            // Update dropdown menu
+            document.getElementById('menuUsername').textContent = userData.username;
+            document.getElementById('menuWalletId').textContent = userData.walletId;
+
+            wallet = true;
+        }
+
+        function toggleProfileMenu() {
+            const menu = document.getElementById('profileMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const profileHeader = document.getElementById('profileHeader');
+            const profileMenu = document.getElementById('profileMenu');
+            if (profileHeader && !profileHeader.contains(event.target)) {
+                if (profileMenu) profileMenu.style.display = 'none';
+            }
+        });
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('sendwasteUser');
+                localStorage.removeItem('wasteHistory');
+                wallet = false;
+                document.getElementById('profileHeader').style.display = 'none';
+                document.getElementById('walletBtn').style.display = 'block';
+                document.getElementById('dashboard').style.display = 'none';
+                toggleProfileMenu();
+                location.reload();
+            }
+        }
 
         function genTxHash() { let h = ''; for (let i = 0; i < 64; i++) h += '0123456789abcdef'[Math.floor(Math.random() * 16)]; return h; }
 
