@@ -1751,13 +1751,91 @@
             document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
         }
 
-        function connect(name) {
+        async function connect(walletName) {
             closeModal();
-            setTimeout(() => {
+            
+            try {
+                // Check if Cardano wallets are available
+                if (typeof window.cardano === 'undefined') {
+                    alert('❌ No Cardano Wallet Found!\\n\\nPlease install a Cardano wallet:\\n\\n• Nami: https://namiwallet.io\\n• Eternl: https://eternl.io\\n• Lace: https://www.lace.io\\n\\nAfter installation, refresh this page.');
+                    window.open('https://namiwallet.io', '_blank');
+                    return;
+                }
+                
+                let walletApi = null;
+                let walletExtension = null;
+                
+                // Detect and connect to the specific wallet
+                if (walletName === 'Nami') {
+                    if (window.cardano.nami) {
+                        walletExtension = window.cardano.nami;
+                    } else {
+                        if (confirm('❌ Nami Wallet Not Found!\\n\\nNami is not installed. Would you like to install it now?\\n(Opens in new tab)')) {
+                            window.open('https://namiwallet.io', '_blank');
+                        }
+                        return;
+                    }
+                } else if (walletName === 'Eternl') {
+                    if (window.cardano.eternl) {
+                        walletExtension = window.cardano.eternl;
+                    } else {
+                        if (confirm('❌ Eternl Wallet Not Found!\\n\\nEternl is not installed. Would you like to install it now?\\n(Opens in new tab)')) {
+                            window.open('https://eternl.io', '_blank');
+                        }
+                        return;
+                    }
+                } else if (walletName === 'Lace') {
+                    if (window.cardano.lace) {
+                        walletExtension = window.cardano.lace;
+                    } else {
+                        if (confirm('❌ Lace Wallet Not Found!\\n\\nLace is not installed. Would you like to install it now?\\n(Opens in new tab)')) {
+                            window.open('https://www.lace.io', '_blank');
+                        }
+                        return;
+                    }
+                }
+                
+                // Request wallet access
+                walletApi = await walletExtension.enable();
+                
+                // Get wallet address
+                const networkId = await walletApi.getNetworkId();
+                const changeAddress = await walletApi.getChangeAddress();
+                const usedAddresses = await walletApi.getUsedAddresses();
+                
+                // Decode address (simplified - just get the first one)
+                const walletAddress = usedAddresses[0] || changeAddress;
+                
+                // Convert to readable format (simplified)
+                let displayAddress = 'addr1...';
+                try {
+                    // Basic bech32-like display
+                    const addressHex = walletAddress;
+                    displayAddress = 'addr1...' + addressHex.substring(addressHex.length - 6);
+                } catch (e) {
+                    console.log('Address decode:', e);
+                }
+                
+                // Success!
                 wallet = true;
-                document.getElementById('walletText').textContent = `${name} Connected`;
+                document.getElementById('walletText').textContent = `${displayAddress}`;
                 document.getElementById('walletBtn').classList.add('connected');
-            }, 500);
+                document.getElementById('walletBtn').title = `Connected: ${walletName}`;
+                
+                // Store for future use
+                window.connectedWallet = {
+                    name: walletName,
+                    api: walletApi,
+                    address: displayAddress
+                };
+                
+                // Show success message
+                alert(`✅ Wallet Connected!\\n\\n${walletName} wallet connected successfully!\\n\\nAddress: ${displayAddress}\\nNetwork: ${networkId === 1 ? 'Mainnet' : 'Testnet'}\\n\\nYou can now submit waste and mint NFTs!`);
+                
+            } catch (error) {
+                console.error('Wallet connection error:', error);
+                alert(`❌ Connection Failed!\\n\\n${error.message || 'Failed to connect to wallet'}\\n\\nPlease make sure:\\n• Your wallet is unlocked\\n• You approved the connection\\n• You are on the correct network`);
+            }
         }
 
         function genTxHash() { let h = ''; for (let i = 0; i < 64; i++) h += '0123456789abcdef'[Math.floor(Math.random() * 16)]; return h; }
