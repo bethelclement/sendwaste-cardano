@@ -1,241 +1,176 @@
 # SendWaste
 
-**Blockchain-verified waste recovery for Africa**
+Blockchain-verified waste recovery platform for Africa. Built on Cardano with Aiken smart contracts.
 
-Built on Cardano with Aiken smart contracts. Currently deployed on Cardano Preprod testnet.
-
-**Live Demo:** https://sendwaste-cardano.vercel.app
-
----
-
-## The Problem
-
-Nigeria produces 32 million tons of waste every year, but 70% of it never gets collected. The system fails not because people don't collect waste—informal collectors work every day—but because nobody can prove what they actually did.
-
-Collectors can't prove their work to access loans. Residents pay for waste services but can't verify if their garbage was properly handled. Government budgets millions for waste management but has no data on where money goes or what impact it creates.
-
-This is a trust problem. And blockchain solves trust problems.
+**Live Demo:** https://sendwaste-cardano.vercel.app  
+**Testnet:** Cardano Preprod
 
 ---
 
-## What SendWaste Does
+## Problem Statement
+
+Nigeria produces 32 million tons of waste annually. 70 percent goes uncollected. The system fails not from lack of effort but from absence of trust. Collectors cannot prove their work. Residents cannot verify service delivery. Government cannot track outcomes. This trust deficit perpetuates poverty, unsanitary conditions, and unmet climate commitments.
+
+## Solution
 
 SendWaste creates verifiable proof of waste collection using Cardano blockchain:
 
-**1. Submit Waste**  
-User takes a photo of waste, enters weight and type. GPS location captured automatically.
+**User submits waste** - Photo and GPS location captured automatically
 
-**2. Blockchain Verification**  
-Aiken smart contract verifies the submission in under 30 seconds:
-- Validates GPS coordinates
-- Hashes photo to prevent tampering
-- Checks for duplicate submissions
-- Calculates token rewards based on waste weight
+**Smart contract verifies** - Aiken contract validates GPS, hashes photo, checks for duplicates
 
-**3. Instant Rewards**  
-User receives $WASTE tokens (redeemable for cash, airtime, or products) and an NFT receipt proving their environmental contribution.
+**Instant rewards** - User receives WASTE tokens and NFT receipt in under 30 seconds
 
-Everything is recorded on Cardano blockchain. Permanent. Transparent. Verifiable.
-
----
+Everything records permanently on Cardano. Transparent. Immutable. Verifiable.
 
 ## Why Cardano
 
-**Transaction costs:** $0.15 average fee versus $5-50 on Ethereum. When users earn maybe 50 cents per submission, expensive gas fees kill the entire model.
+**Cost:** Transaction fees average 15 cents versus 5-50 dollars on Ethereum. Micro-transactions become economically viable.
 
-**Throughput:** Cardano handles 1,000 transactions per second. We're building for 100,000 monthly users. Cardano scales.
+**Scale:** 1,000 transactions per second. Supports target of 100,000 monthly users.
 
-**Energy efficiency:** 99% less energy than proof-of-work chains. We're solving an environmental problem—can't use a blockchain that burns the planet doing it.
+**Security:** Aiken provides formal verification. Mathematical proof the code works correctly.
 
-**Formal verification:** Aiken smart contracts are mathematically proven correct. No hidden bugs that drain user funds.
+**Sustainability:** 99 percent less energy than proof-of-work chains. Aligns with environmental mission.
 
-**Africa focus:** Cardano already has government partnerships in Ethiopia, Kenya, and Tanzania. Infrastructure and relationships exist.
+**Africa presence:** Existing partnerships in Ethiopia, Kenya, Tanzania provide infrastructure.
 
----
-
-## Who Uses This
-
-**Informal waste collectors:** Get documented proof of work that lets them access banking and credit.
-
-**Residents:** Verify their waste was actually collected and properly handled. Get rewards for participating.
-
-**Corporations:** Track verifiable ESG impact for sustainability reporting. White-label solution for employee engagement.
-
-**Government:** Real-time data dashboards showing where waste is collected, who's doing the work, and what environmental impact is happening.
-
----
-
-## Technical Stack
-
-**Smart Contracts:**
-- Aiken (Cardano's smart contract language)
-- Deployed on Cardano Preprod testnet
-- Handles GPS validation, photo hashing, token minting
-
-**Frontend:**
-- HTML/CSS/JavaScript (static site for MVP)
-- Mobile-responsive design
-- Integrations with Nami, Eternl, and Lace wallets
-
-**Data:**
-- On-chain transaction records on Cardano
-- Local storage for user profiles and history
-- Future: IPFS for photo storage
-
----
-
-## Project Structure
+## Repository Structure
 
 ```
 sendwaste-cardano/
-├── index.html                         # Main application
-├── public/
-│   ├── investor_pitch.html           # Investor presentation
-│   └── logo-merged.png               # Brand assets
-├── STAGE1_COMMUNITY_ESSENCE_MAP.md   # Community research
-├── STAGE1_STAKEHOLDER_MAP.md         # Stakeholder analysis
-├── STAGE1_CHALLENGE_STATEMENT.md     # Problem statement
-├── STAGE1_TEAM_REFLECTION.md         # Development journey
-├── SPEAKER_NOTES.md                  # Pitch presentation guide
-├── HACKATHON_PROGRESS.md             # Development timeline
-├── FINAL_SUBMISSION_PACKAGE.md       # Submission materials
-└── README.md                         # This file
+├── frontend/
+│   ├── index.html              Main application
+│   └── public/
+│       └── investor_pitch.html Investor presentation
+│
+├── validators/                  Smart contract code
+│   └── (Aiken smart contracts)
+│
+├── docs/
+│   ├── PROJECT_SUMMARY.md      5-line executive summary
+│   ├── SMART_CONTRACTS.md      Contract documentation
+│   ├── STAGE1_*.md             Community research
+│   └── SPEAKER_NOTES.md        Pitch presentation
+│
+├── README.md                    This file
+└── package.json                Dependencies
 ```
 
----
+## Quick Start
 
-## How to Test the MVP
+**No installation required.** Visit https://sendwaste-cardano.vercel.app
 
-**No installation needed.** Just visit: https://sendwaste-cardano.vercel.app
+**Test flow:**
 
-**Quick Test Flow:**
-
-1. Click "Create Account" in the navigation
-2. Fill in username, email, phone, address
-3. System generates your Cardano wallet ID automatically
-4. Go to "Submit Waste" section
+1. Click "Create Account" in navigation
+2. Enter username, email, phone, address
+3. System generates Cardano wallet ID
+4. Navigate to "Submit Waste" section
 5. Select waste type (PET, HDPE, etc.)
 6. Enter weight (try 5 kg)
 7. Upload any photo
 8. Click "Submit Waste to Blockchain"
-9. See your transaction confirm in ~25 seconds
-10. Check "My Dashboard" to see impact metrics
+9. Observe transaction confirm in approximately 25 seconds
+10. Check "My Dashboard" for impact metrics
 
-**What you'll see:**
+**What judges will see:**
 - Instant token rewards (10 tokens per kg)
 - NFT receipt with transaction hash
-- ESG impact calculation (CO₂ saved, water conserved)
-- Achievement badges unlock as you submit more waste
-- Complete waste history with CSV export
-
----
+- ESG calculations (CO2 saved, water conserved)
+- Achievement badges
+- Complete waste history
+- CSV export capability
 
 ## Smart Contract Details
 
-**Current Implementation:**
-The MVP demonstrates blockchain verification flow with simulated Aiken contract responses. The actual smart contract code handles:
+**Deployment:** Cardano Preprod testnet  
+**Language:** Aiken
 
+**Functions:**
 - GPS coordinate validation
 - Photo hash generation (blake2b_256)
 - Duplicate submission prevention
-- Token calculation: `tokens = weight_kg * 10`
+- Token calculation (tokens = weight_kg * 10)
 - Automated minting to user wallet
 
-**Testnet Deployment:**
-Contracts deployed on Cardano Preprod testnet. Transaction verification happens on-chain with response times under 30 seconds.
+**Security:**
+- Single script input validation
+- Signature verification
+- 24-hour time locks
+- Geofencing for service areas
+- Photo hash registry
 
-**Future:** Mainnet deployment planned for Q1 2025 with full production security audit.
+See SMART_CONTRACTS.md for complete technical documentation.
 
----
+## Technical Stack
+
+**Blockchain:**
+- Cardano Preprod testnet
+- Aiken smart contracts
+- Simulated contract responses for MVP demo
+
+**Frontend:**
+- HTML/CSS/JavaScript
+- Mobile-responsive design
+- Wallet integrations: Nami, Eternl, Lace
+
+**Data:**
+- On-chain transaction records
+- Local storage for user profiles
+- Future: IPFS for photo storage
 
 ## Revenue Model
 
-**Platform Fees (40% of revenue):**
-10% commission on token rewards + ₦50 NFT minting fee per submission. At 100,000 transactions/month: $15,000 monthly recurring revenue.
+**Platform Fees (40 percent):** 10 percent commission on rewards plus NFT minting fee. At 100,000 transactions monthly: 15,000 dollars MRR.
 
-**Corporate ESG (30% of revenue):**
-White-label waste tracking for companies. Average contract: ₦500,000-2,000,000 annually.
+**Corporate ESG (30 percent):** White-label tracking for companies. Average contract: 600-2,400 dollars annually.
 
-**Government Contracts (20% of revenue):**
-Municipal dashboard and analytics. ₦2-5 million per city annually.
+**Government SaaS (20 percent):** Municipal dashboards. 5,000-12,000 dollars per city annually.
 
-**Marketplace (10% of revenue):**
-Commission on token redemptions for cash, airtime, and eco-products.
+**Marketplace (10 percent):** Commission on token redemptions.
 
 **Projections:**
-- Year 1: $180,000 ARR
-- Year 2: $850,000 ARR
-- Year 3: $2,500,000 ARR
-
----
-
-## Roadmap
-
-**Q1 2025:** Mainnet launch. Abuja pilot with 500 beta users.
-
-**Q2 2025:** First corporate ESG client signed.
-
-**Q3 2025:** Scale to 10,000 active users across 3 cities.
-
-**Q4 2025:** Secure first municipal government contract.
-
-**Year 2:** Expand to Lagos, Port Harcourt. 40,000 users.
-
-**Year 3:** National presence. 100,000 users processing 500 tons waste monthly.
-
----
-
-## Development
-
-**Local Setup:**
-
-If you want to run the code locally:
-
-```bash
-git clone https://github.com/bethelclement/sendwaste-cardano.git
-cd sendwaste-cardano
-```
-
-For the static HTML version, just open `index.html` in any browser.
-
-For smart contract development:
-```bash
-cd validators
-aiken check  # Run tests
-aiken build  # Compile contracts
-```
-
-**Requirements:**
-- Modern web browser
-- Cardano wallet (for blockchain interactions)
-- Testnet ADA (for smart contract testing)
-
----
+- Year 1: 180,000 dollars ARR
+- Year 2: 850,000 dollars ARR  
+- Year 3: 2,500,000 dollars ARR
 
 ## Community Research
 
-This project is grounded in real community exploration in Abuja, Nigeria:
+Project grounded in 6 weeks of field research in Abuja, Nigeria:
 
-- 23 conversations with waste collectors, residents, government officials
+- 23 conversations with collectors, residents, government officials
 - 4 neighborhoods studied: Kubwa, Gwarimpa, Dutse, Lugbe
-- 6 weeks of field research October-December 2024
+- October-December 2024
 
-Key insight: People don't want charity. They want systems that make their existing efforts count. Blockchain doesn't create the solution—the community is the solution. Blockchain just makes their work visible, verifiable, and valuable.
+**Key insight:** Communities do not need saving. They need infrastructure that makes existing efforts visible, verifiable, and valuable.
 
-See `STAGE1_COMMUNITY_ESSENCE_MAP.md` for full research documentation.
+Documentation in STAGE1_COMMUNITY_ESSENCE_MAP.md
 
----
+## Development Roadmap
 
-## Impact Metrics (24-Month Target)
+**Q1 2025:** Mainnet deployment. Abuja pilot with 500 users.
+
+**Q2 2025:** First corporate ESG client.
+
+**Q3 2025:** Scale to 10,000 users across 3 cities.
+
+**Q4 2025:** First government contract.
+
+**Year 2:** National expansion. 40,000 users.
+
+**Year 3:** 100,000 users. 2.5 million dollars ARR.
+
+## Impact Targets (24 Months)
 
 **Environmental:**
 - 500,000 kg waste diverted from landfills
-- 600 tons CO₂ emissions avoided
+- 600 tons CO2 emissions avoided
 - 25 million liters water conserved
 
 **Economic:**
-- 15,000 people earning documented income from waste collection
-- Average collector income increase: 40%
+- 15,000 people earning documented income
+- 40 percent average income increase for collectors
 - Bank account access for informal workers
 
 **Social:**
@@ -243,41 +178,76 @@ See `STAGE1_COMMUNITY_ESSENCE_MAP.md` for full research documentation.
 - Formal recognition for informal labor
 - Verifiable ESG data for climate commitments
 
----
+## Local Development
+
+**For static HTML version:**
+
+```bash
+git clone https://github.com/bethelclement/sendwaste-cardano.git
+cd sendwaste-cardano
+```
+
+Open index.html in any browser.
+
+**For smart contract development:**
+
+```bash
+cd validators
+aiken check   # Run tests
+aiken build   # Compile contracts
+```
+
+**Requirements:**
+- Modern web browser
+- Cardano wallet for blockchain interactions
+- Testnet ADA for contract testing
+
+## Testing
+
+**Smart Contract Tests:**
+
+```bash
+cd validators
+aiken check
+```
+
+**Coverage includes:**
+- Valid submission verification
+- Duplicate prevention
+- Unauthorized access rejection
+- Time lock enforcement
+- GPS validation
+- Token calculation accuracy
+
+**Frontend Testing:**
+
+Visit live demo and follow test flow in Quick Start section.
 
 ## Security
 
 **Anti-fraud measures:**
-- Single script input validation prevents double-spend
-- Photo hashing detects duplicate submissions
-- GPS geofencing validates service areas
-- 24-hour verification time locks
-- Signature verification for authorized collectors only
+- Single script input validation
+- Photo hash duplicate detection
+- GPS geofencing
+- 24-hour verification windows
+- Signature verification for collectors
 
 **Privacy:**
-- User data stored locally (no central database)
-- On-chain records pseudonymous (wallet addresses only)
-- Photo hashes stored, not actual photos
-
----
+- User data stored locally
+- On-chain records use pseudonymous wallet addresses
+- Photo hashes recorded, not original images
 
 ## License
 
-MIT License - see LICENSE file for details.
-
----
+MIT License. See LICENSE file.
 
 ## Contact
 
 **Project Lead:** Bethel Clement  
 **Location:** Abuja, Nigeria  
-**GitHub:** https://github.com/bethelclement/sendwaste-cardano  
+**Repository:** https://github.com/bethelclement/sendwaste-cardano  
 **Live Demo:** https://sendwaste-cardano.vercel.app
 
-For hackathon judges: All submission materials are in the repository. Demo is fully functional and ready to test.
+**For judges:** All submission materials in repository. Demo fully functional and ready for testing.
 
----
-
-Built for the Cardano Regenerative Exploration Hackathon 2024.
-
-Solving real problems with real blockchain technology for real people in Africa.
+Built for Cardano Regenerative Exploration Hackathon 2024.
