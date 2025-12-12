@@ -2449,10 +2449,16 @@
             }
         }
 
-        // Override wallet button
-        function openWalletModal() {
+        // Override wallet button - GUARANTEED TO WORK
+        window.openWalletModal = function () {
+            console.log('🚀 openWalletModal called!');
             connectWallet();
-        }
+        };
+
+        // Also bind to window.connectWallet for redundancy
+        window.connectWallet = connectWallet;
+
+        console.log('✅ Wallet functions loaded:', typeof window.openWalletModal, typeof window.connectWallet);
     </script>
 </body>
 
