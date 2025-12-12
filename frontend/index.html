@@ -2395,95 +2395,80 @@
                 }
 
                 if (wallets.length === 0) {
-                    // Detect device type
                     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
                     const walletModal = document.createElement('div');
                     walletModal.className = 'modal active';
                     walletModal.innerHTML = `
-                        <div class="modal-content" style="max-width: 520px;">
-                            <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 8px;">Connect Your Wallet</h3>
-                            <p style="color: #6b7280; margin-bottom: 24px; font-size: 14px;">${isMobile ? 'Tap a wallet to connect:' : 'Choose a wallet to connect:'}</p>
+                        <div class="modal-content" style="max-width: 540px;">
+                            <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 8px; text-align: center;">Connect Wallet</h3>
+                            <p style="color: #6b7280; margin-bottom: 24px; font-size: 14px; text-align: center;">${isMobile ? 'Select your wallet app' : 'Connect your crypto wallet'}</p>
                             
-                            <div style="display: grid; gap: 10px; margin-bottom: 24px;">
+                            <div style="display: grid; gap: 12px; margin-bottom: 0;">
                                 <!-- Eternl -->
-                                <div onclick="window.connectSpecificWallet('eternl')" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(139,92,246,0.3);">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                            <circle cx="12" cy="12" r="9"/>
-                                            <path d="M12 8v8M8 12h8" stroke="#7c3aed" stroke-width="2"/>
-                                        </svg>
-                                    </div>
+                                <div onclick="window.smartConnect('eternl', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#8b5cf6'; this.style.boxShadow='0 4px 12px rgba(139,92,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
+                                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(139,92,246,0.3); font-size: 24px; font-weight: 800; color: white;">E</div>
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Eternl</div>
-                                        <div style="font-size: 12px; color: #6b7280;">Click to connect</div>
+                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Eternl</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Cardano wallet</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
+                                    <div style="color: #8b5cf6; font-size: 20px; font-weight: 600;">→</div>
                                 </div>
                                 
                                 <!-- MetaMask -->
-                                <div onclick="window.connectSpecificWallet('metamask')" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(249,115,22,0.3);">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                <div onclick="window.smartConnect('metamask', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#f97316'; this.style.boxShadow='0 4px 12px rgba(249,115,22,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
+                                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #f97316, #ea580c); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(249,115,22,0.3);">
+                                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
                                             <path d="M12 2L4 12l8 4 8-4L12 2z"/>
                                             <path d="M4 12l8 10 8-10"/>
                                         </svg>
                                     </div>
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">MetaMask</div>
-                                        <div style="font-size: 12px; color: #6b7280;">Click to connect</div>
+                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">MetaMask</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Most popular</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
+                                    <div style="color: #f97316; font-size: 20px; font-weight: 600;">→</div>
                                 </div>
                                 
                                 <!-- Trust Wallet -->
-                                <div onclick="window.connectSpecificWallet('trust')" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(59,130,246,0.3);">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                <div onclick="window.smartConnect('trust', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
+                                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #3b82f6, #2563eb); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(59,130,246,0.3);">
+                                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
                                             <path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z"/>
                                         </svg>
                                     </div>
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Trust Wallet</div>
-                                        <div style="font-size: 12px; color: #6b7280;">Click to connect</div>
+                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Trust Wallet</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Multi-chain</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
+                                    <div style="color: #3b82f6; font-size: 20px; font-weight: 600;">→</div>
                                 </div>
                                 
                                 <!-- Binance -->
-                                <div onclick="window.connectSpecificWallet('binance')" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(245,158,11,0.3);">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                <div onclick="window.smartConnect('binance', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 4px 12px rgba(245,158,11,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
+                                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(245,158,11,0.3);">
+                                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
                                             <path d="M12 3L9 6 12 9 15 6 12 3zM6 9L3 12 6 15 9 12 6 9zM18 9L15 12 18 15 21 12 18 9zM12 15L9 18 12 21 15 18 12 15z"/>
                                             <rect x="10.5" y="10.5" width="3" height="3" fill="white"/>
                                         </svg>
                                     </div>
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Binance Web3</div>
-                                        <div style="font-size: 12px; color: #6b7280;">Click to connect</div>
+                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Binance</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Exchange wallet</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
+                                    <div style="color: #f59e0b; font-size: 20px; font-weight: 600;">→</div>
                                 </div>
                                 
                                 <!-- Roqqu -->
-                                <div onclick="window.connectSpecificWallet('roqqu')" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(16,185,129,0.3);">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/>
-                                            <circle cx="12" cy="12" r="4" fill="white"/>
-                                        </svg>
-                                    </div>
+                                <div onclick="window.smartConnect('roqqu', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#10b981'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
+                                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(16,185,129,0.3); font-size: 24px; font-weight: 800; color: white;">R</div>
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Roqqu Web3</div>
-                                        <div style="font-size: 12px; color: #6b7280;">Auto-connect</div>
+                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Roqqu</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Auto-connect</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
+                                    <div style="color: #10b981; font-size: 20px; font-weight: 600;">→</div>
                                 </div>
                             </div>
-                            
-                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove(); document.getElementById('walletModal').classList.add('active');" style="width: 100%; font-size: 14px;">
-                                Or Continue with Manual Signup
-                            </button>
                         </div>
                     `;
                     document.body.appendChild(walletModal);
@@ -2579,28 +2564,53 @@
             setTimeout(() => modal.remove(), 10000);
         }
 
-        // Override wallet button - GUARANTEED TO WORK
-        window.openWalletModal = function () {
-            console.log('🚀 openWalletModal called!');
-            document.getElementById('walletModal').classList.add('active');
-        };
 
-        // Specific wallet connection function
-        window.connectSpecificWallet = async function (walletType) {
-            console.log('Attempting to connect:', walletType);
+        // SMART DEVICE-AWARE WALLET CONNECTION
+        window.smartConnect = async function (walletType, isMobile) {
+            console.log('Smart connect:', walletType, 'Mobile:', isMobile);
 
+            // Mobile: Open app/store links
+            if (isMobile) {
+                const mobileLinks = {
+                    'eternl': 'https://eternl.io/app/mainnet/welcome',
+                    'metamask': 'https://metamask.app.link/dapp/' + window.location.host,
+                    'trust': 'https://link.trustwallet.com/open_url?url=' + encodeURIComponent(window.location.href),
+                    'binance': 'https://www.binance.com/en/download',
+                    'roqqu': 'https://roqqu.com/download'
+                };
+
+                if (walletType === 'roqqu') {
+                    // Auto-connect Roqqu
+                    const userData = {
+                        username: 'Roqqu User',
+                        email: 'user@roqqu.com',
+                        phone: 'Connected',
+                        address: 'Roqqu Wallet',
+                        walletId: 'addr1roqqu' + Math.random().toString(36).substring(2, 9)
+                    };
+                    localStorage.setItem('sendwasteUser', JSON.stringify(userData));
+                    localStorage.setItem('connectedWallet', 'Roqqu');
+                    updateProfileDisplay(userData);
+                    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+                    showSuccessModal(userData.username, userData.walletId);
+                } else {
+                    window.location.href = mobileLinks[walletType];
+                }
+                return;
+            }
+
+            // Desktop: Try wallet connection
             try {
                 let walletAPI;
                 let walletName;
 
-                // Try to connect based on wallet type
                 switch (walletType) {
                     case 'eternl':
                         if (window.cardano && window.cardano.eternl) {
                             walletAPI = await window.cardano.eternl.enable();
                             walletName = 'Eternl';
                         } else {
-                            window.open('https://eternl.io/app/mainnet/welcome', '_blank');
+                            window.open('https://chrome.google.com/webstore/detail/eternl/kmhcihpebfmpgmihbkipmjlmmioameka', '_blank');
                             return;
                         }
                         break;
@@ -2617,15 +2627,12 @@
                         break;
 
                     case 'trust':
-                        if (window.trustwallet) {
-                            walletAPI = window.trustwallet;
-                            walletName = 'Trust Wallet';
-                        } else if (window.ethereum && window.ethereum.isTrust) {
+                        if (window.ethereum && window.ethereum.isTrust) {
                             await window.ethereum.request({ method: 'eth_requestAccounts' });
                             walletAPI = window.ethereum;
                             walletName = 'Trust Wallet';
                         } else {
-                            window.open('https://trustwallet.com/download', '_blank');
+                            window.open('https://trustwallet.com/browser-extension', '_blank');
                             return;
                         }
                         break;
@@ -2642,7 +2649,7 @@
                         break;
 
                     case 'roqqu':
-                        // Auto-connect for Roqqu - just create account
+                        // Auto-connect
                         const userData = {
                             username: 'Roqqu User',
                             email: 'user@roqqu.com',
@@ -2658,9 +2665,8 @@
                         return;
                 }
 
-                // If we got here, wallet is connected
+                // Wallet connected
                 if (walletAPI) {
-                    // Get wallet address if available
                     let address = 'addr1_connected';
                     if (walletAPI.getUsedAddresses) {
                         const addresses = await walletAPI.getUsedAddresses();
@@ -2679,26 +2685,23 @@
                     localStorage.setItem('connectedWallet', walletName);
                     updateProfileDisplay(userData);
 
-                    // Update status
                     const statusEl = document.getElementById('walletStatusText');
                     if (statusEl) statusEl.textContent = `● ${walletName} Active`;
 
-                    // Close modal and show success
                     document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
                     showSuccessModal(userData.username, userData.walletId);
                 }
 
             } catch (error) {
-                console.error('Wallet connection error:', error);
-                alert('Connection failed: ' + error.message + '\n\nPlease try manual signup instead.');
-                document.getElementById('walletModal').classList.add('active');
+                console.error('Connection error:', error);
+                alert('Failed to connect. ' + error.message);
             }
         };
 
         // Also bind to window.connectWallet for redundancy
         window.connectWallet = connectWallet;
 
-        console.log('✅ Wallet functions loaded:', typeof window.openWalletModal, typeof window.connectWallet);
+        console.log('✅ Smart wallet connection ready');
     </script>
 </body>
 
