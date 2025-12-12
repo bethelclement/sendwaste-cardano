@@ -2395,10 +2395,58 @@
                 }
 
                 if (wallets.length === 0) {
-                    const install = confirm('No Cardano wallet detected!\n\nPlease install one:\n• Lace\n• Eternl\n• Nami\n• Yoroi\n\nClick OK to use manual signup instead.');
-                    if (install) {
-                        document.getElementById('walletModal').classList.add('active');
-                    }
+                    // Show professional wallet installation modal
+                    const walletModal = document.createElement('div');
+                    walletModal.className = 'modal active';
+                    walletModal.innerHTML = `
+                        <div class="modal-content" style="max-width: 500px;">
+                            <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 10px;">No Cardano Wallet Detected</h3>
+                            <p style="color: #6b7280; margin-bottom: 20px;">Install a wallet extension to connect to SendWaste:</p>
+                            
+                            <div style="display: grid; gap: 12px; margin-bottom: 24px;">
+                                <a href="https://www.lace.io/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
+                                    <div style="font-size: 28px;">🔵</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #111827;">Lace Wallet</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Light, fast & secure</div>
+                                    </div>
+                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                </a>
+                                
+                                <a href="https://eternl.io/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
+                                    <div style="font-size: 28px;">🟣</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #111827;">Eternl</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Advanced features</div>
+                                    </div>
+                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                </a>
+                                
+                                <a href="https://namiwallet.io/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
+                                    <div style="font-size: 28px;">🟢</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #111827;">Nami</div>
+                                        <div style="font-size: 13px; color: #6b7280;">Beginner-friendly</div>
+                                    </div>
+                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                </a>
+                                
+                                <a href="https://yoroi-wallet.com/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
+                                    <div style="font-size: 28px;">🔴</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #111827;">Yoroi</div>
+                                        <div style="font-size: 13px; color: #6b7280;">EMURGO official</div>
+                                    </div>
+                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                </a>
+                            </div>
+                            
+                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove(); document.getElementById('walletModal').classList.add('active');" style="width: 100%; margin-top: 10px;">
+                                Or Use Manual Signup
+                            </button>
+                        </div>
+                    `;
+                    document.body.appendChild(walletModal);
                     return;
                 }
 
