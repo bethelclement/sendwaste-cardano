@@ -2395,54 +2395,63 @@
                 }
 
                 if (wallets.length === 0) {
-                    // Show professional wallet installation modal
+                    // Show professional wallet installation modal with real logos
                     const walletModal = document.createElement('div');
                     walletModal.className = 'modal active';
                     walletModal.innerHTML = `
-                        <div class="modal-content" style="max-width: 500px;">
-                            <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 10px;">No Cardano Wallet Detected</h3>
-                            <p style="color: #6b7280; margin-bottom: 20px;">Install a wallet extension to connect to SendWaste:</p>
+                        <div class="modal-content" style="max-width: 520px;">
+                            <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 8px;">Connect Your Wallet</h3>
+                            <p style="color: #6b7280; margin-bottom: 24px; font-size: 14px;">Choose a wallet to connect or install one:</p>
                             
-                            <div style="display: grid; gap: 12px; margin-bottom: 24px;">
-                                <a href="https://www.lace.io/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
-                                    <div style="font-size: 28px;">🔵</div>
+                            <div style="display: grid; gap: 10px; margin-bottom: 24px;">
+                                <a href="https://www.lace.io/" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <img src="https://assets.lace.io/favicon-32x32.png" alt="Lace" style="width: 32px; height: 32px; border-radius: 6px;">
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827;">Lace Wallet</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Light, fast & secure</div>
+                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Lace</div>
+                                        <div style="font-size: 12px; color: #6b7280;">Light & secure</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                                 
-                                <a href="https://eternl.io/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
-                                    <div style="font-size: 28px;">🟣</div>
+                                <a href="https://eternl.io/app/mainnet/welcome" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <img src="https://eternl.io/eternl.png" alt="Eternl" style="width: 32px; height: 32px; border-radius: 6px;">
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827;">Eternl</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Advanced features</div>
+                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Eternl</div>
+                                        <div style="font-size: 12px; color: #6b7280;">Advanced features</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                                 
-                                <a href="https://namiwallet.io/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
-                                    <div style="font-size: 28px;">🟢</div>
+                                <a href="https://metamask.io/download/" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="Metamask" style="width: 32px; height: 32px; border-radius: 6px;">
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827;">Nami</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Beginner-friendly</div>
+                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">MetaMask</div>
+                                        <div style="font-size: 12px; color: #6b7280;">Most popular</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                                 
-                                <a href="https://yoroi-wallet.com/" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'" onmouseout="this.style.borderColor='#e5e7eb'">
-                                    <div style="font-size: 28px;">🔴</div>
+                                <a href="https://trustwallet.com/download" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <img src="https://trustwallet.com/assets/images/media/assets/TWT.png" alt="Trust Wallet" style="width: 32px; height: 32px; border-radius: 6px;">
                                     <div style="flex: 1;">
-                                        <div style="font-weight: 600; color: #111827;">Yoroi</div>
-                                        <div style="font-size: 13px; color: #6b7280;">EMURGO official</div>
+                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Trust Wallet</div>
+                                        <div style="font-size: 12px; color: #6b7280;">Multi-chain</div>
                                     </div>
-                                    <div style="color: var(--cardano-blue); font-size: 20px;">→</div>
+                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
+                                </a>
+                                
+                                <a href="https://www.binance.com/en/web3wallet" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <img src="https://public.bnbstatic.com/image/pgc/202307/a0f5e8674c8ff4a060301e5f03d84588.png" alt="Binance" style="width: 32px; height: 32px; border-radius: 6px;">
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Binance Web3</div>
+                                        <div style="font-size: 12px; color: #6b7280;">Exchange wallet</div>
+                                    </div>
+                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                             </div>
                             
-                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove(); document.getElementById('walletModal').classList.add('active');" style="width: 100%; margin-top: 10px;">
-                                Or Use Manual Signup
+                            <button class="btn btn-secondary" onclick="this.closest('.modal').remove(); document.getElementById('walletModal').classList.add('active');" style="width: 100%; font-size: 14px;">
+                                Or Continue with Manual Signup
                             </button>
                         </div>
                     `;
