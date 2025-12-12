@@ -2399,65 +2399,75 @@
 
                     const walletModal = document.createElement('div');
                     walletModal.className = 'modal active';
+                    walletModal.id = 'professionalWalletModal';
                     walletModal.innerHTML = `
-                        <div class="modal-content" style="max-width: 540px;">
-                            <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 8px; text-align: center;">Connect Wallet</h3>
-                            <p style="color: #6b7280; margin-bottom: 24px; font-size: 14px; text-align: center;">${isMobile ? 'Select your wallet app' : 'Connect your crypto wallet'}</p>
+                        <div class="modal-content" style="max-width: 560px; padding: 32px;">
+                            <div style="text-align: center; margin-bottom: 28px;">
+                                <h2 style="font-family: 'Outfit'; font-size: 28px; font-weight: 700; margin: 0 0 8px 0; color: #111827;">Connect Wallet</h2>
+                                <p style="color: #6b7280; font-size: 15px; margin: 0;">Choose how you want to connect to SendWaste</p>
+                            </div>
                             
-                            <div style="display: grid; gap: 12px; margin-bottom: 0;">
+                            <div id="walletGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 24px;">
                                 <!-- Eternl -->
-                                <div onclick="window.smartConnect('eternl', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#8b5cf6'; this.style.boxShadow='0 4px 12px rgba(139,92,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
-                                    <img src="https://ccvault.io/eternl.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect fill=%22%238b5cf6%22 width=%2248%22 height=%2248%22 rx=%2212%22/%3E%3Ctext x=%2224%22 y=%2232%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EE%3C/text%3E%3C/svg%3E'" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 12px rgba(139,92,246,0.3);">
-                                    <div style="flex: 1;">
-                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Eternl</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Cardano wallet</div>
-                                    </div>
-                                    <div style="color: #8b5cf6; font-size: 20px; font-weight: 600;">→</div>
+                                <div class="wallet-option" data-wallet="eternl" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#8b5cf6'; this.style.boxShadow='0 8px 20px rgba(139,92,246,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+                                    <img src="https://ccvault.io/eternl.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%238b5cf6%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EE%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
+                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Eternl</div>
+                                    <div style="font-size: 13px; color: #6b7280;">Cardano wallet</div>
                                 </div>
                                 
                                 <!-- MetaMask -->
-                                <div onclick="window.smartConnect('metamask', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#f97316'; this.style.boxShadow='0 4px 12px rgba(249,115,22,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
-                                    <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect fill=%22%23f97316%22 width=%2248%22 height=%2248%22 rx=%2212%22/%3E%3Ctext x=%2224%22 y=%2232%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EM%3C/text%3E%3C/svg%3E'" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 12px rgba(249,115,22,0.3);">
-                                    <div style="flex: 1;">
-                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">MetaMask</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Most popular</div>
-                                    </div>
-                                    <div style="color: #f97316; font-size: 20px; font-weight: 600;">→</div>
+                                <div class="wallet-option" data-wallet="metamask" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#f97316'; this.style.boxShadow='0 8px 20px rgba(249,115,22,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+                                    <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%23f97316%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EM%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
+                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">MetaMask</div>
+                                    <div style="font-size: 13px; color: #6b7280;">Most popular</div>
                                 </div>
                                 
-                                <!-- Trust Wallet -->
-                                <div onclick="window.smartConnect('trust', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
-                                    <img src="https://trustwallet.com/assets/images/media/assets/trust_platform.svg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect fill=%22%233b82f6%22 width=%2248%22 height=%2248%22 rx=%2212%22/%3E%3Ctext x=%2224%22 y=%2232%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3ET%3C/text%3E%3C/svg%3E'" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 12px rgba(59,130,246,0.3);">
-                                    <div style="flex: 1;">
-                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Trust Wallet</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Multi-chain</div>
-                                    </div>
-                                    <div style="color: #3b82f6; font-size: 20px; font-weight: 600;">→</div>
+                                <!-- Trust -->
+                                <div class="wallet-option" data-wallet="trust" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 8px 20px rgba(59,130,246,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+                                    <img src="https://trustwallet.com/assets/images/media/assets/trust_platform.svg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%233b82f6%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3ET%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
+                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Trust Wallet</div>
+                                    <div style="font-size: 13px; color: #6b7280;">Multi-chain</div>
                                 </div>
                                 
                                 <!-- Binance -->
-                                <div onclick="window.smartConnect('binance', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 4px 12px rgba(245,158,11,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
-                                    <img src="https://bin.bnbstatic.com/static/images/common/favicon.ico" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect fill=%22%23f59e0b%22 width=%2248%22 height=%2248%22 rx=%2212%22/%3E%3Ctext x=%2224%22 y=%2232%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EB%3C/text%3E%3C/svg%3E'" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 12px rgba(245,158,11,0.3);">
-                                    <div style="flex: 1;">
-                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Binance</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Exchange wallet</div>
-                                    </div>
-                                    <div style="color: #f59e0b; font-size: 20px; font-weight: 600;">→</div>
+                                <div class="wallet-option" data-wallet="binance" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 8px 20px rgba(245,158,11,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+                                    <img src="https://bin.bnbstatic.com/static/images/common/favicon.ico" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%23f59e0b%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EB%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
+                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Binance</div>
+                                    <div style="font-size: 13px; color: #6b7280;">Exchange</div>
                                 </div>
                                 
                                 <!-- Roqqu -->
-                                <div onclick="window.smartConnect('roqqu', ${isMobile})" style="display: flex; align-items: center; gap: 16px; padding: 16px; background: linear-gradient(135deg, #f9fafb, #ffffff); border: 2px solid #e5e7eb; border-radius: 14px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='#10b981'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
-                                    <img src="https://roqqu.com/assets/images/logo-icon.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22%3E%3Crect fill=%22%2310b981%22 width=%2248%22 height=%2248%22 rx=%2212%22/%3E%3Ctext x=%2224%22 y=%2232%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3ER%3C/text%3E%3C/svg%3E'" style="width: 48px; height: 48px; border-radius: 12px; box-shadow: 0 4px 12px rgba(16,185,129,0.3);">
-                                    <div style="flex: 1;">
-                                        <div style="font-weight: 700; color: #111827; font-size: 16px;">Roqqu</div>
-                                        <div style="font-size: 13px; color: #6b7280;">Connect wallet</div>
-                                    </div>
-                                    <div style="color: #10b981; font-size: 20px; font-weight: 600;">→</div>
+                                <div class="wallet-option" data-wallet="roqqu" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center; grid-column: 1 / -1;" onmouseover="this.style.borderColor='#10b981'; this.style.boxShadow='0 8px 20px rgba(16,185,129,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+                                    <img src="https://roqqu.com/assets/images/logo-icon.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%2310b981%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3ER%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
+                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Roqqu Web3</div>
+                                    <div style="font-size: 13px; color: #6b7280;">African exchange</div>
                                 </div>
                             </div>
+                            
+                            <div id="connectionStatus" style="display: none; text-align: center; padding: 20px; background: #f9fafb; border-radius: 12px; margin-top: 20px;">
+                                <div class="spinner" style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top-color: var(--cardano-blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px;"></div>
+                                <div id="statusText" style="font-weight: 600; color: #111827; margin-bottom: 4px;">Connecting...</div>
+                                <div id="statusSubtext" style="font-size: 13px; color: #6b7280;">Check your wallet extension</div>
+                            </div>
+                            
+                            <style>
+                                @keyframes spin {
+                                    to { transform: rotate(360deg); }
+                                }
+                            </style>
                         </div>
                     `;
+
                     document.body.appendChild(walletModal);
+
+                    // Add click handlers to all wallet options
+                    document.querySelectorAll('.wallet-option').forEach(option => {
+                        option.addEventListener('click', function () {
+                            const walletType = this.getAttribute('data-wallet');
+                            window.smartConnect(walletType, isMobile);
+                        });
+                    });
+
                     return;
                 }
 
