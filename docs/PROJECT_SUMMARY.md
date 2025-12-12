@@ -19,3 +19,6 @@ Primary users are informal waste collectors seeking documented proof of work tha
 ## Future Plans
 
 Q1 2025: Deploy smart contracts to Cardano mainnet and launch Abuja pilot with 500 beta users recruited from informal collector networks. Q2 2025: Sign first corporate ESG client for white-label waste tracking, validating B2B revenue model. Q3 2025: Scale to 10,000 active users across Abuja, Lagos, and Port Harcourt through partnerships with waste collector cooperatives. Q4 2025: Secure first municipal government contract, proving government adoption pathway. Year 2: Expand nationally to 40,000 users, sign 5 corporate clients, establish 3 government partnerships. Year 3: Reach 100,000 active users processing 500,000 kilograms monthly, generating 2.5 million dollars in annual recurring revenue across four revenue streams: platform transaction fees, corporate ESG contracts, government SaaS subscriptions, and marketplace commissions.
+
+## GitHub Repository
+[https://github.com/sendwaste/sendwaste-cardano](https://github.com/sendwaste/sendwaste-cardano) (Public)

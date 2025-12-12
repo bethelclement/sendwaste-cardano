@@ -30,6 +30,12 @@
             color: #111827;
             overflow-x: hidden;
             position: relative;
+            width: 100%;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
         }
 
         /* Animated Nature Background - Subtle like Cardano.org */
@@ -734,6 +740,19 @@
 
         /* Mobile Optimizations */
         @media (max-width: 768px) {
+            .logo-section {
+                gap: 2px;
+            }
+
+            .logo-img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .brand-name {
+                font-size: 20px;
+            }
+
             .leaderboard-container {
                 padding: 16px;
                 margin: 0 16px;
@@ -1119,15 +1138,23 @@
                 <div class="profile-header" id="profileHeader" style="display: none;">
                     <div onclick="toggleProfileMenu()"
                         style="display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 8px 16px; border-radius: 12px; background: rgba(16, 185, 129, 0.1); border: 2px solid rgba(16, 185, 129, 0.3); transition: all 0.3s;">
-                        <!-- NFT Avatar (Aiken/Blockchain Style) -->
-                        <div
-                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; border: 2px solid #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#10b981" />
-                                <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="#10b981" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
+                        <!-- NFT Avatar (3D Green Hero Inline SVG) -->
+                        <svg width="48" height="48" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
+                            style="min-width: 48px; border-radius: 12px; border: 2px solid #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); background: #fff;">
+                            <circle cx="100" cy="100" r="95" fill="url(#greenGrad1)" />
+                            <defs>
+                                <linearGradient id="greenGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#10b981" />
+                                    <stop offset="100%" style="stop-color:#059669" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M 100 40 L 140 60 L 100 80 L 60 60 Z" fill="#34d399" opacity="0.9" />
+                            <path d="M 60 60 L 60 120 L 100 140 L 100 80 Z" fill="#10b981" opacity="0.7" />
+                            <path d="M 100 80 L 100 140 L 140 120 L 140 60 Z" fill="#047857" opacity="0.5" />
+                            <path d="M 100 85 L 115 110 L 85 110 Z" fill="#fff" opacity="0.9" />
+                            <circle cx="100" cy="100" r="95" fill="none" stroke="#10b981" stroke-width="2"
+                                opacity="0.3" />
+                        </svg>
 
                         <div style="text-align: left;">
                             <div id="profileUsername"
@@ -1158,6 +1185,25 @@
                         </div>
 
                         <div style="padding: 8px;">
+                            <!-- Wallet Status Option -->
+                            <div
+                                style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-radius: 10px; background: #f9fafb; margin-bottom: 8px; border: 1px solid #e5e7eb;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M21 12V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V16"
+                                        stroke="#6b7280" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M21 14H19C17.8954 14 17 13.1046 17 12C17 10.8954 17.8954 10 19 10H21"
+                                        stroke="#6b7280" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <div>
+                                    <div style="font-weight: 600; color: #374151; font-size: 13px;">Wallet Connected
+                                    </div>
+                                    <div style="font-size: 11px; color: #10b981;">● Yoroi Active</div>
+                                </div>
+                            </div>
+
                             <div onclick="showDashboard(); toggleProfileMenu();"
                                 style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; border-radius: 10px; transition: background 0.2s;"
                                 onmouseover="this.style.background='#f3f4f6'"
@@ -1197,11 +1243,28 @@
 
         <!-- Hero -->
         <section class="hero">
-            <h1>Protecting Earth<br>with Cardano</h1>
+            <h1>Every Home Produces Waste<br>Yet 70% Remains Uncollected</h1>
             <p class="hero-subtitle">
-                Turn waste into wealth with blockchain accountability.
-                Every transaction verified on-chain with Aiken smart contracts.
+                In Nigeria alone, 32 million tons annually. SendWaste makes waste collection <strong>visible,
+                    verifiable, and valuable</strong> using Cardano blockchain.
             </p>
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 200px; max-width: 250px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 12px;">📸</div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">1. Photograph Waste</div>
+                    <div style="font-size: 13px; color: #6b7280;">GPS auto-captured</div>
+                </div>
+                <div style="flex: 1; min-width: 200px; max-width: 250px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 12px;">✅</div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">2. GPS Auto-Verified</div>
+                    <div style="font-size: 13px; color: #6b7280;">Smart contract validates</div>
+                </div>
+                <div style="flex: 1; min-width: 200px; max-width: 250px; text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 12px;">💰</div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">3. Earn Blockchain Rewards</div>
+                    <div style="font-size: 13px; color: #6b7280;">Instant tokens + NFT receipt</div>
+                </div>
+            </div>
         </section>
 
         <!-- Progress Flow with Illustrations -->
@@ -1885,7 +1948,14 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 28px; font-size: 14px; color: #9ca3af;">
+                <div style="margin-top: 28px; margin-bottom: 12px;">
+                    <a href="/project_details.html"
+                        style="font-size: 14px; color: #6b7280; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--green);">
+                        📂 Project Details & Resources
+                    </a>
+                </div>
+
+                <div style="font-size: 14px; color: #9ca3af;">
                     DirectEd x CATS Hackathon 2025 | Abuja Hub 🇳🇬
                 </div>
             </div>

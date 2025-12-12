@@ -20,6 +20,10 @@
             "dest": "/public/investor_pitch.html"
         },
         {
+            "src": "/project_details.html",
+            "dest": "/public/project_details.html"
+        },
+        {
             "src": "/(.*)",
             "dest": "/$1"
         }
