@@ -2399,60 +2399,117 @@
 
                     const walletModal = document.createElement('div');
                     walletModal.className = 'modal active';
-                    walletModal.id = 'professionalWalletModal';
+                    walletModal.id = 'web3WalletModal';
                     walletModal.innerHTML = `
-                        <div class="modal-content" style="max-width: 560px; padding: 32px;">
-                            <div style="text-align: center; margin-bottom: 28px;">
-                                <h2 style="font-family: 'Outfit'; font-size: 28px; font-weight: 700; margin: 0 0 8px 0; color: #111827;">Connect Wallet</h2>
-                                <p style="color: #6b7280; font-size: 15px; margin: 0;">Choose how you want to connect to SendWaste</p>
+                        <div class="modal-content" style="max-width: 420px; padding: 24px; background: #ffffff; border-radius: 24px; box-shadow: 0 16px 64px rgba(0,0,0,0.12);">
+                            <div style="text-align: center; margin-bottom: 24px;">
+                                <h2 style="font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; margin: 0 0 8px 0; color: #141416; letter-spacing: -0.02em;">Connect Wallet</h2>
+                                <p style="color: #808191; font-size: 14px; margin: 0; font-weight: 400;">Choose your preferred wallet to get started</p>
                             </div>
                             
-                            <div id="walletGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 24px;">
-                                <!-- Eternl -->
-                                <div class="wallet-option" data-wallet="eternl" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#8b5cf6'; this.style.boxShadow='0 8px 20px rgba(139,92,246,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-                                    <img src="https://ccvault.io/eternl.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%238b5cf6%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EE%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
-                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Eternl</div>
-                                    <div style="font-size: 13px; color: #6b7280;">Cardano wallet</div>
-                                </div>
-                                
+                            <div id="walletList" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; max-height: 420px; overflow-y: auto; padding-right: 4px;">
                                 <!-- MetaMask -->
-                                <div class="wallet-option" data-wallet="metamask" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#f97316'; this.style.boxShadow='0 8px 20px rgba(249,115,22,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-                                    <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%23f97316%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EM%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
-                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">MetaMask</div>
-                                    <div style="font-size: 13px; color: #6b7280;">Most popular</div>
+                                <div class="wallet-card" data-wallet="metamask" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: white; display: flex; align-items: center; justify-content: center;">
+                                        <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" style="width: 36px; height: 36px;" onerror="this.style.display='none'">
+                                    </div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">MetaMask</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Browser extension</div>
+                                    </div>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </div>
                                 
-                                <!-- Trust -->
-                                <div class="wallet-option" data-wallet="trust" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 8px 20px rgba(59,130,246,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-                                    <img src="https://trustwallet.com/assets/images/media/assets/trust_platform.svg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%233b82f6%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3ET%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
-                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Trust Wallet</div>
-                                    <div style="font-size: 13px; color: #6b7280;">Multi-chain</div>
+                                <!-- Coinbase Wallet -->
+                                <div class="wallet-card" data-wallet="coinbase" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: #0052FF; display: flex; align-items: center; justify-content: center;">
+                                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px;"></div>
+                                    </div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Coinbase Wallet</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Mobile & extension</div>
+                                    </div>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </div>
                                 
-                                <!-- Binance -->
-                                <div class="wallet-option" data-wallet="binance" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center;" onmouseover="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 8px 20px rgba(245,158,11,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-                                    <img src="https://bin.bnbstatic.com/static/images/common/favicon.ico" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%23f59e0b%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3EB%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
-                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Binance</div>
-                                    <div style="font-size: 13px; color: #6b7280;">Exchange</div>
+                                <!-- Trust Wallet -->
+                                <div class="wallet-card" data-wallet="trust" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #3375BB, #3D9BDB); display: flex; align-items: center; justify-content: center;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                            <path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z"/>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Trust Wallet</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Mobile wallet</div>
+                                    </div>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </div>
                                 
-                                <!-- Roqqu -->
-                                <div class="wallet-option" data-wallet="roqqu" style="padding: 20px; background: white; border: 2px solid #e5e7eb; border-radius: 16px; cursor: pointer; transition: all 0.2s; text-align: center; grid-column: 1 / -1;" onmouseover="this.style.borderColor='#10b981'; this.style.boxShadow='0 8px 20px rgba(16,185,129,0.15)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.transform='translateY(0)'">
-                                    <img src="https://roqqu.com/assets/images/logo-icon.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22%3E%3Crect fill=%22%2310b981%22 width=%2256%22 height=%2256%22 rx=%2214%22/%3E%3Ctext x=%2228%22 y=%2238%22 font-size=%2228%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22800%22%3ER%3C/text%3E%3C/svg%3E'" style="width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px;">
-                                    <div style="font-weight: 700; color: #111827; font-size: 16px; margin-bottom: 4px;">Roqqu Web3</div>
-                                    <div style="font-size: 13px; color: #6b7280;">African exchange</div>
+                                <!-- WalletConnect -->
+                                <div class="wallet-card" data-wallet="walletconnect" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #3B99FC, #5AB9FC); display: flex; align-items: center; justify-content: center;">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                            <path d="M8 6.5C8 4.6 9.6 3 11.5 3h1C14.4 3 16 4.6 16 6.5v1c0 1.9-1.6 3.5-3.5 3.5h-1C9.6 11 8 9.4 8 7.5v-1z"/>
+                                            <path d="M8 16.5c0-1.9 1.6-3.5 3.5-3.5h1c1.9 0 3.5 1.6 3.5 3.5v1c0 1.9-1.6 3.5-3.5 3.5h-1C9.6 21 8 19.4 8 17.5v-1z"/>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">WalletConnect</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Scan with mobile</div>
+                                    </div>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                
+                                <!-- Brave Wallet -->
+                                <div class="wallet-card" data-wallet="brave" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #FB542B, #FF7654); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: white;">
+                                        🦁
+                                    </div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Brave Wallet</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Browser built-in</div>
+                                    </div>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
+                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </div>
                             </div>
                             
-                            <div id="connectionStatus" style="display: none; text-align: center; padding: 20px; background: #f9fafb; border-radius: 12px; margin-top: 20px;">
-                                <div class="spinner" style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top-color: var(--cardano-blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px;"></div>
-                                <div id="statusText" style="font-weight: 600; color: #111827; margin-bottom: 4px;">Connecting...</div>
-                                <div id="statusSubtext" style="font-size: 13px; color: #6b7280;">Check your wallet extension</div>
+                            <div id="connectionStatus" style="display: none; text-align: center; padding: 32px 20px; background: linear-gradient(135deg, #F7F8FA, #FFFFFF); border-radius: 16px; border: 1.5px solid #E6E8EC;">
+                                <div class="spinner" style="width: 48px; height: 48px; border: 3px solid #E6E8EC; border-top-color: var(--cardano-blue); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 16px;"></div>
+                                <div id="statusText" style="font-weight: 600; color: #141416; font-size: 16px; margin-bottom: 6px;">Connecting...</div>
+                                <div id="statusSubtext" style="font-size: 13px; color: #808191;">Approve the connection in your wallet</div>
+                            </div>
+                            
+                            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E6E8EC; text-align: center;">
+                                <p style="font-size: 12px; color: #808191; margin: 0;">New to wallets? <a href="https://ethereum.org/en/wallets/" target="_blank" style="color: var(--cardano-blue); text-decoration: none; font-weight: 600;">Learn more</a></p>
                             </div>
                             
                             <style>
                                 @keyframes spin {
                                     to { transform: rotate(360deg); }
+                                }
+                                #walletList::-webkit-scrollbar {
+                                    width: 6px;
+                                }
+                                #walletList::-webkit-scrollbar-track {
+                                    background: transparent;
+                                }
+                                #walletList::-webkit-scrollbar-thumb {
+                                    background: #E6E8EC;
+                                    border-radius: 3px;
+                                }
+                                #walletList::-webkit-scrollbar-thumb:hover {
+                                    background: #D1D5DB;
                                 }
                             </style>
                         </div>
@@ -2460,11 +2517,11 @@
 
                     document.body.appendChild(walletModal);
 
-                    // Add click handlers to all wallet options
-                    document.querySelectorAll('.wallet-option').forEach(option => {
-                        option.addEventListener('click', function () {
+                    // Add click handlers to all wallet cards
+                    document.querySelectorAll('.wallet-card').forEach(card => {
+                        card.addEventListener('click', function () {
                             const walletType = this.getAttribute('data-wallet');
-                            window.smartConnect(walletType, isMobile);
+                            window.eliteConnect(walletType, isMobile);
                         });
                     });
 
@@ -2560,6 +2617,150 @@
             setTimeout(() => modal.remove(), 10000);
         }
 
+
+        // ELITE WEB3-STYLE WALLET CONNECTION
+        window.eliteConnect = async function (walletType, isMobile) {
+            console.log('🔥 Elite connect:', walletType);
+
+            const list = document.getElementById('walletList');
+            const status = document.getElementById('connectionStatus');
+            const statusText = document.getElementById('statusText');
+            const statusSubtext = document.getElementById('statusSubtext');
+
+            // Show loading state with smooth transition
+            if (list && status) {
+                list.style.opacity = '0';
+                list.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    list.style.display = 'none';
+                    status.style.display = 'block';
+                    setTimeout(() => {
+                        status.style.opacity = '1';
+                        status.style.transform = 'scale(1)';
+                    }, 50);
+                }, 150);
+            }
+
+            // Mobile deep linking
+            if (isMobile) {
+                const links = {
+                    'metamask': 'https://metamask.app.link/dapp/' + window.location.host,
+                    'coinbase': 'https://go.cb-w.com/dapp?url=' + encodeURIComponent(window.location.href),
+                    'trust': 'https://link.trustwallet.com/open_url?url=' + encodeURIComponent(window.location.href),
+                    'walletconnect': 'wc://',
+                    'brave': 'https://brave.com/wallet'
+                };
+                if (links[walletType]) {
+                    window.location.href = links[walletType];
+                }
+                return;
+            }
+
+            // Desktop wallet connection
+            try {
+                await new Promise(resolve => setTimeout(resolve, 600));
+                let walletAPI, walletName;
+
+                switch (walletType) {
+                    case 'metamask':
+                        if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+                            statusText.textContent = 'Opening MetaMask...';
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                            walletAPI = window.ethereum;
+                            walletName = 'MetaMask';
+                        } else {
+                            throw new Error('MetaMask not installed');
+                        }
+                        break;
+
+                    case 'coinbase':
+                        if (window.ethereum && window.ethereum.isCoinbaseWallet) {
+                            statusText.textContent = 'Opening Coinbase Wallet...';
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                            walletAPI = window.ethereum;
+                            walletName = 'Coinbase Wallet';
+                        } else {
+                            throw new Error('Coinbase Wallet not installed');
+                        }
+                        break;
+
+                    case 'trust':
+                        if (window.ethereum && window.ethereum.isTrust) {
+                            statusText.textContent = 'Opening Trust Wallet...';
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                            walletAPI = window.ethereum;
+                            walletName = 'Trust Wallet';
+                        } else {
+                            throw new Error('Trust Wallet not installed');
+                        }
+                        break;
+
+                    case 'walletconnect':
+                        statusText.textContent = 'Initializing WalletConnect...';
+                        statusSubtext.textContent = 'Scan QR code with your mobile wallet';
+                        // WalletConnect integration would go here
+                        throw new Error('WalletConnect integration coming soon');
+
+                    case 'brave':
+                        if (window.ethereum && window.ethereum.isBraveWallet) {
+                            statusText.textContent = 'Opening Brave Wallet...';
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                            walletAPI = window.ethereum;
+                            walletName = 'Brave Wallet';
+                        } else {
+                            throw new Error('Brave Wallet not detected');
+                        }
+                        break;
+                }
+
+                // Success!
+                statusText.textContent = '✅ Connected!';
+                statusSubtext.textContent = `${walletName} is ready`;
+
+                let address = 'addr1_' + Date.now();
+                if (walletAPI.getUsedAddresses) {
+                    try {
+                        const addresses = await walletAPI.getUsedAddresses();
+                        address = addresses[0] || address;
+                    } catch (e) { }
+                }
+
+                const userData = {
+                    username: walletName + ' User',
+                    email: 'wallet@sendwaste.io',
+                    phone: 'Connected',
+                    address: walletName,
+                    walletId: address
+                };
+
+                localStorage.setItem('sendwasteUser', JSON.stringify(userData));
+                localStorage.setItem('connectedWallet', walletName);
+                updateProfileDisplay(userData);
+
+                setTimeout(() => {
+                    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+                    showSuccessModal(userData.username, userData.walletId);
+                }, 800);
+
+            } catch (error) {
+                console.error('Connection error:', error);
+                statusText.textContent = '❌ Connection Failed';
+                statusSub text.textContent = error.message || 'Please try again';
+
+                // Show retry
+                setTimeout(() => {
+                    if (list && status) {
+                        status.style.opacity = '0';
+                        setTimeout(() => {
+                            status.style.display = 'none';
+                            list.style.display = 'flex';
+                            list.style.opacity = '1';
+                            list.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                }, 2000);
+            }
+        };
 
         // SMART DEVICE-AWARE WALLET CONNECTION
         window.smartConnect = async function (walletType, isMobile) {
