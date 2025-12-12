@@ -2700,60 +2700,70 @@
                     // THIS TRIGGERS TYPHON PERMISSION POPUP
                     walletAPI = await window.cardano.typhoncip30.enable();
                     walletName = 'Typhon';
-                    console.log('✅ Typhon connected!', walletAPI);
-                } else {
-                    window.open('https://chrome.google.com/webstore/detail/typhon-wallet/kfdniefadaanbjodldohaedphafoffoh', '_blank');
-                    throw new Error('Typhon not installed. Install from Chrome Web Store.');
+                    if (window.cardano && window.cardano.typhon) {
+                        statusText.textContent = 'Opening Typhon...';
+                        statusSubtext.textContent = '✅ Approve connection in your wallet';
+                        await new Promise(resolve => setTimeout(resolve, 600));
+
+                        // THIS TRIGGERS TYPHON PERMISSION POPUP
+                        walletAPI = await window.cardano.typhoncip30.enable();
+                        walletName = 'Typhon';
+                        console.log('✅ Typhon connected!', walletAPI);
+                    } else {
+                        window.open('https://chrome.google.com/webstore/detail/typhon-wallet/kfdniefadaanbjodldohaedphafoffoh', '_blank');
+                        throw new Error('Typhon not installed. Install from Chrome Web Store.');
+                    }
                 }
-            }
 
-            // GET WALLET ADDRESS
-            statusText.textContent = 'Getting wallet details...';
-            await new Promise(resolve => setTimeout(resolve, 500));
+                // GET WALLET ADDRESS
+                statusText.textContent = 'Getting wallet details...';
+                await new Promise(resolve => setTimeout(resolve, 500));
 
-            let address = 'addr1_' + Date.now();
-            if (walletAPI.getUsedAddresses) {
-                try {
-                    const addresses = await walletAPI.getUsedAddresses();
-                    address = addresses[0] || address;
-                } catch (e) { }
-            }
+                let address = 'addr1_' + Date.now();
+                if (walletAPI.getUsedAddresses) {
+                    try {
+                        const addresses = await walletAPI.getUsedAddresses();
+                        if (addresses && addresses.length > 0) {
+                            address = addresses[0];
+                        }
+                    } catch (e) {
+                        console.log('Could not get addresses:', e);
+                    }
+                }
 
-            const userData = {
-                username: walletName + ' User',
-                email: 'wallet@sendwaste.io',
-                phone: 'Connected',
-                address: walletName,
-                walletId: address
-            };
+                // SUCCESS - Show confirmation
+                statusText.textContent = '✅ Connected Successfully!';
+                statusSubtext.textContent = `Creating your ${walletName} account...`;
+                await new Promise(resolve => setTimeout(resolve, 600));
 
-            localStorage.setItem('sendwasteUser', JSON.stringify(userData));
-            localStorage.setItem('connectedWallet', walletName);
-            updateProfileDisplay(userData);
+                const userData = {
+                    username: walletName + ' User',
+                    email: 'wallet@sendwaste.io',
+                    phone: 'Connected',
+                    address: walletName,
+                    walletId: address
+                };
 
-            setTimeout(() => {
+                localStorage.setItem('sendwasteUser', JSON.stringify(userData));
+                localStorage.setItem('connectedWallet', walletName);
+                updateProfileDisplay(userData);
+
+                // Close modal and show success
                 document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
                 showSuccessModal(userData.username, userData.walletId);
-            }, 800);
-
-        } catch (error) {
-            console.error('Connection error:', error);
-            statusText.textContent = '❌ Connection Failed';
-            statusSubtext.textContent = error.message || 'Please try again';
-
-            // Show retry
-            setTimeout(() => {
-                if (list && status) {
-                    status.style.opacity = '0';
-                    setTimeout(() => {
-                        status.style.display = 'none';
-                        list.style.display = 'flex';
-                        list.style.opacity = '1';
-                        list.style.transform = 'scale(1)';
-                    }, 200);
-                }
-            }, 2000);
-        }
+                // Show retry
+                setTimeout(() => {
+                    if (list && status) {
+                        status.style.opacity = '0';
+                        setTimeout(() => {
+                            status.style.display = 'none';
+                            list.style.display = 'flex';
+                            list.style.opacity = '1';
+                            list.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                }, 2000);
+            }
         };
 
         // SMART DEVICE-AWARE WALLET CONNECTION
