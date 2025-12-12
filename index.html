@@ -2408,89 +2408,56 @@
                             </div>
                             
                             <div id="walletList" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; max-height: 420px; overflow-y: auto; padding-right: 4px;">
-                                <!-- Nami (Top Cardano Wallet) -->
-                                <div class="wallet-card" data-wallet="nami" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
-                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #35A9DB, #1E88C5); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white;">
-                                        N
+                                <!-- Eternl (Most Popular Cardano Wallet) -->
+                                <div class="wallet-card" data-wallet="eternl" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #8b5cf6, #7c3aed); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white;">
+                                        E
                                     </div>
                                     <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Nami</div>
-                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Easy Cardano wallet</div>
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Eternl</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Most popular Cardano wallet</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
                                         <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </div>
                                 
-                                <!-- MetaMask -->
-                                <div class="wallet-card" data-wallet="metamask" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
-                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: white; display: flex; align-items: center; justify-content: center; padding: 2px;">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" style="width: 36px; height: 36px;" onerror="this.parentElement.innerHTML='<div style=\'width:40px;height:40px;background:linear-gradient(135deg,#f97316,#ea580c);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:20px;font-weight:800\'>M</div>';">
+                                <!-- Yoroi Wallet -->
+                                <div class="wallet-card" data-wallet="yoroi" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #0B2A48, #163E6B); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white;">
+                                        Y
                                     </div>
                                     <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">MetaMask</div>
-                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Browser extension</div>
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Yoroi</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Official IOHK wallet</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
                                         <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </div>
                                 
-                                <!-- Coinbase Wallet -->
-                                <div class="wallet-card" data-wallet="coinbase" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
-                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: #0052FF; display: flex; align-items: center; justify-content: center;">
-                                        <div style="width: 20px; height: 20px; background: white; border-radius: 3px;"></div>
+                                <!-- Flint Wallet -->
+                                <div class="wallet-card" data-wallet="flint" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #4F46E5, #6366F1); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white;">
+                                        F
                                     </div>
                                     <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Coinbase Wallet</div>
-                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Mobile & extension</div>
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Flint</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Fast & lightweight</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
                                         <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </div>
                                 
-                                <!-- Trust Wallet -->
-                                <div class="wallet-card" data-wallet="trust" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
-                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #3375BB, #3D9BDB); display: flex; align-items: center; justify-content: center;">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                                            <path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z"/>
-                                        </svg>
+                                <!-- Typhon Wallet -->
+                                <div class="wallet-card" data-wallet="typhon" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
+                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #14B8A6, #0D9488); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white;">
+                                        T
                                     </div>
                                     <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Trust Wallet</div>
-                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Mobile wallet</div>
-                                    </div>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
-                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                
-                                <!-- WalletConnect -->
-                                <div class="wallet-card" data-wallet="walletconnect" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
-                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #3B99FC, #5AB9FC); display: flex; align-items: center; justify-content: center;">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                                            <path d="M8 6.5C8 4.6 9.6 3 11.5 3h1C14.4 3 16 4.6 16 6.5v1c0 1.9-1.6 3.5-3.5 3.5h-1C9.6 11 8 9.4 8 7.5v-1z"/>
-                                            <path d="M8 16.5c0-1.9 1.6-3.5 3.5-3.5h1c1.9 0 3.5 1.6 3.5 3.5v1c0 1.9-1.6 3.5-3.5 3.5h-1C9.6 21 8 19.4 8 17.5v-1z"/>
-                                        </svg>
-                                    </div>
-                                    <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">WalletConnect</div>
-                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Scan with mobile</div>
-                                    </div>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
-                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                
-                                <!-- Brave Wallet -->
-                                <div class="wallet-card" data-wallet="brave" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
-                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #FB542B, #FF7654); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: white;">
-                                        🦁
-                                    </div>
-                                    <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Brave Wallet</div>
-                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Browser built-in</div>
+                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Typhon</div>
+                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">All-in-one wallet</div>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
                                         <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2505,7 +2472,7 @@
                             </div>
                             
                             <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #E6E8EC; text-align: center;">
-                                <p style="font-size: 12px; color: #808191; margin: 0;">New to wallets? <a href="https://ethereum.org/en/wallets/" target="_blank" style="color: var(--cardano-blue); text-decoration: none; font-weight: 600;">Learn more</a></p>
+                                <p style="font-size: 12px; color: #808191; margin: 0;">New to Cardano wallets? <a href="https://www.cardano.org/what-is-ada/" target="_blank" style="color: var(--cardano-blue); text-decoration: none; font-weight: 600;">Learn more</a></p>
                             </div>
                             
                             <style>
@@ -2658,12 +2625,10 @@
             // Mobile deep linking
             if (isMobile) {
                 const links = {
-                    'nami': 'https://namiwallet.io/',
-                    'metamask': 'https://metamask.app.link/dapp/' + window.location.host,
-                    'coinbase': 'https://go.cb-w.com/dapp?url=' + encodeURIComponent(window.location.href),
-                    'trust': 'https://link.trustwallet.com/open_url?url=' + encodeURIComponent(window.location.href),
-                    'walletconnect': 'wc://',
-                    'brave': 'https://brave.com/wallet'
+                    'eternl': 'https://eternl.io/',
+                    'yoroi': 'https://yoroi-wallet.com/',
+                    'flint': 'https://flint-wallet.com/',
+                    'typhon': 'https://typhonwallet.io/'
                 };
                 if (links[walletType]) {
                     window.location.href = links[walletType];
@@ -2671,146 +2636,124 @@
                 return;
             }
 
-            // Desktop wallet connection
+            // Desktop CARDANO wallet connection - REAL .enable() calls
             try {
                 let walletAPI, walletName;
 
-                // NAMI - CARDANO WALLET (easiest ADA wallet)
-                if (walletType === 'nami') {
-                    if (window.cardano && window.cardano.nami) {
-                        statusText.textContent = 'Opening Nami...';
-                        statusSubtext.textContent = 'Approve the connection in Nami';
-                        await new Promise(resolve => setTimeout(resolve, 400));
+                // ETERNL - Most popular Cardano wallet
+                if (walletType === 'eternl') {
+                    if (window.cardano && window.cardano.eternl) {
+                        statusText.textContent = 'Opening Eternl...';
+                        statusSubtext.textContent = '✅ Approve connection in your wallet';
+                        await new Promise(resolve => setTimeout(resolve, 600));
 
-                        // THIS TRIGGERS NAMI PERMISSION POPUP
-                        walletAPI = await window.cardano.nami.enable();
-                        walletName = 'Nami';
-                        console.log('✅ Nami wallet connected!');
+                        // THIS TRIGGERS ETERNL PERMISSION POPUP
+                        walletAPI = await window.cardano.eternl.enable();
+                        walletName = 'Eternl';
+                        console.log('✅ Eternl connected!', walletAPI);
                     } else {
-                        window.open('https://chrome.google.com/webstore/detail/nami/lpfcbjknijpeeillifnkikgncikgfhdo', '_blank');
-                        throw new Error('Nami not installed. Opening Chrome Web Store...');
+                        window.open('https://chrome.google.com/webstore/detail/eternl/kmhcihpebfmpgmihbkipmjlmmioameka', '_blank');
+                        throw new Error('Eternl not installed. Install from Chrome Web Store.');
                     }
                 }
 
-                // METAMASK
-                else if (walletType === 'metamask') {
-                    if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
-                        statusText.textContent = 'Opening MetaMask...';
-                        statusSubtext.textContent = 'Approve the connection in MetaMask';
-                        await new Promise(resolve => setTimeout(resolve, 400));
+                // YOROI - Official IOHK wallet
+                else if (walletType === 'yoroi') {
+                    if (window.cardano && window.cardano.yoroi) {
+                        statusText.textContent = 'Opening Yoroi...';
+                        statusSubtext.textContent = '✅ Approve connection in your wallet';
+                        await new Promise(resolve => setTimeout(resolve, 600));
 
-                        // THIS TRIGGERS METAMASK POPUP
-                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                        walletAPI = window.ethereum;
-                        walletName = 'MetaMask';
-                        console.log('✅ MetaMask connected:', accounts[0]);
+                        // THIS TRIGGERS YOROI PERMISSION POPUP
+                        walletAPI = await window.cardano.yoroi.enable();
+                        walletName = 'Yoroi';
+                        console.log('✅ Yoroi connected!', walletAPI);
                     } else {
-                        window.open('https://metamask.io/download/', '_blank');
-                        throw new Error('MetaMask not installed');
+                        window.open('https://chrome.google.com/webstore/detail/yoroi/ffnbelfdoeiohenkjibnmadjiehjhajb', '_blank');
+                        throw new Error('Yoroi not installed. Install from Chrome Web Store.');
                     }
                 }
 
-                // COINBASE WALLET
-                else if (walletType === 'coinbase') {
-                    if (window.ethereum && window.ethereum.isCoinbaseWallet) {
-                        statusText.textContent = 'Opening Coinbase Wallet...';
-                        statusSubtext.textContent = 'Approve in your wallet';
-                        await new Promise(resolve => setTimeout(resolve, 400));
+                // FLINT - Fast & lightweight                else if (walletType === 'flint') {
+                if (window.cardano && window.cardano.flint) {
+                    statusText.textContent = 'Opening Flint...';
+                    statusSubtext.textContent = '✅ Approve connection in your wallet';
+                    await new Promise(resolve => setTimeout(resolve, 600));
 
-                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                        walletAPI = window.ethereum;
-                        walletName = 'Coinbase Wallet';
-                    } else {
-                        window.open('https://www.coinbase.com/wallet', '_blank');
-                        throw new Error('Coinbase Wallet not installed');
-                    }
+                    // THIS TRIGGERS FLINT PERMISSION POPUP
+                    walletAPI = await window.cardano.flint.enable();
+                    walletName = 'Flint';
+                    console.log('✅ Flint connected!', walletAPI);
+                } else {
+                    window.open('https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj', '_blank');
+                    throw new Error('Flint not installed. Install from Chrome Web Store.');
                 }
-
-                // TRUST WALLET
-                else if (walletType === 'trust') {
-                    if (window.ethereum && window.ethereum.isTrust) {
-                        statusText.textContent = 'Opening Trust Wallet...';
-                        statusSubtext.textContent = 'Approve the connection';
-                        await new Promise(resolve => setTimeout(resolve, 400));
-
-                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                        walletAPI = window.ethereum;
-                        walletName = 'Trust Wallet';
-                    } else {
-                        window.open('https://trustwallet.com/browser-extension', '_blank');
-                        throw new Error('Trust Wallet not installed');
-                    }
-                }
-
-                // WALLETCONNECT
-                else if (walletType === 'walletconnect') {
-                    statusText.textContent = 'WalletConnect Coming Soon';
-                    statusSubtext.textContent = 'Feature in development';
-                    throw new Error('WalletConnect integration coming soon');
-                }
-
-                // BRAVE WALLET
-                else if (walletType === 'brave') {
-                    if (window.ethereum && window.ethereum.isBraveWallet) {
-                        statusText.textContent = 'Opening Brave Wallet...';
-                        statusSubtext.textContent = 'Approve the connection';
-                        await new Promise(resolve => setTimeout(resolve, 400));
-
-                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                        walletAPI = window.ethereum;
-                        walletName = 'Brave Wallet';
-                    } else {
-                        throw new Error('Brave Wallet not detected');
-                    }
-                }
-
-                // GET WALLET ADDRESS
-                statusText.textContent = 'Getting wallet details...';
-                await new Promise(resolve => setTimeout(resolve, 500));
-
-                let address = 'addr1_' + Date.now();
-                if (walletAPI.getUsedAddresses) {
-                    try {
-                        const addresses = await walletAPI.getUsedAddresses();
-                        address = addresses[0] || address;
-                    } catch (e) { }
-                }
-
-                const userData = {
-                    username: walletName + ' User',
-                    email: 'wallet@sendwaste.io',
-                    phone: 'Connected',
-                    address: walletName,
-                    walletId: address
-                };
-
-                localStorage.setItem('sendwasteUser', JSON.stringify(userData));
-                localStorage.setItem('connectedWallet', walletName);
-                updateProfileDisplay(userData);
-
-                setTimeout(() => {
-                    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
-                    showSuccessModal(userData.username, userData.walletId);
-                }, 800);
-
-            } catch (error) {
-                console.error('Connection error:', error);
-                statusText.textContent = '❌ Connection Failed';
-                statusSubtext.textContent = error.message || 'Please try again';
-
-                // Show retry
-                setTimeout(() => {
-                    if (list && status) {
-                        status.style.opacity = '0';
-                        setTimeout(() => {
-                            status.style.display = 'none';
-                            list.style.display = 'flex';
-                            list.style.opacity = '1';
-                            list.style.transform = 'scale(1)';
-                        }, 200);
-                    }
-                }, 2000);
             }
+
+                // TYPHON - All-in-one wallet
+                else if (walletType === 'typhon') {
+                if (window.cardano && window.cardano.typhon) {
+                    statusText.textContent = 'Opening Typhon...';
+                    statusSubtext.textContent = '✅ Approve connection in your wallet';
+                    await new Promise(resolve => setTimeout(resolve, 600));
+
+                    // THIS TRIGGERS TYPHON PERMISSION POPUP
+                    walletAPI = await window.cardano.typhoncip30.enable();
+                    walletName = 'Typhon';
+                    console.log('✅ Typhon connected!', walletAPI);
+                } else {
+                    window.open('https://chrome.google.com/webstore/detail/typhon-wallet/kfdniefadaanbjodldohaedphafoffoh', '_blank');
+                    throw new Error('Typhon not installed. Install from Chrome Web Store.');
+                }
+            }
+
+            // GET WALLET ADDRESS
+            statusText.textContent = 'Getting wallet details...';
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            let address = 'addr1_' + Date.now();
+            if (walletAPI.getUsedAddresses) {
+                try {
+                    const addresses = await walletAPI.getUsedAddresses();
+                    address = addresses[0] || address;
+                } catch (e) { }
+            }
+
+            const userData = {
+                username: walletName + ' User',
+                email: 'wallet@sendwaste.io',
+                phone: 'Connected',
+                address: walletName,
+                walletId: address
+            };
+
+            localStorage.setItem('sendwasteUser', JSON.stringify(userData));
+            localStorage.setItem('connectedWallet', walletName);
+            updateProfileDisplay(userData);
+
+            setTimeout(() => {
+                document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+                showSuccessModal(userData.username, userData.walletId);
+            }, 800);
+
+        } catch (error) {
+            console.error('Connection error:', error);
+            statusText.textContent = '❌ Connection Failed';
+            statusSubtext.textContent = error.message || 'Please try again';
+
+            // Show retry
+            setTimeout(() => {
+                if (list && status) {
+                    status.style.opacity = '0';
+                    setTimeout(() => {
+                        status.style.display = 'none';
+                        list.style.display = 'flex';
+                        list.style.opacity = '1';
+                        list.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            }, 2000);
+        }
         };
 
         // SMART DEVICE-AWARE WALLET CONNECTION
