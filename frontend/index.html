@@ -2437,19 +2437,47 @@
 
             } catch (error) {
                 console.error('Wallet connection error:', error);
-                alert('Failed to connect wallet. Please try again or use a different wallet.');
+
+                // More user-friendly error message
+                const errorMsg = error.message || 'Unknown error';
+                console.log('Error details:', errorMsg);
+
+                // Show user-friendly message and offer manual signup
+                const useManual = confirm(
+                    '❌ Wallet Connection Failed\n\n' +
+                    'This could be because:\n' +
+                    '• No wallet extension installed\n' +
+                    '• Wallet is locked\n' +
+                    '• Connection was cancelled\n\n' +
+                    'Would you like to use manual signup instead?\n\n' +
+                    'Click OK for manual signup, or Cancel to try again.'
+                );
+
+                if (useManual) {
+                    // Open manual signup form
+                    document.getElementById('walletModal').classList.add('active');
+                } else {
+                    // Let user try again
+                    throw error;
+                }
             }
         }
 
-        // Override the original wallet button to use MeshSDK
+        // Override the original wallet button to use MeshSDK with better error handling
         function openWalletModal() {
             // First check if MeshSDK is loaded
             if (typeof window.MeshSDK === 'undefined') {
+                console.warn('MeshSDK not loaded, using manual signup');
                 // Fallback to manual signup
                 document.getElementById('walletModal').classList.add('active');
             } else {
-                // Use MeshSDK wallet connection
-                connectMeshWallet();
+                // Try MeshSDK wallet connection with improved error handling
+                connectMeshWallet().catch(error => {
+                    console.error('MeshSDK connection failed:', error);
+                    // Auto-fallback to manual signup on any error
+                    alert('Wallet connection unavailable. Opening manual signup form.');
+                    document.getElementById('walletModal').classList.add('active');
+                });
             }
         }
     </script>
