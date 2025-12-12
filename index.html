@@ -2674,32 +2674,25 @@
                     }
                 }
 
-                // FLINT - Fast & lightweight                else if (walletType === 'flint') {
-                if (window.cardano && window.cardano.flint) {
-                    statusText.textContent = 'Opening Flint...';
-                    statusSubtext.textContent = '✅ Approve connection in your wallet';
-                    await new Promise(resolve => setTimeout(resolve, 600));
+                // FLINT - Fast & lightweight
+                else if (walletType === 'flint') {
+                    if (window.cardano && window.cardano.flint) {
+                        statusText.textContent = 'Opening Flint...';
+                        statusSubtext.textContent = '✅ Approve connection in your wallet';
+                        await new Promise(resolve => setTimeout(resolve, 600));
 
-                    // THIS TRIGGERS FLINT PERMISSION POPUP
-                    walletAPI = await window.cardano.flint.enable();
-                    walletName = 'Flint';
-                    console.log('✅ Flint connected!', walletAPI);
-                } else {
-                    window.open('https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj', '_blank');
-                    throw new Error('Flint not installed. Install from Chrome Web Store.');
+                        // THIS TRIGGERS FLINT PERMISSION POPUP
+                        walletAPI = await window.cardano.flint.enable();
+                        walletName = 'Flint';
+                        console.log('✅ Flint connected!', walletAPI);
+                    } else {
+                        window.open('https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj', '_blank');
+                        throw new Error('Flint not installed. Install from Chrome Web Store.');
+                    }
                 }
-            }
 
                 // TYPHON - All-in-one wallet
                 else if (walletType === 'typhon') {
-                if (window.cardano && window.cardano.typhon) {
-                    statusText.textContent = 'Opening Typhon...';
-                    statusSubtext.textContent = '✅ Approve connection in your wallet';
-                    await new Promise(resolve => setTimeout(resolve, 600));
-
-                    // THIS TRIGGERS TYPHON PERMISSION POPUP
-                    walletAPI = await window.cardano.typhoncip30.enable();
-                    walletName = 'Typhon';
                     if (window.cardano && window.cardano.typhon) {
                         statusText.textContent = 'Opening Typhon...';
                         statusSubtext.textContent = '✅ Approve connection in your wallet';
@@ -2751,6 +2744,12 @@
                 // Close modal and show success
                 document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
                 showSuccessModal(userData.username, userData.walletId);
+
+            } catch (error) {
+                console.error('❌ Connection error:', error);
+                statusText.textContent = '❌ Connection Failed';
+                statusSubtext.textContent = error.message || 'Please try again';
+
                 // Show retry
                 setTimeout(() => {
                     if (list && status) {
@@ -2762,7 +2761,7 @@
                             list.style.transform = 'scale(1)';
                         }, 200);
                     }
-                }, 2000);
+                }, 2500);
             }
         };
 
