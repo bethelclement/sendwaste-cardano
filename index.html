@@ -1195,7 +1195,7 @@
 
                         <div style="padding: 8px;">
                             <!-- Wallet Connection Option -->
-                            <div onclick="connectMeshWallet(); toggleProfileMenu();"
+                            <div onclick="connectWallet(); toggleProfileMenu();"
                                 style="padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-radius: 10px; background: #f9fafb; margin-bottom: 8px; border: 1px solid #e5e7eb; cursor: pointer; transition: background 0.2s;"
                                 onmouseover="this.style.background='#f3f4f6'"
                                 onmouseout="this.style.background='#f9fafb'">
@@ -2122,12 +2122,13 @@
                     // Update UI
                     updateProfileDisplay(userData);
 
-                    // Close modal and show success
+                    // Close modal
                     closeModal();
 
                     // Show welcome message
                     setTimeout(() => {
-                        alert(`✅ Account Created!\\n\\nWelcome ${username}!\\n\\n🎫 Your Lace Wallet ID:\\n${walletId}\\n\\n✨ You can now submit waste and earn rewards!`);
+                        // Show professional success modal
+                        showSuccessModal(userData.username, userData.walletId);
                         // Show dashboard
                         setTimeout(() => showDashboard(), 500);
                     }, 300);
@@ -2457,10 +2458,43 @@
             }
         }
 
+        // Professional Success Modal
+        function showSuccessModal(username, walletId) {
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 450px;">
+                    <svg width="80" height="80" viewBox="0 0 80 80" style="margin: 20px auto; display: block;">
+                        <circle cx="40" cy="40" r="35" fill="var(--green)" opacity="0.2" />
+                        <circle cx="40" cy="40" r="35" stroke="var(--green)" stroke-width="4" fill="none" />
+                        <path d="M25 40L35 50L55 30" stroke="var(--green)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h3 style="font-family: 'Outfit'; font-size: 28px; margin: 10px 0; color: #111827;">Account Created!</h3>
+                    <p style="color: #6b7280; font-size: 16px; margin-bottom: 20px;">Welcome to SendWaste, <strong>${username}</strong>!</p>
+                    <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 20px; border-radius: 14px; margin: 20px 0; border: 2px solid var(--green);">
+                        <div style="font-size: 13px; color: #059669; margin-bottom: 8px; font-weight: 600;">Your Cardano Wallet ID</div>
+                        <div style="font-family: monospace; font-size: 14px; font-weight: 700; color: var(--green-dark); background: white; padding: 12px; border-radius: 8px; word-break: break-all;">${walletId}</div>
+                    </div>
+                    <div style="background:  #f9fafb; padding: 16px; border-radius: 10px; margin: 20px 0; text-align: left;">
+                        <div style="font-size: 14px; color: #374151; margin-bottom: 8px;">✅ Submit waste and earn rewards</div>
+                        <div style="font-size: 14px; color: #374151; margin-bottom: 8px;">✅ Track your environmental impact</div>
+                        <div style="font-size: 14px; color: #374151;">✅ Collect blockchain-verified NFT receipts</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="this.closest('.modal').remove();" style="width: 100%; background: linear-gradient(135deg, var(--green), var(--green-dark));">
+                        Get Started →
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Auto-remove after 10 seconds
+            setTimeout(() => modal.remove(), 10000);
+        }
+
         // Override wallet button - GUARANTEED TO WORK
         window.openWalletModal = function () {
             console.log('🚀 openWalletModal called!');
-            connectWallet();
+            document.getElementById('walletModal').classList.add('active');
         };
 
         // Also bind to window.connectWallet for redundancy
