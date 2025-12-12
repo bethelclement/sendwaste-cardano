@@ -11,6 +11,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+
+    <!-- MeshSDK for Universal Wallet Support -->
+    <script src="https://unpkg.com/@meshsdk/core@latest/dist/mesh.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@meshsdk/react@latest/dist/styles.css">
+
     <style>
         :root {
             --cardano-blue: #0033AD;
@@ -1243,28 +1248,11 @@
 
         <!-- Hero -->
         <section class="hero">
-            <h1>Every Home Produces Waste<br>Yet 70% Remains Uncollected</h1>
+            <h1>Protecting Earth<br>with Cardano</h1>
             <p class="hero-subtitle">
-                In Nigeria alone, 32 million tons annually. SendWaste makes waste collection <strong>visible,
-                    verifiable, and valuable</strong> using Cardano blockchain.
+                Turn waste into wealth with blockchain accountability.
+                Every transaction verified on-chain with Aiken smart contracts.
             </p>
-            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 200px; max-width: 250px; text-align: center;">
-                    <div style="font-size: 48px; margin-bottom: 12px;">📸</div>
-                    <div style="font-weight: 600; margin-bottom: 4px;">1. Photograph Waste</div>
-                    <div style="font-size: 13px; color: #6b7280;">GPS auto-captured</div>
-                </div>
-                <div style="flex: 1; min-width: 200px; max-width: 250px; text-align: center;">
-                    <div style="font-size: 48px; margin-bottom: 12px;">✅</div>
-                    <div style="font-weight: 600; margin-bottom: 4px;">2. GPS Auto-Verified</div>
-                    <div style="font-size: 13px; color: #6b7280;">Smart contract validates</div>
-                </div>
-                <div style="flex: 1; min-width: 200px; max-width: 250px; text-align: center;">
-                    <div style="font-size: 48px; margin-bottom: 12px;">💰</div>
-                    <div style="font-weight: 600; margin-bottom: 4px;">3. Earn Blockchain Rewards</div>
-                    <div style="font-size: 13px; color: #6b7280;">Instant tokens + NFT receipt</div>
-                </div>
-            </div>
         </section>
 
         <!-- Progress Flow with Illustrations -->
@@ -2374,6 +2362,78 @@
         window.addEventListener('scroll', () => {
             document.querySelector('.nav').style.boxShadow = window.pageYOffset > 50 ? '0 4px 24px rgba(0,0,0,0.1)' : 'none';
         });
+
+        // MeshSDK Wallet Integration - Supports ALL Wallets
+        let meshWallet = null;
+        let connectedWalletName = null;
+
+        async function connectMeshWallet() {
+            try {
+                const { BrowserWallet } = window.MeshSDK;
+
+                // Get all available wallets (Nami, Eternl, Lace, Yoroi, Flint, etc.)
+                const availableWallets = BrowserWallet.getInstalledWallets();
+
+                if (availableWallets.length === 0) {
+                    alert('No Cardano wallet detected. Please install Nami, Eternl, Lace, or Yoroi wallet extension.');
+                    return;
+                }
+
+                // If only one wallet, connect directly
+                if (availableWallets.length === 1) {
+                    meshWallet = await BrowserWallet.enable(availableWallets[0]);
+                    connectedWalletName = availableWallets[0];
+                } else {
+                    // Multiple wallets: show selection
+                    const walletList = availableWallets.map((w, i) => `${i + 1}. ${w}`).join('\n');
+                    const choice = prompt(`Multiple wallets found. Select one:\n\n${walletList}\n\nEnter number (1-${availableWallets.length}):`);
+                    const index = parseInt(choice) - 1;
+
+                    if (index >= 0 && index < availableWallets.length) {
+                        meshWallet = await BrowserWallet.enable(availableWallets[index]);
+                        connectedWalletName = availableWallets[index];
+                    } else {
+                        alert('Invalid selection');
+                        return;
+                    }
+                }
+
+                // Get wallet address
+                const addresses = await meshWallet.getUsedAddresses();
+                const walletAddress = addresses[0];
+
+                // Update UI with wallet connection
+                const userData = {
+                    username: 'Cardano User',
+                    email: 'user@cardano.wallet',
+                    phone: 'N/A',
+                    address: 'Connected via ' + connectedWalletName,
+                    walletId: walletAddress
+                };
+
+                localStorage.setItem('sendwasteUser', JSON.stringify(userData));
+                updateProfileDisplay(userData);
+
+                closeModal();
+                alert(`✅ Wallet Connected!\n\n${connectedWalletName} wallet\n\nAddress: ${walletAddress.substring(0, 20)}...\n\nYou can now submit waste and earn rewards!`);
+
+            } catch (error) {
+                console.error('Wallet connection error:', error);
+                alert('Failed to connect wallet. Please try again or use a different wallet.');
+            }
+        }
+
+        // Override the original wallet button to use MeshSDK
+        function openWalletModal() {
+            // First check if MeshSDK is loaded
+            if (typeof window.MeshSDK === 'undefined') {
+                // Fallback to manual signup
+                document.getElementById('walletModal').classList.add('active');
+            } else {
+                // Use MeshSDK wallet connection
+                connectMeshWallet();
+            }
+        }
     </script>
 </body>
 
