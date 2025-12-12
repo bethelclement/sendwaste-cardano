@@ -179,23 +179,29 @@
         }
 
         .wallet-btn {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, var(--cardano-blue), #0052D9);
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
             color: white;
             border: none;
             border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer !important;
             transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+            /* ENSURE IT'S CLICKABLE */
+            pointer-events: auto !important;
+            z-index: 9999 !important;
+            position: relative !important;
         }
 
         .wallet-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 51, 173, 0.3);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
         }
 
         .wallet-btn.connected {
-            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            background: linear-gradient(135deg, var(--cardano-blue) 0%, #0052D9 100%);
         }
 
         /* Hero */
