@@ -2658,6 +2658,7 @@
             // Mobile deep linking
             if (isMobile) {
                 const links = {
+                    'nami': 'https://namiwallet.io/',
                     'metamask': 'https://metamask.app.link/dapp/' + window.location.host,
                     'coinbase': 'https://go.cb-w.com/dapp?url=' + encodeURIComponent(window.location.href),
                     'trust': 'https://link.trustwallet.com/open_url?url=' + encodeURIComponent(window.location.href),
@@ -2672,64 +2673,100 @@
 
             // Desktop wallet connection
             try {
-                await new Promise(resolve => setTimeout(resolve, 600));
                 let walletAPI, walletName;
 
-                switch (walletType) {
-                    case 'metamask':
-                        if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
-                            statusText.textContent = 'Opening MetaMask...';
-                            await window.ethereum.request({ method: 'eth_requestAccounts' });
-                            walletAPI = window.ethereum;
-                            walletName = 'MetaMask';
-                        } else {
-                            throw new Error('MetaMask not installed');
-                        }
-                        break;
+                // NAMI - CARDANO WALLET (easiest ADA wallet)
+                if (walletType === 'nami') {
+                    if (window.cardano && window.cardano.nami) {
+                        statusText.textContent = 'Opening Nami...';
+                        statusSubtext.textContent = 'Approve the connection in Nami';
+                        await new Promise(resolve => setTimeout(resolve, 400));
 
-                    case 'coinbase':
-                        if (window.ethereum && window.ethereum.isCoinbaseWallet) {
-                            statusText.textContent = 'Opening Coinbase Wallet...';
-                            await window.ethereum.request({ method: 'eth_requestAccounts' });
-                            walletAPI = window.ethereum;
-                            walletName = 'Coinbase Wallet';
-                        } else {
-                            throw new Error('Coinbase Wallet not installed');
-                        }
-                        break;
-
-                    case 'trust':
-                        if (window.ethereum && window.ethereum.isTrust) {
-                            statusText.textContent = 'Opening Trust Wallet...';
-                            await window.ethereum.request({ method: 'eth_requestAccounts' });
-                            walletAPI = window.ethereum;
-                            walletName = 'Trust Wallet';
-                        } else {
-                            throw new Error('Trust Wallet not installed');
-                        }
-                        break;
-
-                    case 'walletconnect':
-                        statusText.textContent = 'Initializing WalletConnect...';
-                        statusSubtext.textContent = 'Scan QR code with your mobile wallet';
-                        // WalletConnect integration would go here
-                        throw new Error('WalletConnect integration coming soon');
-
-                    case 'brave':
-                        if (window.ethereum && window.ethereum.isBraveWallet) {
-                            statusText.textContent = 'Opening Brave Wallet...';
-                            await window.ethereum.request({ method: 'eth_requestAccounts' });
-                            walletAPI = window.ethereum;
-                            walletName = 'Brave Wallet';
-                        } else {
-                            throw new Error('Brave Wallet not detected');
-                        }
-                        break;
+                        // THIS TRIGGERS NAMI PERMISSION POPUP
+                        walletAPI = await window.cardano.nami.enable();
+                        walletName = 'Nami';
+                        console.log('✅ Nami wallet connected!');
+                    } else {
+                        window.open('https://chrome.google.com/webstore/detail/nami/lpfcbjknijpeeillifnkikgncikgfhdo', '_blank');
+                        throw new Error('Nami not installed. Opening Chrome Web Store...');
+                    }
                 }
 
-                // Success!
-                statusText.textContent = '✅ Connected!';
-                statusSubtext.textContent = `${walletName} is ready`;
+                // METAMASK
+                else if (walletType === 'metamask') {
+                    if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+                        statusText.textContent = 'Opening MetaMask...';
+                        statusSubtext.textContent = 'Approve the connection in MetaMask';
+                        await new Promise(resolve => setTimeout(resolve, 400));
+
+                        // THIS TRIGGERS METAMASK POPUP
+                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        walletAPI = window.ethereum;
+                        walletName = 'MetaMask';
+                        console.log('✅ MetaMask connected:', accounts[0]);
+                    } else {
+                        window.open('https://metamask.io/download/', '_blank');
+                        throw new Error('MetaMask not installed');
+                    }
+                }
+
+                // COINBASE WALLET
+                else if (walletType === 'coinbase') {
+                    if (window.ethereum && window.ethereum.isCoinbaseWallet) {
+                        statusText.textContent = 'Opening Coinbase Wallet...';
+                        statusSubtext.textContent = 'Approve in your wallet';
+                        await new Promise(resolve => setTimeout(resolve, 400));
+
+                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        walletAPI = window.ethereum;
+                        walletName = 'Coinbase Wallet';
+                    } else {
+                        window.open('https://www.coinbase.com/wallet', '_blank');
+                        throw new Error('Coinbase Wallet not installed');
+                    }
+                }
+
+                // TRUST WALLET
+                else if (walletType === 'trust') {
+                    if (window.ethereum && window.ethereum.isTrust) {
+                        statusText.textContent = 'Opening Trust Wallet...';
+                        statusSubtext.textContent = 'Approve the connection';
+                        await new Promise(resolve => setTimeout(resolve, 400));
+
+                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        walletAPI = window.ethereum;
+                        walletName = 'Trust Wallet';
+                    } else {
+                        window.open('https://trustwallet.com/browser-extension', '_blank');
+                        throw new Error('Trust Wallet not installed');
+                    }
+                }
+
+                // WALLETCONNECT
+                else if (walletType === 'walletconnect') {
+                    statusText.textContent = 'WalletConnect Coming Soon';
+                    statusSubtext.textContent = 'Feature in development';
+                    throw new Error('WalletConnect integration coming soon');
+                }
+
+                // BRAVE WALLET
+                else if (walletType === 'brave') {
+                    if (window.ethereum && window.ethereum.isBraveWallet) {
+                        statusText.textContent = 'Opening Brave Wallet...';
+                        statusSubtext.textContent = 'Approve the connection';
+                        await new Promise(resolve => setTimeout(resolve, 400));
+
+                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        walletAPI = window.ethereum;
+                        walletName = 'Brave Wallet';
+                    } else {
+                        throw new Error('Brave Wallet not detected');
+                    }
+                }
+
+                // GET WALLET ADDRESS
+                statusText.textContent = 'Getting wallet details...';
+                await new Promise(resolve => setTimeout(resolve, 500));
 
                 let address = 'addr1_' + Date.now();
                 if (walletAPI.getUsedAddresses) {
