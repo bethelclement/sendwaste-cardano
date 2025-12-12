@@ -2395,7 +2395,6 @@
                 }
 
                 if (wallets.length === 0) {
-                    // Show professional wallet installation modal with real logos
                     const walletModal = document.createElement('div');
                     walletModal.className = 'modal active';
                     walletModal.innerHTML = `
@@ -2405,7 +2404,7 @@
                             
                             <div style="display: grid; gap: 10px; margin-bottom: 24px;">
                                 <a href="https://www.lace.io/" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <img src="https://assets.lace.io/favicon-32x32.png" alt="Lace" style="width: 32px; height: 32px; border-radius: 6px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #0033AD, #0052D9); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">L</div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Lace</div>
                                         <div style="font-size: 12px; color: #6b7280;">Light & secure</div>
@@ -2414,7 +2413,7 @@
                                 </a>
                                 
                                 <a href="https://eternl.io/app/mainnet/welcome" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <img src="https://eternl.io/eternl.png" alt="Eternl" style="width: 32px; height: 32px; border-radius: 6px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">E</div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Eternl</div>
                                         <div style="font-size: 12px; color: #6b7280;">Advanced features</div>
@@ -2423,7 +2422,8 @@
                                 </a>
                                 
                                 <a href="https://metamask.io/download/" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="Metamask" style="width: 32px; height: 32px; border-radius: 6px;">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="Metamask" style="width: 32px; height: 32px; border-radius: 6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #f97316, #ea580c); display: none; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">M</div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">MetaMask</div>
                                         <div style="font-size: 12px; color: #6b7280;">Most popular</div>
@@ -2432,7 +2432,8 @@
                                 </a>
                                 
                                 <a href="https://trustwallet.com/download" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <img src="https://trustwallet.com/assets/images/media/assets/TWT.png" alt="Trust Wallet" style="width: 32px; height: 32px; border-radius: 6px;">
+                                    <img src="https://trustwallet.com/assets/images/media/assets/TWT.png" alt="Trust Wallet" style="width: 32px; height: 32px; border-radius: 6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #3b82f6, #2563eb); display: none; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">T</div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Trust Wallet</div>
                                         <div style="font-size: 12px; color: #6b7280;">Multi-chain</div>
@@ -2441,7 +2442,7 @@
                                 </a>
                                 
                                 <a href="https://www.binance.com/en/web3wallet" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <img src="https://public.bnbstatic.com/image/pgc/202307/a0f5e8674c8ff4a060301e5f03d84588.png" alt="Binance" style="width: 32px; height: 32px; border-radius: 6px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">B</div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Binance Web3</div>
                                         <div style="font-size: 12px; color: #6b7280;">Exchange wallet</div>
