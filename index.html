@@ -2395,16 +2395,24 @@
                 }
 
                 if (wallets.length === 0) {
+                    // Detect device type
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
                     const walletModal = document.createElement('div');
                     walletModal.className = 'modal active';
                     walletModal.innerHTML = `
                         <div class="modal-content" style="max-width: 520px;">
                             <h3 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 8px;">Connect Your Wallet</h3>
-                            <p style="color: #6b7280; margin-bottom: 24px; font-size: 14px;">Choose a wallet to connect or install one:</p>
+                            <p style="color: #6b7280; margin-bottom: 24px; font-size: 14px;">${isMobile ? 'Tap a wallet to open the app:' : 'Choose a wallet to install:'}</p>
                             
                             <div style="display: grid; gap: 10px; margin-bottom: 24px;">
-                                <a href="https://www.lace.io/" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #0033AD, #0052D9); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">L</div>
+                                <!-- Lace -->
+                                <a href="${isMobile ? 'https://apps.apple.com/app/lace-cardano-wallet/id6450824510' : 'https://www.lace.io/'}" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #0033AD 0%, #0052D9 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,51,173,0.3);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                        </svg>
+                                    </div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Lace</div>
                                         <div style="font-size: 12px; color: #6b7280;">Light & secure</div>
@@ -2412,8 +2420,14 @@
                                     <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                                 
-                                <a href="https://eternl.io/app/mainnet/welcome" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">E</div>
+                                <!-- Eternl -->
+                                <a href="${isMobile ? 'https://eternl.io/app/mainnet/welcome' : 'https://eternl.io/app/mainnet/welcome'}" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(139,92,246,0.3);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                            <circle cx="12" cy="12" r="9"/>
+                                            <path d="M12 8v8M8 12h8" stroke="#7c3aed" stroke-width="2"/>
+                                        </svg>
+                                    </div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Eternl</div>
                                         <div style="font-size: 12px; color: #6b7280;">Advanced features</div>
@@ -2421,9 +2435,14 @@
                                     <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                                 
-                                <a href="https://metamask.io/download/" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="Metamask" style="width: 32px; height: 32px; border-radius: 6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #f97316, #ea580c); display: none; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">M</div>
+                                <!-- MetaMask -->
+                                <a href="${isMobile ? 'https://metamask.app.link/dapp/' + window.location.host : 'https://metamask.io/download/'}" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(249,115,22,0.3);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                            <path d="M12 2L4 12l8 4 8-4L12 2z"/>
+                                            <path d="M4 12l8 10 8-10"/>
+                                        </svg>
+                                    </div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">MetaMask</div>
                                         <div style="font-size: 12px; color: #6b7280;">Most popular</div>
@@ -2431,9 +2450,13 @@
                                     <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                                 
-                                <a href="https://trustwallet.com/download" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <img src="https://trustwallet.com/assets/images/media/assets/TWT.png" alt="Trust Wallet" style="width: 32px; height: 32px; border-radius: 6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #3b82f6, #2563eb); display: none; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">T</div>
+                                <!-- Trust Wallet -->
+                                <a href="${isMobile ? 'https://link.trustwallet.com/open_url?url=' + window.location.href : 'https://trustwallet.com/download'}" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(59,130,246,0.3);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                            <path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z"/>
+                                        </svg>
+                                    </div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Trust Wallet</div>
                                         <div style="font-size: 12px; color: #6b7280;">Multi-chain</div>
@@ -2441,11 +2464,32 @@
                                     <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
                                 
-                                <a href="https://www.binance.com/en/web3wallet" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
-                                    <div style="width: 32px; height: 32px; border-radius: 6px; background: linear-gradient(135deg, #f59e0b, #d97706); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">B</div>
+                                <!-- Binance -->
+                                <a href="${isMobile ? 'https://www.binance.com/en/download' : 'https://www.binance.com/en/web3wallet'}" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(245,158,11,0.3);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                            <path d="M12 3L9 6 12 9 15 6 12 3zM6 9L3 12 6 15 9 12 6 9zM18 9L15 12 18 15 21 12 18 9zM12 15L9 18 12 21 15 18 12 15z"/>
+                                            <rect x="10.5" y="10.5" width="3" height="3" fill="white"/>
+                                        </svg>
+                                    </div>
                                     <div style="flex: 1;">
                                         <div style="font-weight: 600; color: #111827; font-size: 15px;">Binance Web3</div>
                                         <div style="font-size: 12px; color: #6b7280;">Exchange wallet</div>
+                                    </div>
+                                    <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
+                                </a>
+                                
+                                <!-- Roqqu -->
+                                <a href="${isMobile ? 'https://roqqu.com/download' : 'https://roqqu.com/'}" target="_blank" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--cardano-blue)'; this.style.background='#f3f4f6'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'">
+                                    <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(16,185,129,0.3);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/>
+                                            <circle cx="12" cy="12" r="4" fill="white"/>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; color: #111827; font-size: 15px;">Roqqu Web3</div>
+                                        <div style="font-size: 12px; color: #6b7280;">African exchange</div>
                                     </div>
                                     <div style="color: var(--cardano-blue); font-size: 18px; font-weight: 600;">→</div>
                                 </a>
