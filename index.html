@@ -2436,20 +2436,6 @@
                                     </svg>
                                 </div>
                                 
-                                <!-- Flint Wallet -->
-                                <div class="wallet-card" data-wallet="flint" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
-                                    <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #4F46E5, #6366F1); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white;">
-                                        F
-                                    </div>
-                                    <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; color: #141416; font-size: 15px; line-height: 1.3;">Flint</div>
-                                        <div style="font-size: 12px; color: #808191; line-height: 1.3; margin-top: 2px;">Fast & lightweight</div>
-                                    </div>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; opacity: 0.4;">
-                                        <path d="M7.5 15L12.5 10L7.5 5" stroke="#141416" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                
                                 <!-- Typhon Wallet -->
                                 <div class="wallet-card" data-wallet="typhon" style="display: flex; align-items: center; gap: 16px; padding: 14px 16px; background: #F7F8FA; border: 1.5px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.background='#ffffff'; this.style.borderColor='#E6E8EC'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.04)'" onmouseout="this.style.background='#F7F8FA'; this.style.borderColor='transparent'; this.style.boxShadow='none'">
                                     <div style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg, #14B8A6, #0D9488); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: white;">
@@ -2551,7 +2537,7 @@
 
                 // Update status text
                 const statusEl = document.getElementById('walletStatusText');
-                if (statusEl) statusEl.textContent = `● ${connectedWalletName} Active`;
+                if (statusEl) statusEl.textContent = `● ${connectedWalletName}`;
 
                 closeModal();
                 alert(`✅ ${connectedWalletName} Connected!\n\nYou can now submit waste and earn rewards!`);
@@ -2627,7 +2613,6 @@
                 const links = {
                     'eternl': 'https://eternl.io/',
                     'yoroi': 'https://yoroi-wallet.com/',
-                    'flint': 'https://flint-wallet.com/',
                     'typhon': 'https://typhonwallet.io/'
                 };
                 if (links[walletType]) {
@@ -2671,23 +2656,6 @@
                     } else {
                         window.open('https://chrome.google.com/webstore/detail/yoroi/ffnbelfdoeiohenkjibnmadjiehjhajb', '_blank');
                         throw new Error('Yoroi not installed. Install from Chrome Web Store.');
-                    }
-                }
-
-                // FLINT - Fast & lightweight
-                else if (walletType === 'flint') {
-                    if (window.cardano && window.cardano.flint) {
-                        statusText.textContent = 'Opening Flint...';
-                        statusSubtext.textContent = '✅ Approve connection in your wallet';
-                        await new Promise(resolve => setTimeout(resolve, 600));
-
-                        // THIS TRIGGERS FLINT PERMISSION POPUP
-                        walletAPI = await window.cardano.flint.enable();
-                        walletName = 'Flint';
-                        console.log('✅ Flint connected!', walletAPI);
-                    } else {
-                        window.open('https://chrome.google.com/webstore/detail/flint/hnhobjmcibchnmglfbldbfabcgaknlkj', '_blank');
-                        throw new Error('Flint not installed. Install from Chrome Web Store.');
                     }
                 }
 
