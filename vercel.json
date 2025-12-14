@@ -12,6 +12,22 @@
         {
             "src": "logo-merged.png",
             "use": "@vercel/static"
+        },
+        {
+            "src": "eternl-logo.jpg",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "yoroi-logo.jpg",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "lace-logo.jpg",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "typhon-logo.jpg",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
