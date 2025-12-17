@@ -28,6 +28,10 @@
         {
             "src": "typhon-logo.jpg",
             "use": "@vercel/static"
+        },
+        {
+            "src": "public/sendwaste-pitch-logo.png",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
